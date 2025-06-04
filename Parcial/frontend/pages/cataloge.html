@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroGaming</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="icon" href="../images/head_logo.png" type="image/png">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="marca">
+            <img src="../images/logo.png" alt="Logo" class="logo">
+            <span class="nombre">ElectroGaming</span>
+        </div>
+
+        <input type="text" placeholder="Search..." class="search-bar">
+
+        <div class="cart">
+            <span>Cart: <span id="cart-count">0</span> items</span>
+        </div>
+    </nav>
+
+
+    <!-- Contenedor principal -->
+    <main>
+    <section class="products-section">
+
+        <h2>Nuestros productos</h2>
+        <div class="product-grid">
+
+        </div>
+    </section>
+
+
+    <!-- Sección carrito -->
+    <section class="cart-section">
+
+        <h2>Carrito</h2>
+
+        <div id="cart-items">
+            <p>No hay elementos en el carrito.</p>
+        </div>
+
+        <div class="cart-total">
+            <p>Total: <span id="total-price">$0.00</span></p>
+        </div>
+
+    </section>
+    </main>
+    <script src="../scripts/cataloge.js"></script>
+</body>
+</html>

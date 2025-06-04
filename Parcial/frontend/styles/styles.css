@@ -26,6 +26,29 @@ a {
   width: 250px;
 }
 
+.name-bar {
+  padding: 8px;
+  border-radius: 4px;
+  border-color: #8A2BE2;
+  width: 250px;
+  align-self: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.name-button {
+  font-size: 1.4rem;
+  margin-top: 100px;
+  border-radius: 4px;
+  border-color: #8A2BE2;
+  width: 120px;
+  align-self: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .cart {
   font-size: 1rem;
 }

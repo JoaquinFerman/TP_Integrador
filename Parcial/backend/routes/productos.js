@@ -15,14 +15,14 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const { nombre, precio, descripcion, ruta } = req.body;
-    if (!nombre || !precio || !descripcion || !ruta) {
+    const { nombre, precio, descripcion } = req.body;
+    if (!nombre || !precio || !descripcion) {
         return res.status(400).json({ error: 'Faltan campos requeridos' });
     }
     const query = `
-    INSERT INTO productos (nombre, precio, descripcion, ruta)
-    VALUES (?, ?, ?, ?)`;
-    db.query(query, [nombre, precio, descripcion, ruta], (err, result) => {
+    INSERT INTO productos (nombre, precio, descripcion)
+    VALUES (?, ?, ?)`;
+    db.query(query, [nombre, precio, descripcion], (err, result) => {
         if (err) {
             console.error('Error al insertar producto:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
@@ -33,15 +33,15 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     const { id } = req.params;
-    const { nombre, precio, descripcion, ruta } = req.body;
-    if (!nombre || !precio || !descripcion || !ruta) {
+    const { nombre, precio, descripcion } = req.body;
+    if (!nombre || !precio || !descripcion) {
         return res.status(400).json({ error: 'Faltan campos requeridos' });
     }
     const query = `
         UPDATE productos
-        SET nombre = ?, precio = ?, descripcion = ?, ruta = ?
+        SET nombre = ?, precio = ?, descripcion = ?
         WHERE id = ?`;
-    db.query(query, [nombre, precio, descripcion, ruta, id], (err, result) => {
+    db.query(query, [nombre, precio, descripcion, id], (err, result) => {
         if (err) {
             console.error('Error al actualizar producto:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
