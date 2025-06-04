@@ -49,7 +49,7 @@ router.put('/:id', (req, res) => {
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Producto no encontrado' });
         }
-        res.json({ message: 'Producto actualizado' });
+        res.status(204).json({ message: 'Producto actualizado' });
     });
 });
 
@@ -64,7 +64,7 @@ router.delete('/:id', (req, res) => {
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: 'Producto no encontrado' });
         }
-        res.json({ message: 'Producto eliminado' });
+        res.status(204).json({ message: 'Producto eliminado' });
     });
 })
 

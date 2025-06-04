@@ -5,5 +5,5 @@ function continuar(){
         return
     }
     localStorage.setItem('username', username);
-    window.location.href = 'pages/cataloge.html';
+    window.location.href = 'pages/catalog.html';
 }

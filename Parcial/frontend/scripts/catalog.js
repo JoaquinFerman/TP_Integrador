@@ -48,7 +48,6 @@ async function cargarProductos(filtro) {
         producto.appendChild(titulo)
 
         const img = document.createElement('img')
-        console.log('dasd' + result[i].nombre)
         img.src = '../images/' + result[i].nombre + '.jpg'
         img.alt = result[i].nombre
         producto.appendChild(img)
