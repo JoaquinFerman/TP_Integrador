@@ -31,8 +31,41 @@ router.post('/', (req, res) => {
     });
 })
 
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const { nombre, precio, descripcion, ruta } = req.body;
+    if (!nombre || !precio || !descripcion || !ruta) {
+        return res.status(400).json({ error: 'Faltan campos requeridos' });
+    }
+    const query = `
+        UPDATE productos
+        SET nombre = ?, precio = ?, descripcion = ?, ruta = ?
+        WHERE id = ?`;
+    db.query(query, [nombre, precio, descripcion, ruta, id], (err, result) => {
+        if (err) {
+            console.error('Error al actualizar producto:', err);
+            return res.status(500).json({ error: 'Error en el servidor' });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'Producto no encontrado' });
+        }
+        res.json({ message: 'Producto actualizado' });
+    });
+});
+
 router.delete('/:id', (req, res) => {
-    // Eliminar producto por ID
+    const { id } = req.params;
+    const query = 'DELETE FROM productos WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error al eliminar producto:', err);
+            return res.status(500).json({ error: 'Error en el servidor' });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'Producto no encontrado' });
+        }
+        res.json({ message: 'Producto eliminado' });
+    });
 })
 
 module.exports = router
