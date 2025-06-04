@@ -1,7 +1,7 @@
 {
-  "name": "primerparcial",
+  "name": "tp_integrador",
   "version": "1.0.0",
-  "description": "Bienvenidos al repositorio del **Parcial N°1** de la materia **Programación 3**.",
+  "description": "Bienvenidos al repositorio del tp_integrador de la materia **Programación 3**.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
