@@ -1,0 +1,26 @@
+<diagram program="umletino" version="15.1"><zoom_level>15</zoom_level><element><id>UMLClass</id><coordinates><x>255</x><y>465</y><w>180</w><h>150</h></coordinates><panel_attributes>style=autoresize
+Productos
+--
+- id: int
+- nombre : varchar
+- precio : float
+- descripcion : text</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>930</x><y>480</y><w>240</w><h>135</h></coordinates><panel_attributes>style=autoresize
+Ventas
+--
+- id_venta: int
+- nombre_cliente : varchar
+- fecha : datetime</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>750</x><y>525</y><w>210</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1..*</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>600</x><y>465</y><w>165</w><h>150</h></coordinates><panel_attributes>style=autoresize
+DetalleVenta
+--
+- id_venta: int
+- id_detalle : int
+- id_producto : int
+- cantidad : int</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>525</y><w>210</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>585</x><y>270</y><w>195</w><h>105</h></coordinates><panel_attributes>style=autoresize
+Usuarios
+--
+- nombre : varchar
+- password : varchar</panel_attributes><additional_attributes></additional_attributes></element></diagram>
