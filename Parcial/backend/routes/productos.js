@@ -3,7 +3,7 @@ const router = express.Router()
 const db = require('../services/db')
 
 router.get('/', (req, res) => {
-    const query = 'SELECT * FROM productos';
+    const query = 'SELECT * FROM Productos';
 
     db.query(query, (err, results) => {
         if (err) {
@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
         return res.status(400).json({ error: 'Faltan campos requeridos' });
     }
     const query = `
-    INSERT INTO productos (nombre, precio, descripcion)
+    INSERT INTO Productos (nombre, precio, descripcion)
     VALUES (?, ?, ?)`;
     db.query(query, [nombre, precio, descripcion], (err, result) => {
         if (err) {
@@ -38,7 +38,7 @@ router.put('/:id', (req, res) => {
         return res.status(400).json({ error: 'Faltan campos requeridos' });
     }
     const query = `
-        UPDATE productos
+        UPDATE Productos
         SET nombre = ?, precio = ?, descripcion = ?
         WHERE id = ?`;
     db.query(query, [nombre, precio, descripcion, id], (err, result) => {
@@ -55,7 +55,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
-    const query = 'DELETE FROM productos WHERE id = ?';
+    const query = 'DELETE FROM Productos WHERE id = ?';
     db.query(query, [id], (err, result) => {
         if (err) {
             console.error('Error al eliminar producto:', err);
