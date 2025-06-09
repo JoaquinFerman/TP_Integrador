@@ -3,33 +3,44 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #121015; /* Fondo muy oscuro */
+  color: #D8C3FF; /* Texto principal violeta claro */
 }
 
 nav {
-  background-color: #a76fc2;
-  color: white;
+  background-color: #5A3E85; /* Violeta oscuro */
+  color: #F7E256; /* Amarillo suave para texto */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(247, 226, 86, 0.4);
 }
 
 a {
   text-decoration: none;
-  color: white;
+  color: #F7E256; /* Amarillo para links */
+}
+
+a:hover {
+  color: #D8C3FF; /* Violeta claro al pasar mouse */
 }
 
 .search-bar {
   padding: 8px;
   border-radius: 4px;
-  border: none;
+  border: 1px solid #7F6BE0; /* borde violeta */
+  background-color: #1D1736; /* fondo oscuro */
+  color: #D8C3FF; /* texto violeta claro */
   width: 250px;
 }
 
 .name-bar {
   padding: 8px;
   border-radius: 4px;
-  border-color: #8A2BE2;
+  border: 1px solid #7F6BE0;
+  background-color: #1D1736;
+  color: #D8C3FF;
   width: 250px;
   align-self: center;
   display: block;
@@ -41,12 +52,21 @@ a {
   font-size: 1.4rem;
   margin-top: 100px;
   border-radius: 4px;
-  border-color: #8A2BE2;
+  border: 2px solid #F7E256; /* borde amarillo */
+  background-color: transparent;
+  color: #F7E256; /* texto amarillo */
   width: 120px;
   align-self: center;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.name-button:hover {
+  background-color: #F7E256;
+  color: #5A3E85; /* fondo violeta oscuro al pasar mouse */
 }
 
 .cart {
@@ -54,16 +74,17 @@ a {
 }
 
 .cart > a {
-  border: 2px solid white;
+  border: 2px solid #F7E256; /* borde amarillo */
   padding: 10px;
   border-radius: 5px;
+  color: #F7E256;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .cart > a:hover {
-  background-color: white;
-  color: #28a745;
+  background-color: #F7E256;
+  color: #5A3E85;
 }
-
 
 /* Product Section */
 .products-section {
@@ -78,21 +99,25 @@ a {
 }
 
 .product-card {
-  border: 1px solid #ccc;
+  border: 1px solid #7F6BE0; /* borde violeta */
   padding: 10px;
   text-align: center;
   width: 200px;
   border-radius: 5px;
+  background-color: #1D1736; /* fondo oscuro para cards */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  color: #D8C3FF; /* texto violeta */
+  box-shadow: 0 2px 5px rgba(90, 62, 133, 0.4);
 }
 
 .product-card img {
   width: 130px;
   border-radius: 5px;
   height: 115px;
+  background-color: #2E2548; /* fondo suave detrás de imagen */
 }
 
 .product-card h3 {
@@ -102,44 +127,53 @@ a {
 
 .product-card p {
   font-size: 1rem;
-  color: #333;
+  color: #CFC7FF; /* violeta más claro */
 }
 
 .product-card button {
-  background-color: #8A2BE2;
+  background-color: #7F6BE0;
   color: white;
   border: none;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .product-card button:hover {
-  background-color: #830CD5;
+  background-color: #5A3E85;
 }
 
 .cart-section {
   padding: 20px;
-  background-color: #f8f9fa;
-  border-top: 1px solid #ccc;
+  background-color: #1D1736; /* fondo oscuro */
+  border-top: 1px solid #7F6BE0;
 }
 
 #cart-items {
   padding: 10px 0;
   list-style-type: none;
+  color: #D8C3FF;
 }
 
 .item-name, .info-carrito {
   font-size: 20px;
+  color: #D8C3FF;
 }
 
 .delete-button {
-  background-color: red;
-  color: white;
+  background-color: #F7E256;
+  color: #5A3E85;
   border: none;
   padding: 10px 10px;
   cursor: pointer;
   border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #D8C3FF;
+  color: #1D1736;
 }
 
 .hidden {
@@ -161,6 +195,15 @@ a {
 .cart-total {
   font-size: 1.2rem;
   text-align: right;
+  position: fixed;
+  bottom: 20px;
+  right: 15%;
+  background-color: #7F6BE0;
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #F7E256;
 }
 
 ul {
@@ -169,23 +212,13 @@ ul {
 
 h2 {
   text-align: center;
-  color: #2c3e50;
+  color: #D8C3FF;
   font-size: 2rem;
   font-weight: bold;
   margin: 30px auto;
   padding-bottom: 10px;
-  border-bottom: 3px solid #8A2BE2;
+  border-bottom: 3px solid #F7E0A4; /* amarillo suave */
   width: fit-content;
-}
-
-.cart-total {
-  position: fixed;
-  bottom: 20px;
-  right: 15%;
-  background-color: #8A2BE2;
-  color: white;
-  font-weight: bold;
-  padding: 12px 20px;
 }
 
 .marca {
@@ -200,4 +233,5 @@ h2 {
 
 .nombre {
   font-size: xx-large;
+  color: #D8C3FF;
 }
