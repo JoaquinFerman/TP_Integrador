@@ -3,58 +3,45 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #121015; /* Fondo muy oscuro */
-  color: #D8C3FF; /* Texto principal violeta claro */
+  background-color: #121212;
+  color: #E0E0E0;
 }
 
 nav {
-  background-color: #5A3E85; /* Violeta oscuro */
-  color: #F7E256; /* Amarillo suave para texto */
+  background-color: #1F1F1F;
+  color: #E0E0E0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(247, 226, 86, 0.4);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 a {
   text-decoration: none;
-  color: #F7E256; /* Amarillo para links */
+  color: #4CAF50;
 }
 
 a:hover {
-  color: #D8C3FF; /* Violeta claro al pasar mouse */
+  color: #81C784;
 }
 
-.search-bar {
+.search-bar, .name-bar {
   padding: 8px;
   border-radius: 4px;
-  border: 1px solid #7F6BE0; /* borde violeta */
-  background-color: #1D1736; /* fondo oscuro */
-  color: #D8C3FF; /* texto violeta claro */
+  border: 1px solid #333;
+  background-color: #1E1E1E;
+  color: #E0E0E0;
   width: 250px;
-}
-
-.name-bar {
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #7F6BE0;
-  background-color: #1D1736;
-  color: #D8C3FF;
-  width: 250px;
-  align-self: center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .name-button {
   font-size: 1.4rem;
   margin-top: 100px;
   border-radius: 4px;
-  border: 2px solid #F7E256; /* borde amarillo */
+  border: 1px solid #4CAF50;
   background-color: transparent;
-  color: #F7E256; /* texto amarillo */
+  color: #4CAF50;
   width: 120px;
   align-self: center;
   display: block;
@@ -65,8 +52,8 @@ a:hover {
 }
 
 .name-button:hover {
-  background-color: #F7E256;
-  color: #5A3E85; /* fondo violeta oscuro al pasar mouse */
+  background-color: #4CAF50;
+  color: #121212;
 }
 
 .cart {
@@ -74,16 +61,16 @@ a:hover {
 }
 
 .cart > a {
-  border: 2px solid #F7E256; /* borde amarillo */
+  border: 2px solid #4CAF50;
   padding: 10px;
   border-radius: 5px;
-  color: #F7E256;
+  color: #4CAF50;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .cart > a:hover {
-  background-color: #F7E256;
-  color: #5A3E85;
+  background-color: #4CAF50;
+  color: #121212;
 }
 
 /* Product Section */
@@ -99,25 +86,25 @@ a:hover {
 }
 
 .product-card {
-  border: 1px solid #7F6BE0; /* borde violeta */
+  background-color: #1E1E1E;
+  border: 1px solid #2E7D32;
   padding: 10px;
   text-align: center;
   width: 200px;
   border-radius: 5px;
-  background-color: #1D1736; /* fondo oscuro para cards */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  color: #D8C3FF; /* texto violeta */
-  box-shadow: 0 2px 5px rgba(90, 62, 133, 0.4);
+  color: #E0E0E0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .product-card img {
   width: 130px;
-  border-radius: 5px;
   height: 115px;
-  background-color: #2E2548; /* fondo suave detrás de imagen */
+  border-radius: 5px;
+  background-color: #2C2C2C;
 }
 
 .product-card h3 {
@@ -127,11 +114,11 @@ a:hover {
 
 .product-card p {
   font-size: 1rem;
-  color: #CFC7FF; /* violeta más claro */
+  color: #CCCCCC;
 }
 
 .product-card button {
-  background-color: #7F6BE0;
+  background-color: #4CAF50;
   color: white;
   border: none;
   padding: 10px;
@@ -141,29 +128,28 @@ a:hover {
 }
 
 .product-card button:hover {
-  background-color: #5A3E85;
+  background-color: #66BB6A;
 }
 
 .cart-section {
   padding: 20px;
-  background-color: #1D1736; /* fondo oscuro */
-  border-top: 1px solid #7F6BE0;
+  background-color: #1F1F1F;
+  border-top: 1px solid #333;
 }
 
 #cart-items {
   padding: 10px 0;
   list-style-type: none;
-  color: #D8C3FF;
 }
 
 .item-name, .info-carrito {
   font-size: 20px;
-  color: #D8C3FF;
+  color: #E0E0E0;
 }
 
 .delete-button {
-  background-color: #F7E256;
-  color: #5A3E85;
+  background-color: #e53935;
+  color: white;
   border: none;
   padding: 10px 10px;
   cursor: pointer;
@@ -172,8 +158,7 @@ a:hover {
 }
 
 .delete-button:hover {
-  background-color: #D8C3FF;
-  color: #1D1736;
+  background-color: #ef5350;
 }
 
 .hidden {
@@ -198,12 +183,12 @@ a:hover {
   position: fixed;
   bottom: 20px;
   right: 15%;
-  background-color: #7F6BE0;
+  background-color: #4CAF50;
   color: white;
   font-weight: bold;
   padding: 12px 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px #F7E256;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
 }
 
 ul {
@@ -212,12 +197,12 @@ ul {
 
 h2 {
   text-align: center;
-  color: #D8C3FF;
+  color: #E0E0E0;
   font-size: 2rem;
   font-weight: bold;
   margin: 30px auto;
   padding-bottom: 10px;
-  border-bottom: 3px solid #F7E0A4; /* amarillo suave */
+  border-bottom: 3px solid #4CAF50;
   width: fit-content;
 }
 
@@ -233,5 +218,87 @@ h2 {
 
 .nombre {
   font-size: xx-large;
-  color: #D8C3FF;
+  color: #E0E0E0;
+}
+
+/* === LIGHT MODE === */
+body.light-mode {
+  background-color: #f5f5f5;
+  color: #222;
+}
+
+body.light-mode nav {
+  background-color: #ffffff;
+  color: #222;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode a {
+  color: #2E7D32;
+}
+
+body.light-mode a:hover {
+  color: #388E3C;
+}
+
+body.light-mode .search-bar,
+body.light-mode .name-bar {
+  background-color: #ffffff;
+  color: #222;
+  border: 1px solid #ccc;
+}
+
+body.light-mode .name-button {
+  color: #2E7D32;
+  border-color: #2E7D32;
+}
+
+body.light-mode .name-button:hover {
+  background-color: #2E7D32;
+  color: white;
+}
+
+body.light-mode .cart > a {
+  color: #2E7D32;
+  border-color: #2E7D32;
+}
+
+body.light-mode .cart > a:hover {
+  background-color: #2E7D32;
+  color: white;
+}
+
+body.light-mode .product-card {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  color: #222;
+}
+
+body.light-mode .product-card p {
+  color: #444;
+}
+
+body.light-mode .cart-section {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+
+body.light-mode .item-name,
+body.light-mode .info-carrito {
+  color: #222;
+}
+
+body.light-mode .cart-total {
+  background-color: #2E7D32;
+  color: white;
+  box-shadow: 0 0 10px rgba(46, 125, 50, 0.7);
+}
+
+body.light-mode h2 {
+  color: #222;
+  border-color: #2E7D32;
+}
+
+body.light-mode .nombre {
+  color: #222;
 }
