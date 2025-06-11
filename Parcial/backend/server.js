@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const path = require('path');
 const app = express()
+const methodOverride = require('method-override')
 const productosRouter = require('./routes/productos')
 const ventasRouter = require('./routes/ventas')
 const usuariosRouter = require('./routes/usuarios')
@@ -10,6 +11,7 @@ const usuariosRouter = require('./routes/usuarios')
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'))
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

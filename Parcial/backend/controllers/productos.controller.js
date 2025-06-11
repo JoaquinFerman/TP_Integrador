@@ -4,12 +4,12 @@ const db = require('../services/db')
 const getProductos = function(req, res) {
     const query = 'SELECT * FROM Productos';
 
-    db.query(query, (err, results) => {
+    db.query(query, (err, productos) => {
         if (err) {
             console.error('Error al obtener productos:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
         }
-        res.json({ productos: results });
+        res.render('productos', { productos });
     });
 }
 
