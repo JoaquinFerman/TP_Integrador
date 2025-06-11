@@ -23,5 +23,4 @@ INSERT INTO Productos (nombre, precio, descripcion) VALUES
 ('Nike precision 6.jpg', 98000, 'Precison 6 un modelo que todo deportista deberia tener'),
 ('Nike presicion 7.jpg', 150000, 'Confortables Nike presicion 7, resbalarse nunca fue una opcion');
 
-
 -- mysql -u usuario -p nombre_basededatos < init.sql
