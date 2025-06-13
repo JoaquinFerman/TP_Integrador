@@ -1,7 +1,18 @@
 const db = require('../services/db')
 
-
 const getProductos = function(req, res) {
+    const query = 'SELECT * FROM Productos';
+
+    db.query(query, (err, productos) => {
+        if (err) {
+            console.error('Error al obtener productos:', err);
+            return res.status(500).json({ error: 'Error en el servidor' });
+        }
+        res.status(200).json(productos, productos );
+    });
+}
+
+const getProductosPage = function(req, res) {
     const query = 'SELECT * FROM Productos';
 
     db.query(query, (err, productos) => {
@@ -68,6 +79,7 @@ const deleteProducto = function(req, res) {
 }
 
 module.exports = {
+    getProductosPage,
     getProductos,
     postProducto,
     updateProducto,

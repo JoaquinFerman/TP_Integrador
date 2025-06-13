@@ -6,6 +6,7 @@ const methodOverride = require('method-override')
 const productosRouter = require('./routes/productos')
 const ventasRouter = require('./routes/ventas')
 const usuariosRouter = require('./routes/usuarios')
+const adminRouter = require('./routes/admin')
 
 
 app.use(cors())
@@ -19,6 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use('/api/productos', productosRouter)
 app.use('/api/ventas', ventasRouter)
 app.use('/api/usuarios', usuariosRouter)
+app.use('/api/admin', adminRouter)
 
 app.listen(3000, () => {
     console.log('Servidor corriendo en http://localhost:3000')
