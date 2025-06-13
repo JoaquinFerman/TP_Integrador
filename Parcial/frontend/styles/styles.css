@@ -272,3 +272,80 @@ body.light-mode #toggleBtn {
   color: black;
   border: 1px solid black;
 }
+
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .marca, .nombres, .cart, #toggleBtn {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .search-bar {
+    width: 90%;
+    max-width: 300px;
+    margin: 10px auto;
+  }
+
+  .product-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-card {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .cart-total {
+    right: 5%;
+    left: 5%;
+    bottom: 10px;
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .item-block {
+    width: 90%;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.cart-theme-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .cart-theme-wrapper {
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+
+  .cart {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+  }
+
+  #toggleBtn {
+    padding: 8px 12px;
+    width: auto; /* ✅ Esto evita que ocupe todo el ancho */
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+    white-space: nowrap;
+  }
+
+  body.light-mode #toggleBtn {
+    border-color: black;
+    color: black;
+  }
+}
