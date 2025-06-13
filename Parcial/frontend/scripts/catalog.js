@@ -1,9 +1,5 @@
 function init() {
 
-    const contador = parseInt(localStorage.getItem('cart-count'))
-    const contadorCarrito = document.getElementById('cart-count')
-    contadorCarrito.innerHTML = contador
-
     // Carga inicial de productos y carrito
     cargarProductos();
     cargarCarrito();
@@ -82,7 +78,6 @@ async function cargarProductos(filtro) {
             let contador = parseInt(localStorage.getItem('cart-count') || '0')
             contador += 1
             localStorage.setItem('cart-count', contador)
-            document.getElementById('cart-count').innerHTML = contador
 
             cargarCarrito()
         }
@@ -136,7 +131,6 @@ async function cargarCarrito() {
                 let contador = parseInt(localStorage.getItem('cart-count')) || 0
                 contador = Math.max(0, contador - 1)
                 localStorage.setItem('cart-count', contador)
-                document.getElementById('cart-count').innerHTML = contador
 
                 cargarCarrito()
             }
