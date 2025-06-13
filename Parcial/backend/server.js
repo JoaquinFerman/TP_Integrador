@@ -3,6 +3,7 @@ const cors = require('cors')
 const path = require('path');
 const app = express()
 const methodOverride = require('method-override')
+
 const productosRouter = require('./routes/productos')
 const ventasRouter = require('./routes/ventas')
 const usuariosRouter = require('./routes/usuarios')

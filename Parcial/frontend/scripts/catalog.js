@@ -13,9 +13,12 @@ function init() {
         localStorage.setItem('cart', JSON.stringify([]))
     }
 
-    const toggleBtn = document.getElementById('toggle-theme');
+    const toggleBtn = document.getElementById('toggleBtn');
     toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
+        const lightMode = document.body.classList.toggle('light-mode');
+        document.querySelectorAll('.theme-img').forEach(img => {
+        const newSrc = lightMode ? img.dataset.srcLight : img.dataset.srcDark;
+        if (newSrc) img.setAttribute('src', newSrc);})
     });
 }
 
@@ -28,6 +31,7 @@ async function filtro() {
 // Carga de productos
 async function cargarProductos(filtro) {
     const response = await fetch('http://localhost:3000/api/productos')
+    
     let result = await response.json()
     result = result['productos']
 

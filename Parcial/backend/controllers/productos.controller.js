@@ -8,7 +8,7 @@ const getProductos = function(req, res) {
             console.error('Error al obtener productos:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
         }
-        res.status(200).json(productos, productos );
+        res.status(200).json({'productos' : productos});
     });
 }
 

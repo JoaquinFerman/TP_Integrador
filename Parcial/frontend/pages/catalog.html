@@ -12,7 +12,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="marca">
-            <img src="../images/logo.png" alt="Logo" class="logo">
+            <img src="../images/logo_dark.png" data-src-light="../images/logo.png" data-src-dark="../images/logo_dark.png" alt="Logo" class="logo, theme-img">
             <span class="nombre">ElectroGaming</span>
         </div>
 
@@ -24,11 +24,11 @@
         <input type="text" placeholder="Search..." class="search-bar">
 
         <div class="cart">
-            <a href="cart.html"><img width="40" src="../images/carrito.png" alt="cart" class="cart"></a>
+            <a href="cart.html"><img width="40" src="../images/carrito_dark.png" data-src-light="../images/carrito.png" data-src-dark="../images/carrito_dark.png" alt="cart" class="cart, theme-img"></a>
             <span>Cart: <span id="cart-count">0</span> items</span>
         </div>
 
-        <button id="toggle-theme" style="background:none; border:2px solid white; color:white; padding:8px; border-radius:5px; cursor:pointer;">
+        <button id="toggleBtn">
             Cambiar tema
         </button>
     </nav>
