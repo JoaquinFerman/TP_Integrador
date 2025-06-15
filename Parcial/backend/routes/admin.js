@@ -5,9 +5,11 @@ const productosController = require('../controllers/productos.controller');
 
 router.get('/', usuariosController.getUsuarioHomePage);
 
-router.get('/usuarios', usuariosController.getUsuariosPage)
+router.get('/usuarios', usuariosController.getUsuariosPage);
 
-router.post('/usuarios', usuariosController.registrarUsuario)
+router.post('/usuarios', usuariosController.registrarUsuario);
+
+router.put('/usuarios/:id', usuariosController.updateUsuario);
 
 router.get('/productos', productosController.getProductosPage);
 
