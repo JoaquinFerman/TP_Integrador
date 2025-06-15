@@ -3,6 +3,10 @@ const router = express.Router()
 const usuariosController = require('../controllers/usuarios.controller');
 const productosController = require('../controllers/productos.controller');
 
+router.post('/loginPage', usuariosController.getUsuariosPage);
+
+router.post('/login', usuariosController.loginUsuario);
+
 router.get('/', usuariosController.getUsuarioHomePage);
 
 router.get('/usuarios', usuariosController.getUsuariosPage);
