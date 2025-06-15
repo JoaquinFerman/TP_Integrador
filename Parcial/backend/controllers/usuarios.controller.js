@@ -55,9 +55,25 @@ const updateUsuario = function(req, res) {
     });
 }
 
+const deleteUsuario = function(req, res) {
+    const { id } = req.params;
+    const query = 'DELETE FROM Usuarios WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error al eliminar usuario:', err);
+            return res.status(500).json({ error: 'Error en el servidor' });
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        res.status(204).json({ message: 'Usuario eliminado' });
+    });
+}
+
 module.exports = {
     getUsuarioHomePage,
     getUsuariosPage,
     registrarUsuario,
-    updateUsuario
+    updateUsuario,
+    deleteUsuario
 }

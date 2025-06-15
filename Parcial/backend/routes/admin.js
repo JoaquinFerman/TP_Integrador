@@ -11,6 +11,8 @@ router.post('/usuarios', usuariosController.registrarUsuario);
 
 router.put('/usuarios/:id', usuariosController.updateUsuario);
 
+router.delete('/usuarios/:id', usuariosController.deleteUsuario)
+
 router.get('/productos', productosController.getProductosPage);
 
 module.exports = router
