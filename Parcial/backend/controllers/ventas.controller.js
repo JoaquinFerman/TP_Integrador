@@ -6,7 +6,7 @@ const postVenta = function(req, res) {
     const queryVenta = `
     INSERT INTO Ventas (fecha, cliente_nombre)
     VALUES (?, ?)`
-    db.query(queryVenta, [new Date(), nombre], (err, result) => {
+    db.all(queryVenta, [new Date(), nombre], (err, result) => {
         if(err) {
             console.error('Error al realizar compra:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
@@ -23,7 +23,7 @@ const postVenta = function(req, res) {
         const queryDetalle = `
         INSERT INTO DetalleVenta (id_venta, id_producto, cantidad)
         VALUES (?, ?, ?)`;
-        db.query(queryDetalle, [ventaId, id, count], (err, result) => {
+        db.all(queryDetalle, [ventaId, id, count], (err, result) => {
             if (err) {
                 console.error('Error al realizar venta:', err);
                 return res.status(500).json({ error: 'Error en el servidor' });

@@ -8,7 +8,7 @@ const getUsuarioHomePage = function(req, res) {
 const getUsuariosPage = function(req, res) {
     const query = 'SELECT * FROM Usuarios';
     
-    db.query(query, (err, usuarios) => {
+    db.all(query, (err, usuarios) => {
         if (err) {
             console.error('Error al obtener usuarios:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
@@ -20,7 +20,7 @@ const getUsuariosPage = function(req, res) {
 const getUsuarios = function(req, res) {
     const query = 'SELECT * FROM Usuarios';
 
-    db.query(query, (err, usuarios) => {
+    db.all(query, (err, usuarios) => {
         if (err) {
             console.error('Error al obtener usuarios:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
@@ -43,7 +43,7 @@ const registrarUsuario = function(req, res) {
         const query = `
         INSERT INTO Usuarios (nombre, password)
         VALUES (?, ?)`;
-        db.query(query, [nombre, hashedPassword], (err, result) => {
+        db.all(query, [nombre, hashedPassword], (err, result) => {
             if (err) {
                 console.error('Error al insertar usuario:', err);
                 return res.status(500).json({ error: 'Error en el servidor' });
@@ -63,7 +63,7 @@ const updateUsuario = function(req, res) {
         UPDATE Usuarios
         SET nombre = ?, password = ?
         WHERE id = ?`;
-    db.query(query, [nombre, password, id], (err, result) => {
+    db.all(query, [nombre, password, id], (err, result) => {
         if (err) {
             console.error('Error al actualizar usuario:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
@@ -78,7 +78,7 @@ const updateUsuario = function(req, res) {
 const deleteUsuario = function(req, res) {
     const { id } = req.params;
     const query = 'DELETE FROM Usuarios WHERE id = ?';
-    db.query(query, [id], (err, result) => {
+    db.all(query, [id], (err, result) => {
         if (err) {
             console.error('Error al eliminar usuario:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
@@ -96,7 +96,7 @@ const loginUsuario = function(req, res) {
         return res.status(400).json({ error: 'Faltan campos requeridos' });
     }
     const query = 'SELECT * FROM Usuarios WHERE nombre = ?';
-    db.query(query, [nombre], (err, results) => {
+    db.all(query, [nombre], (err, results) => {
         if (err) {
             console.error('Error al buscar usuario:', err);
             return res.status(500).json({ error: 'Error en el servidor' });

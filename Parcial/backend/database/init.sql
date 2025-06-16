@@ -1,8 +1,10 @@
+DROP TABLE IF EXISTS Productos;
+
 CREATE TABLE IF NOT EXISTS Productos (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  nombre VARCHAR(255),
-  precio DECIMAL(10,2),
-  descripcion TEXT,
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nombre TEXT,
+  precio REAL,
+  descripcion TEXT
 );
 
 INSERT INTO Productos (nombre, precio, descripcion) VALUES

@@ -3,7 +3,7 @@ const db = require('../services/db')
 const getProductos = function(req, res) {
     const query = 'SELECT * FROM Productos';
 
-    db.query(query, (err, productos) => {
+    db.all(query, (err, productos) => {
         if (err) {
             console.error('Error al obtener productos:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
@@ -15,7 +15,7 @@ const getProductos = function(req, res) {
 const getProductosPage = function(req, res) {
     const query = 'SELECT * FROM Productos';
 
-    db.query(query, (err, productos) => {
+    db.all(query, (err, productos) => {
         if (err) {
             console.error('Error al obtener productos:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
@@ -32,7 +32,7 @@ const postProducto = function(req, res) {
     const query = `
     INSERT INTO Productos (nombre, precio, descripcion)
     VALUES (?, ?, ?)`;
-    db.query(query, [nombre, precio, descripcion], (err, result) => {
+    db.all(query, [nombre, precio, descripcion], (err, result) => {
         if (err) {
             console.error('Error al insertar producto:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
@@ -51,7 +51,7 @@ const updateProducto = function(req, res) {
         UPDATE Productos
         SET nombre = ?, precio = ?, descripcion = ?
         WHERE id = ?`;
-    db.query(query, [nombre, precio, descripcion, id], (err, result) => {
+    db.all(query, [nombre, precio, descripcion, id], (err, result) => {
         if (err) {
             console.error('Error al actualizar producto:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
@@ -66,7 +66,7 @@ const updateProducto = function(req, res) {
 const deleteProducto = function(req, res) {
     const { id } = req.params;
     const query = 'DELETE FROM Productos WHERE id = ?';
-    db.query(query, [id], (err, result) => {
+    db.all(query, [id], (err, result) => {
         if (err) {
             console.error('Error al eliminar producto:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
