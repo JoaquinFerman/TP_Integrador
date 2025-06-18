@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Productos (
   nombre TEXT,
   precio REAL,
   descripcion TEXT
-);
+  );
 
 DROP TABLE IF EXISTS Usuarios;
 
