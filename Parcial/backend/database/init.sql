@@ -7,22 +7,12 @@ CREATE TABLE IF NOT EXISTS Productos (
   descripcion TEXT
 );
 
-INSERT INTO Productos (nombre, precio, descripcion) VALUES
-('Camiseta River.jpg', 40000, 'Camiseta de jugadores de voley de river '),
-('Camiseta Boca.jpg', 40000, 'Camiseta de jugadores de voley de boca '),
-('Camiseta Brasil Darlan.jpg', 60000, 'Camiseta de Darlan en la seleccion de brasil'),
-('Camiseta Ferro.jpg', 40000, 'Camiseta de jugadores de voley de Ferro'),
-('Camiseta Japon Nishida.jpg', 60000, 'Camiseta de Nishida en la seleccion japonesa 2018'),
-('Camiseta las pumas.jpg', 60000, 'Camiseta de la seleccion argentina de las pumas'),
-('Camiseta Argentina clasica.jpg', 60000, 'Camiseta de la seleccion argentina de voley'),
-('Camiseta Argentina alternativa.jpg', 60000, 'Camiseta de la seleccion argentina de voley alternativa'),
-('Asics gel rebound.jpg', 90000, 'Zapatillas Asics gel rebound.jpg'),
-('Asics mujer gel comulus24.jpg', 107000, 'Zapatillas Asics gel comulus24 para mujer.jpg'),
-('Mizuno W lightning Z3.jpg', 370000, 'Exclusivas zapatillas Mizuno W lightning Z3 zebra'),
-('Mizuno wave mirai 6.jpg', 180000, 'Zapatillas mizuno wave M6'),
-('Nike kyrie 7.jpg', 210000, 'Las increibles nike kyrie 7, te las vas a perder?'),
-('Nike kyrie 8.jpg', 470000, 'Exclusivas zapatillas nike kyrie 8'),
-('Nike precision 6.jpg', 98000, 'Precison 6 un modelo que todo deportista deberia tener'),
-('Nike presicion 7.jpg', 150000, 'Confortables Nike presicion 7, resbalarse nunca fue una opcion');
+DROP TABLE IF EXISTS Usuarios;
 
--- mysql -u usuario -p nombre_basededatos < init.sql
+CREATE TABLE IF NOT EXISTS Usuarios (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nombre TEXT,
+  password TEXT
+);
+
+-- sqlite
