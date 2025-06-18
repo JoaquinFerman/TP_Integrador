@@ -2,7 +2,6 @@ function init() {
 
     // Carga inicial de productos y carrito
     cargarProductos();
-    cargarCarrito();
 
     let cart = localStorage.getItem('cart')
     if(cart == null){
@@ -20,21 +19,29 @@ function init() {
 
 // Funcion de filtro
 async function filtro() {
-    // Llamo la carga de productos con un filtro incluido
-    cargarProductos(document.getElementsByClassName('search-bar')[0].value)
+    // Llamo la carga de productos con filtros incluidos
+    const checkedLabel = document.querySelector('.filter-section input[type="radio"]:checked');
+    cargarProductos(document.getElementsByClassName('search-bar')[0].value, checkedLabel.value)
 }
 
 // Carga de productos
-async function cargarProductos(filtro) {
+async function cargarProductos(filtro, categoria) {
     const response = await fetch('http://localhost:3000/api/productos')
     
     let result = await response.json()
     result = result['productos']
 
     // Aplicar filtro si existe
-    if (filtro != null) {
+    if (filtro) {
         result = result.filter(producto =>
             producto.nombre.toLowerCase().includes(filtro.toLowerCase())
+        )
+    }
+
+    if(categoria && categoria != "todas") {
+        categoria
+        result = result.filter(producto =>
+            producto.categoria == categoria
         )
     }
 
@@ -55,6 +62,10 @@ async function cargarProductos(filtro) {
         img.src = '../images/' + result[i].nombre + '.jpg'
         img.alt = result[i].nombre
         producto.appendChild(img)
+
+        const descripcion = document.createElement('p')
+        descripcion.innerHTML = result[i].descripcion
+        producto.appendChild(descripcion)
 
         const boton = document.createElement('button')
         boton.innerHTML = 'Agregar a carrito'
@@ -87,72 +98,13 @@ async function cargarProductos(filtro) {
     }
 }
 
-
-// Carga de carrito
-async function cargarCarrito() {
-    // Empiezo de 0 el carrito y el total
-    const listaCarrito = document.getElementById('cart-items')
-    listaCarrito.innerHTML = ''
-    let total = 0
-    let carrito = JSON.parse(localStorage.getItem('cart') || '[]')
-
-    // Para cada item del carrito por id, reviso si el id es un int (si lo es, significa que es una fruta, si no, no)
-    for(let i = 0; i < carrito.length; i++) {
-        // Agarro el producto por su key (id)
-        const producto = carrito[i]
-        
-        // Creo el item como se indica
-        const item = document.createElement('li')
-        item.className = 'item-block'
-        
-        // Le doy titulo precio y cantidad (la cantidad no esta estipulada pero me parecio razonable)
-        const titulo = document.createElement('p')
-        titulo.innerHTML = producto['nombre'] + ' x' + producto.count
-        titulo.className = 'item-name'
-        item.appendChild(titulo)
-        
-        // Creo su boton para que sean borrados (de a 1)
-        const boton = document.createElement('button')
-        boton.innerHTML = 'Eliminar 1'
-        boton.onclick = function () {
-            let carrito = JSON.parse(localStorage.getItem('cart') || '[]')
-            const index = carrito.findIndex(p => p.id === producto.id)
-
-            if (index !== -1) {
-                if (carrito[index].count > 1) {
-                    carrito[index].count -= 1
-                } else {
-                    carrito.splice(index, 1)
-                }
-
-                localStorage.setItem('cart', JSON.stringify(carrito))
-
-                // Actualizar contador
-                let contador = parseInt(localStorage.getItem('cart-count')) || 0
-                contador = Math.max(0, contador - 1)
-                localStorage.setItem('cart-count', contador)
-
-                cargarCarrito()
-            }
-        }
-        boton.classList.add('delete-button')
-        
-        // Agrego boton a la carta
-        item.appendChild(boton)
-        
-        // Actualizo total
-        total += producto['precio'] * producto.count
-        
-        // Agrego item al carrito
-        listaCarrito.appendChild(item)
-    }
-    const totalCarrito = document.getElementsByClassName('cart-total')[0]
-    totalCarrito.innerHTML = 'Total: $' + total.toFixed(2)
-    listaCarrito.classList.remove('row')
-}
-
 // Doy el evento para el buscador
 document.getElementsByClassName('search-bar')[0].addEventListener('keyup', filtro);
 
+document.querySelectorAll('.filter-section input[name="categoria"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        filtro();
+    });
+})
 // Inicializo
 init()

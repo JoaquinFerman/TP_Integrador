@@ -1,11 +1,11 @@
 :root {
   --color-bg: #f5f8fa;
   --color-card: #fff;
-  --color-accent: #1e90ff;      /* Azul deportivo */
-  --color-accent-light: #4fd170;/* Verde lima */
-  --color-accent-dark: #1565c0; /* Azul oscuro */
+  --color-accent: #1e90ff;     
+  --color-accent-light: #4fd170;
+  --color-accent-dark: #1565c0;
   --color-text: #222;
-  --color-hover: #4fd170;       /* Verde lima para hover */
+  --color-hover: #4fd170;
   --color-danger: #e53935;
   --color-danger-hover: #ef5350;
   --color-light-border: #e0e0e0;

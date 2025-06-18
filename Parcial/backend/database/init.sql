@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS Productos (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   nombre TEXT,
   precio REAL,
+  categoria TEXT,
   descripcion TEXT
   );
 
