@@ -8,7 +8,6 @@
     <link rel="icon" href="../images/head_logo.png" type="image/png">
 </head>
 <body>
-
     <!-- Navbar -->
     <nav class="navbar">
         <div class="marca">
@@ -21,8 +20,6 @@
             <p>Matias Pena</p>
         </div>
 
-        <input type="text" placeholder="Search..." class="search-bar">
-
         <div class="cart-theme-wrapper">
         <div class="cart">
             <a href="cart.html">
@@ -34,37 +31,37 @@
         </div>
     </nav>
 
-    <!-- <div class="header">
-        <div class="logo">
-            <img src="../assets/logo.png" alt="ElectroGaming" />
-            <span>ElectroGaming</span>
-        </div>
-
-        <div class="user-info">
-            <div>Joaquin Ferman</div>
-            <div>Matias Pena</div>
-        </div>
-
-        <div class="search-bar">
-            <input type="text" placeholder="Search..." />
-        </div>
-
-        <button class="cart-btn">
-            <span style="font-size: 1.5rem;">🛒</span>
-        </button>
-
-        <button class="toggleBtn">Cambiar tema</button>
-    </div> -->
-
     <!-- Contenedor principal -->
     <main>
-    <section class="products-section">
 
+    <div class="main-layout">
+    <aside class="sidebar">
+        <form class="search-form">
+            <input type="text" placeholder="Buscar..." class="search-bar">
+        </form>
+        <div class="filter-section">
+            <h3>Categoría</h3>
+            <label>
+                <input type="radio" name="categoria" value="todas" checked>
+                Todas
+            </label>
+            <label>
+                <input type="radio" name="categoria" value="zapatillas">
+                Zapatillas
+            </label>
+            <label>
+                <input type="radio" name="categoria" value="camisetas">
+                Camisetas
+            </label>
+        </div>
+    </aside>
+    <section class="products-content">
         <h2>Nuestros productos</h2>
         <div class="product-grid">
-
+            <!-- ...cards de productos... -->
         </div>
     </section>
+    </div>
 
     <!-- Sección carrito -->
     <section class="cart-section">
@@ -82,5 +79,21 @@
     </section>
     </main>
     <script src="../scripts/catalog.js"></script>
+
+    <script>
+        const toggleBtn = document.getElementById('toggleBtn');
+        const darkClass = 'dark-mode';
+
+        // Al cargar, aplica el tema guardado
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add(darkClass);
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle(darkClass);
+            const isDark = document.body.classList.contains(darkClass);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    </script>
 </body>
 </html>

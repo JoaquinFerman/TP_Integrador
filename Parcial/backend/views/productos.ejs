@@ -15,10 +15,12 @@
       <img src="/frontend/images/logo.png" alt="Logo" class="logo">
       <span class="nombre">ElectroGaming</span>
     </div>
+    <p>Panel de administrador</p>
     <div class="nombres">
       <p>Joaquin Ferman</p>
       <p>Matias Pena</p>
     </div>
+    <a href="/api/admin/usuarios">Usuarios</a>
     <button id="darkModeToggle" class="icon-btn" title="Cambiar tema">
       <span id="darkModeIcon">🌙</span>
     </button>
@@ -39,13 +41,16 @@
     <div class="product-list">
       <% productos.forEach(producto => { %>
         <div class="product-card">
-          <h3><%= producto.nombre %></h3>
-          <p>Precio: $<%= Number(producto.precio).toFixed(2) %></p>
-          <p><%= producto.descripcion %></p>
-
+          <img src="/frontend/images/<%= producto.nombre %>.jpg" alt="Imagen del producto">
+          <info>
+            <h3><%= producto.nombre %></h3>
+            <p>Precio: $<%= Number(producto.precio).toFixed(2) %></p>
+            <p><%= producto.descripcion %></p>
+          </info>
           <form action="/api/admin/productos/<%= producto.id %>?_method=DELETE" method="POST">
             <button type="submit">Eliminar</button>
           </form>
+        </div>
 
           <form action="/api/admin/productos/<%= producto.id %>?_method=PUT" method="POST">
             <input type="text" name="nombre" value="<%= producto.nombre %>" required>
@@ -53,7 +58,7 @@
             <input type="text" name="descripcion" value="<%= producto.descripcion %>" required>
             <button type="submit">Actualizar</button>
           </form>
-        </div>
+        
       <% }) %>
     </div>
   </main>
