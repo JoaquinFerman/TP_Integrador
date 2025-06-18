@@ -19,4 +19,10 @@ router.delete('/usuarios/:id', usuariosController.deleteUsuario)
 
 router.get('/productos', productosController.getProductosPage);
 
+router.post('/productos/', productosController.postProducto)
+
+router.put('/productos/:id', productosController.updateProducto);
+
+router.delete('/productos/:id', productosController.deleteProducto)
+
 module.exports = router
