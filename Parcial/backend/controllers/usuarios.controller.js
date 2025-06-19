@@ -104,16 +104,31 @@ const loginUsuario = function(req, res) {
         if (results.length === 0) {
             return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
         }
-        const usuario = results[0];
-        bcrypt.compare(password, usuario.password, (err, isMatch) => {
+
+        let usuarioValido = null;
+        let pending = results.length;
+        if (pending === 0) {
+            return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
+        }
+        results.forEach(usuario => {
+            bcrypt.compare(password, usuario.password, (err, isMatch) => {
             if (err) {
                 console.error('Error al comparar contraseñas:', err);
+                if (pending > 0) pending--;
+                if (pending === 0 && !usuarioValido) {
                 return res.status(500).json({ error: 'Error en el servidor' });
+                }
+                return;
             }
-            if (!isMatch) {
+            if (isMatch && !usuarioValido) {
+                usuarioValido = usuario;
+                return res.status(200).json({ message: 'Inicio de sesión exitoso', usuario: { id: usuario.id, nombre: usuario.nombre } });
+            }
+            pending--;
+            if (pending === 0 && !usuarioValido) {
                 return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
             }
-            res.status(200).json({ message: 'Inicio de sesión exitoso', usuario: { id: usuario.id, nombre: usuario.nombre } });
+            });
         });
     });
 }
