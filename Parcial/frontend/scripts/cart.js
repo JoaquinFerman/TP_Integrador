@@ -17,12 +17,23 @@ function init() {
     });
 }
 
+async function filtro() {
+    // Llamo la carga de productos con filtros incluidos
+    cargarCarrito(document.getElementsByClassName('search-bar')[0].value)
+}
+
 // Carga de carrito
-async function cargarCarrito() {
+async function cargarCarrito(filtro) {
     const listaCarrito = document.getElementById('cart-items');
     listaCarrito.innerHTML = '';
     let total = 0;
     let carrito = JSON.parse(localStorage.getItem('cart') || '[]');
+
+    if (filtro) {
+        carrito = carrito.filter(producto =>
+            producto.nombre.toLowerCase().includes(filtro.toLowerCase())
+        )
+    }
 
     for (let i = 0; i < carrito.length; i++) {
         const producto = carrito[i];
@@ -97,6 +108,8 @@ function actualizarContador(cambio) {
     contador = Math.max(0, contador + cambio);
     localStorage.setItem('cart-count', contador);
 }
+
+document.getElementsByClassName('search-bar')[0].addEventListener('keyup', filtro);
 
 // Inicializo
 init()
