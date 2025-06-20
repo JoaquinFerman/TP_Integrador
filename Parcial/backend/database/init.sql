@@ -16,4 +16,24 @@ CREATE TABLE IF NOT EXISTS Usuarios (
   password TEXT
 );
 
+DROP TABLE IF EXISTS Ventas;
+
+CREATE TABLE IF NOT EXISTS Ventas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fecha TEXT NOT NULL,
+    cliente_nombre TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS DetalleVenta;
+
+CREATE TABLE IF NOT EXISTS DetalleVenta (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_venta INTEGER NOT NULL,
+    id_producto INTEGER NOT NULL,
+    cantidad INTEGER NOT NULL,
+    FOREIGN KEY (id_venta) REFERENCES Ventas(id),
+    FOREIGN KEY (id_producto) REFERENCES Productos(id)
+);
+
+
 -- sqlite
