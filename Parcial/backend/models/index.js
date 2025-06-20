@@ -11,9 +11,13 @@ const sequelize = new Sequelize({
 
 const Usuario = require('./Usuario')(sequelize);
 const Producto = require('./Producto')(sequelize);
+const Venta = require('./Venta')(sequelize);
+const DetalleVenta = require('./DetalleVenta')(sequelize);
 
 module.exports = {
   sequelize,
   Usuario,
-  Producto
+  Producto,
+  Venta,
+  DetalleVenta
 };

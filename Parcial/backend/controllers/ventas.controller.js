@@ -8,14 +8,18 @@ const postVenta = async (req, res) => {
   }
 
   try {
+    let fecha = new Date()
+    const dia = fecha.getDate();
+    const mes = fecha.getMonth() + 1; // meses van 0-11 por alguna razon (los dias no???)
+    const anio = fecha.getFullYear();
     const nuevaVenta = await Venta.create({
-      fecha: new Date(),
+      fecha: `${anio}-${mes}-${dia}`,
       cliente_nombre: nombre
     });
 
     for (const producto of productos) {
-      const { id, precio, count } = producto;
-      if (!id || !precio || !count) {
+      const { id, count } = producto;
+      if (!id || !count) {
         return res.status(400).json({ error: 'Faltan campos requeridos en productos' });
       }
 
