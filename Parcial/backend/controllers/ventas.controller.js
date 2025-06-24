@@ -10,7 +10,7 @@ const postVenta = async (req, res) => {
   try {
     let fecha = new Date()
     const dia = fecha.getDate();
-    const mes = fecha.getMonth() + 1; // meses van 0-11 por alguna razon (los dias no???)
+    const mes = fecha.getMonth() + 1; // meses van 0-11
     const anio = fecha.getFullYear();
     const nuevaVenta = await Venta.create({
       fecha: `${anio}-${mes}-${dia}`,

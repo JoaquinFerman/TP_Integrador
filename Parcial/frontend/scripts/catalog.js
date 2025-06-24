@@ -106,5 +106,18 @@ document.querySelectorAll('.filter-section input[name="categoria"]').forEach(rad
         filtro();
     });
 })
-// Inicializo
+
+const toggleBtn = document.getElementById('toggleBtn');
+const darkClass = 'dark-mode';
+
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add(darkClass);
+}
+
+toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle(darkClass);
+    const isDark = document.body.classList.contains(darkClass);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
 init()

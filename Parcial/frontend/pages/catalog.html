@@ -58,7 +58,6 @@
     <section class="products-content">
         <h2>Nuestros productos</h2>
         <div class="product-grid">
-            <!-- ...cards de productos... -->
         </div>
     </section>
     </div>
@@ -66,20 +65,5 @@
     </main>
     <script src="../scripts/catalog.js"></script>
 
-    <script>
-        const toggleBtn = document.getElementById('toggleBtn');
-        const darkClass = 'dark-mode';
-
-        // Al cargar, aplica el tema guardado
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add(darkClass);
-        }
-
-        toggleBtn.addEventListener('click', () => {
-            document.body.classList.toggle(darkClass);
-            const isDark = document.body.classList.contains(darkClass);
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-    </script>
 </body>
 </html>

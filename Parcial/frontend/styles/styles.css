@@ -335,9 +335,9 @@ h2 {
 body.dark-mode {
   --color-bg: #181a1b;
   --color-card: #23272a;
-  --color-accent: #43b77a;         /* Verde deportivo para acentos y botones */
-  --color-accent-light: #1e90ff;   /* Azul deportivo para botones */
-  --color-accent-dark: #90caf9;    /* Azul claro para títulos */
+  --color-accent: #43b77a;
+  --color-accent-light: #1e90ff;
+  --color-accent-dark: #90caf9;
   --color-text: #f7fafd;
   --color-hover: #43b77a;
   --color-light-border: #222;
