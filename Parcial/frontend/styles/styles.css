@@ -433,7 +433,12 @@ body.dark-mode {
   color: var(--color-text);
 }
 
-body.dark-mode nav,
+body.dark-mode nav{
+  background:
+  linear-gradient(to bottom, rgba(24,26,27,0.85) 60%, rgba(24,26,27,0.0) 100%),
+  url('../images/banner.jpg') center/cover no-repeat;
+}
+
 body.dark-mode .sidebar {
   background: var(--color-card);
   border-bottom: 2px solid var(--color-light-border);
