@@ -21,7 +21,8 @@ DROP TABLE IF EXISTS Ventas;
 CREATE TABLE IF NOT EXISTS Ventas (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     fecha TEXT NOT NULL,
-    cliente_nombre TEXT NOT NULL
+    cliente_nombre TEXT NOT NULL,
+    total INTEGER
 );
 
 DROP TABLE IF EXISTS DetalleVenta;
