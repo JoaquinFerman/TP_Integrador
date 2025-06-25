@@ -1,9 +1,8 @@
-const { where } = require('sequelize');
 const { Producto } = require('../models');
 const { checkProducto } = require('../services/productoChecker');
 
 const getProductos = async function(req, res) {
-    const { offset = 0, categoria = 'todas', nombre = '', min = 0, max = 0 } = req.query;
+    const { offset = 0, categoria = 'todas', nombre = '', min = 0, max = 0, orden = 'mayor'} = req.query;
     const limit = 10;
     try {
         const { Op } = require('sequelize');
@@ -27,7 +26,8 @@ const getProductos = async function(req, res) {
         productos = await Producto.findAll({
             where: whereClauses,
             limit,
-            offset: parseInt(offset, 10)
+            offset: parseInt(offset, 10),
+            order: [['precio', orden == 'mayor' ? 'DESC' : 'ASC']]
         });
         res.status(200).json({ productos });
     } catch (err) {
