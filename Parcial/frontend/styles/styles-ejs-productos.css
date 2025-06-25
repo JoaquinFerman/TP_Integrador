@@ -66,6 +66,7 @@ body {
 .icon-btn:hover {
   color: var(--color-accent);
 }
+
 /* Contenedor principal */
 .container {
   max-width: 1000px;
@@ -210,9 +211,9 @@ button[type="submit"]:hover {
 }
 
 .product-card img {
-  width: 200px;      /* o el tamaño que prefieras */
+  width: 200px;     
   height: 150px;
-  object-fit: cover; /* recorta la imagen para que no se deforme */
+  object-fit: cover; 
   border-radius: 10px;
   display: block;
   margin-bottom: 10px;
