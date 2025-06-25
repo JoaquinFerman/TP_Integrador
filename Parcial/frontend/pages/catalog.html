@@ -86,6 +86,20 @@
 
     </main>
     <script src="../scripts/catalog.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if(window.scrollY > 60) {
+                nav.style.padding = '8px 40px 24px 40px';
+                nav.style.minHeight = '70px';
+                nav.style.backgroundSize = 'cover 120%'; 
+            } else {
+                nav.style.padding = '28px 40px 60px 40px';
+                nav.style.minHeight = '180px';
+                nav.style.backgroundSize = 'cover';
+            }
+        });
+    </script>
 
 </body>
 </html>
