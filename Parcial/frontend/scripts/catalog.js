@@ -52,29 +52,15 @@ async function filtro() {
 
 // Carga de productos
 async function cargarProductos(filtro, categoria, min, max, orden) {
-    const response = await fetch('http://localhost:3000/api/productos?offset=1')
+    const response = await fetch(`http://localhost:3000/api/productos?offset=0&categoria=${categoria}&nombre=${filtro}&min=${min}&max=${max}`)
     
     let result = await response.json()
     result = result['productos']
 
-    // Aplicar filtro si existe
-    if (filtro) {
-        result = result.filter(producto =>
-            producto.nombre.toLowerCase().includes(filtro.toLowerCase())
-        )
-    }
-
     // Filtrar por rango de precio
-    result = result.filter(producto => producto.precio >= min && producto.precio <= max);
 
     if (orden === 'mayor') result.sort((a, b) => b.precio - a.precio);
     if (orden === 'menor') result.sort((a, b) => a.precio - b.precio);
-
-    if(categoria && categoria != "todas") {
-        result = result.filter(producto =>
-            producto.categoria == categoria
-        )
-    }
 
     const listaProductos = document.getElementsByClassName('product-grid')[0]
     listaProductos.innerHTML = ''

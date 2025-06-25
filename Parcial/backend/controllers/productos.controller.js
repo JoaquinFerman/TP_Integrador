@@ -1,12 +1,32 @@
+const { where } = require('sequelize');
 const { Producto } = require('../models');
 const { checkProducto } = require('../services/productoChecker');
 
 const getProductos = async function(req, res) {
-    const { offset = 0 } = req.query;
-    const limit = 5;
+    const { offset = 0, categoria = 'todas', nombre = '', min = 0, max = 0 } = req.query;
+    const limit = 10;
     try {
-        const productos = await Producto.findAll({
-            limit: limit,
+        const { Op } = require('sequelize');
+        let productos;
+        const whereClauses = {};
+        if (categoria !== 'todas') {
+            whereClauses.categoria = categoria;
+        }
+        if (nombre !== '') {
+            whereClauses.nombre = { [Op.like]: `%${nombre}%` };
+        }
+        if (min > 0 || max > 0) {
+            whereClauses.precio = {};
+            if (min > 0) {
+            whereClauses.precio[Op.gte] = min;
+            }
+            if (max > 0) {
+            whereClauses.precio[Op.lte] = max;
+            }
+        }
+        productos = await Producto.findAll({
+            where: whereClauses,
+            limit,
             offset: parseInt(offset, 10)
         });
         res.status(200).json({ productos });
