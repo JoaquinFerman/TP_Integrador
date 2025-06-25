@@ -2,8 +2,7 @@ const { Producto } = require('../models');
 const { checkProducto } = require('../services/productoChecker');
 
 const getProductos = async function(req, res) {
-    const { offset = 0, categoria = 'todas', nombre = '', min = 0, max = 0, orden = 'mayor'} = req.query;
-    const limit = 10;
+    const { offset = 0, categoria = 'todas', nombre = '', min = 0, max = 0, orden = 'mayor', limit = 10} = req.query;
     try {
         const { Op } = require('sequelize');
         let productos;
@@ -68,21 +67,22 @@ const updateProducto = async function(req, res) {
     if (!nombre && !precio && !descripcion && !activo) {
         return res.status(400).json({ error: 'Al menos un campo debe ser actualizado' });
     }
-    const fields = {
-        id : id,
+    let fields = {
         nombre : nombre,
         precio : precio,
         descripcion : descripcion,
         activo : activo
     };
-    if(!checkProducto) {
-        return res.status(401).json({error : 'Campos ingresados no validos'})
+    try {
+        fields = await checkProducto({id:id, ...fields})
+    } catch(e) {
+        return res.status(400).json({ error: 'Campos invalidos' })
     }
 
     try {
         const [actualizados] = await Producto.update(
-            { nombre, precio, descripcion, activo },
-            { where: { id } }
+            { nombre: fields.nombre, precio: fields.precio, descripcion: fields.descripcion, activo: fields.activo },
+            { where: { id: id } }
         );
         if (actualizados === 0) {
             return res.status(404).json({ error: 'Producto no encontrado' });

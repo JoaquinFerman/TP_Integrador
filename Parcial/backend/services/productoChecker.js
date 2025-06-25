@@ -5,18 +5,21 @@ async function checkProducto(fields) {
 		throw new Error('ID must be a number');
 	}
 
-    const dbProducto = await Producto.findByPk(fields.id);
+	const dbProducto = await Producto.findByPk(fields.id);
 	if (!dbProducto) {
 		throw new Error('Producto not found in database');
 	}
 
+	const dbValues = dbProducto.get();
+	
 	const checkedFields = { ...fields };
-	for (const key in dbProducto) {
+	for (const key in dbValues) {
 		if (checkedFields[key] === null || checkedFields[key] === undefined) {
-			checkedFields[key] = dbProducto[key];
+			checkedFields[key] = dbValues[key];
 		}
 	}
-
+	
+	console.log(checkedFields)
 	return checkedFields;
 }
 

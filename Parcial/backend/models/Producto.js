@@ -8,7 +8,6 @@ module.exports = (sequelize) => {
     },
     precio: {
       type: DataTypes.DECIMAL(10, 2),
-      unique: true,
       allowNull: false
     },
     categoria: {
