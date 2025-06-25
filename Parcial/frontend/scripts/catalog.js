@@ -115,7 +115,7 @@ async function cargarProductos(filtro, categoria) {
                     setTimeout(() => {
                         boton.disabled = false;
                         boton.style.backgroundColor = ''; 
-                    }, 1000); // Espera 1 segundo antes de habilitar el boton nuevamente
+                    }, 500); // Espera 0.5 segundos antes de habilitar el boton nuevamente
                 }
             }
             btnSumar.onclick = () => {
