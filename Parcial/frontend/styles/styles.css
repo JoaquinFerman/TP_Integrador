@@ -249,6 +249,49 @@ h2 {
   background: var(--color-accent-dark);
 }
 
+.precio-producto {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-accent-dark);
+  margin: 10px 0 12px 0;
+}
+
+.qty-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  width: 60%;
+}
+.qty-button-plus, .qty-button-minus {
+  /* estilos compartidos */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 4px;
+  transition: background 0.2s;
+}
+
+.qty-button-plus {
+  background: var(--color-accent-light) !important;
+}
+
+.qty-button-minus {
+  background: var(--color-danger) !important;
+}
+
+.qty-button-plus:hover {
+  background: var(--color-accent-dark) !important;
+}
+
+.qty-button-minus:hover {
+  background: var(--color-danger-hover) !important;
+}
+
 /* Carrito */
 .cart-section {
   padding: 32px 0 0 0;
