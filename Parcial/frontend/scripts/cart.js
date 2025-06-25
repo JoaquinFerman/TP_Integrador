@@ -41,7 +41,6 @@ async function cargarCarrito(filtro) {
         const item = document.createElement('li');
         item.className = 'item-block';
 
-        // Botón ➖
         const btnMenos = document.createElement('button');
         btnMenos.textContent = '➖';
         btnMenos.classList.add('qty-button');
