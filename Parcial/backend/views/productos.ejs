@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Gestión de Productos</title>
-  <!-- <link rel="stylesheet" href="/frontend/styles/styles-ejs.css"> -->
   <link rel="stylesheet" href="http://localhost:3000/frontend/styles/styles-ejs-productos.css">
 
 </head>
@@ -40,14 +39,17 @@
     <h2>Lista de productos</h2>
     <div class="product-list">
       <% productos.forEach(producto => { %>
-        <div class="product-card">
+        <div class="product-card<%= producto.activo ? '' : ' shadowed' %>"></div>
           <img src="/frontend/images/<%= producto.nombre %>.jpg" alt="Imagen del producto">
           <info>
             <h3><%= producto.nombre %></h3>
             <p>Precio: $<%= Number(producto.precio).toFixed(2) %></p>
             <p><%= producto.descripcion %></p>
           </info>
-          <form action="/api/admin/productos/<%= producto.id %>?_method=DELETE" method="POST">
+            <form action="/api/admin/productos/<%= producto.id %>?_method=PUT" method="POST" style="display:inline;">
+            <input type="hidden" name="activo" value="<%= !producto.activo %>">
+            <button type="submit"><%= producto.activo ? 'Desactivar' : 'Activar' %></button>
+            </form>
             <button type="submit">Eliminar</button>
           </form>
         </div>
@@ -78,6 +80,14 @@
     const isDark = document.body.classList.contains(darkClass);
     icon.textContent = isDark ? '☀️' : '🌙';
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function () {
+      setTimeout(() => {
+        location.reload();
+      }, 50);
+    });
   });
   </script>
 </body>

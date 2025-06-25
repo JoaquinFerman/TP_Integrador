@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS Productos (
   nombre TEXT,
   precio REAL,
   categoria TEXT,
-  descripcion TEXT
+  descripcion TEXT,
+  activo BOOLEAN
   );
 
 DROP TABLE IF EXISTS Usuarios;

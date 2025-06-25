@@ -52,7 +52,7 @@ async function filtro() {
 
 // Carga de productos
 async function cargarProductos(filtro, categoria, min, max, orden) {
-    const response = await fetch('http://localhost:3000/api/productos')
+    const response = await fetch('http://localhost:3000/api/productos?offset=1')
     
     let result = await response.json()
     result = result['productos']
