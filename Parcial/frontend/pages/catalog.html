@@ -21,13 +21,12 @@
         </div>
 
         <div class="cart-theme-wrapper">
-        <div class="cart">
-            <a href="cart.html">
-            <img width="40" src="../images/carrito_dark.png" data-src-light="../images/carrito.png" data-src-dark="../images/carrito_dark.png" alt="cart" class="cart theme-img">
-            </a>
-        </div>
-
-        <button id="toggleBtn">Cambiar tema</button>
+            <div class="cart">
+                <a href="cart.html" style="font-size: 1.5rem; text-decoration: none;">
+                    🛒 
+                </a>
+            </div>
+            <button id="toggleBtn" title="Cambiar tema" style="font-size: 1.5rem;">🌙</button>
         </div>
     </nav>
 
@@ -86,20 +85,5 @@
 
     </main>
     <script src="../scripts/catalog.js"></script>
-    <script>
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if(window.scrollY > 60) {
-                nav.style.padding = '8px 40px 24px 40px';
-                nav.style.minHeight = '70px';
-                nav.style.backgroundSize = 'cover 120%'; 
-            } else {
-                nav.style.padding = '28px 40px 60px 40px';
-                nav.style.minHeight = '180px';
-                nav.style.backgroundSize = 'cover';
-            }
-        });
-    </script>
-
 </body>
 </html>

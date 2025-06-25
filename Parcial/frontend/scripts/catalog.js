@@ -2,6 +2,8 @@ function init() {
 
     // Carga inicial de productos y carrito
     cargarProductos('', 'todas', 0, Infinity, undefined);
+    setupNavbarScroll();
+    setupThemeToggle();
 
     let cart = localStorage.getItem('cart')
     if(cart == null){
@@ -176,21 +178,26 @@ document.querySelectorAll('.filter-section input[name="categoria"]').forEach(rad
     });
 })
 
-// Evento para el botón de modo oscuro
-const toggleBtn = document.getElementById('toggleBtn');
-const darkClass = 'dark-mode';
+function setupThemeToggle() {
+    const toggleBtn = document.getElementById('toggleBtn');
+    const darkClass = 'dark-mode';
 
-// Verifica el tema guardado en localStorage y aplica la clase correspondiente
-if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add(darkClass);
+    // Al cargar, aplica el tema guardado y emoji correcto
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add(darkClass);
+        toggleBtn.textContent = '☀️';
+    } else {
+        toggleBtn.textContent = '🌙';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle(darkClass);
+        const isDark = document.body.classList.contains(darkClass);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        toggleBtn.textContent = isDark ? '☀️' : '🌙';
+    });
 }
 
-// Si el tema es oscuro, actualiza las imágenes
-toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle(darkClass);
-    const isDark = document.body.classList.contains(darkClass);
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-});
 
 // Actualiza el carrito en el localStorage
 function updateCart(producto, cantidad) {
@@ -202,6 +209,21 @@ function updateCart(producto, cantidad) {
         cart.push({ ...producto, count: cantidad })
     }
     localStorage.setItem('cart', JSON.stringify(cart))
+}
+
+function setupNavbarScroll() {
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        if(window.scrollY > 60) {
+            nav.style.padding = '8px 40px 24px 40px';
+            nav.style.minHeight = '70px';
+            nav.style.backgroundSize = 'cover 120%'; 
+        } else {
+            nav.style.padding = '28px 40px 60px 40px';
+            nav.style.minHeight = '180px';
+            nav.style.backgroundSize = 'cover';
+        }
+    });
 }
 
 init();

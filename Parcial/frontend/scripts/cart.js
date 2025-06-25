@@ -2,6 +2,8 @@ function init() {
 
     // Carga inicial de carrito
     cargarCarrito();
+    setupNavbarScroll();
+    setupThemeToggle();
 
     let cart = localStorage.getItem('cart')
     if(cart == null){
@@ -109,6 +111,40 @@ function actualizarContador(cambio) {
 }
 
 document.getElementsByClassName('search-bar')[0].addEventListener('keyup', filtro);
+
+function setupThemeToggle() {
+    const toggleBtn = document.getElementById('toggleBtn');
+    const darkClass = 'dark-mode';
+
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add(darkClass);
+        toggleBtn.textContent = '☀️';
+    } else {
+        toggleBtn.textContent = '🌙';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle(darkClass);
+        const isDark = document.body.classList.contains(darkClass);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        toggleBtn.textContent = isDark ? '☀️' : '🌙';
+    });
+}
+
+function setupNavbarScroll() {
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        if(window.scrollY > 60) {
+            nav.style.padding = '8px 40px 24px 40px';
+            nav.style.minHeight = '70px';
+            nav.style.backgroundSize = 'cover 120%'; 
+        } else {
+            nav.style.padding = '28px 40px 60px 40px';
+            nav.style.minHeight = '180px';
+            nav.style.backgroundSize = 'cover';
+        }
+    });
+}
 
 // Inicializo
 init()
