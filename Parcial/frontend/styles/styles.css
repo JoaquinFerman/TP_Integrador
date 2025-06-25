@@ -63,7 +63,7 @@ nav {
   border-radius: 8px;
   padding: 8px 16px;
   font-size: 1rem;
-  width: 220px;
+  width: 80%;
   margin: 0 18px;
   transition: border 0.2s;
 }
@@ -163,6 +163,35 @@ nav {
 
 #toggleBtn:hover {
   background: var(--color-accent);
+  color: #fff;
+}
+
+.price-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.price-range input[type="number"] {
+  width: 70px;
+  padding: 6px 8px;
+  border: 1px solid var(--color-light-border);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.price-range button {
+  background: #eee;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 1.2rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.price-range button:hover {
+  background: var(--color-accent-light);
   color: #fff;
 }
 

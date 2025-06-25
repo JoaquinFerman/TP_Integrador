@@ -54,6 +54,28 @@
                 Camisetas
             </label>
         </div>
+
+        <div class="filter-section">
+        <h3>Ordenar por precio</h3>
+        <label>
+            <input type="radio" name="orden-precio" value="mayor">
+            Mayor a menor
+        </label>
+        <label>
+            <input type="radio" name="orden-precio" value="menor">
+            Menor a mayor
+        </label>
+        </div>
+
+        <div class="filter-section">
+            <h3>Rango de precio</h3>
+            <div class="price-range">
+                <input type="number" id="precio-min" placeholder="Mínimo" min="0">
+                <span> - </span>
+                <input type="number" id="precio-max" placeholder="Máximo" min="0">
+                <button type="button" id="aplicar-precio">&#8594;</button>
+            </div>
+        </div>
     </aside>
     <section class="products-content">
         <h2>Nuestros productos</h2>

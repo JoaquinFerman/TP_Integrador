@@ -1,7 +1,7 @@
 function init() {
 
     // Carga inicial de productos y carrito
-    cargarProductos();
+    cargarProductos('', 'todas', 0, Infinity, undefined);
 
     let cart = localStorage.getItem('cart')
     if(cart == null){
@@ -16,17 +16,40 @@ function init() {
             if (newSrc) img.setAttribute('src', newSrc);
         })
     });
+
+    // Evento para ordenar por precio
+    document.querySelectorAll('input[name="orden-precio"]').forEach(radio => {
+        radio.addEventListener('change', filtro);
+    });
+
+    // Evento para rango de precio
+    document.getElementById('aplicar-precio').addEventListener('click', filtro);
 }
 
 // Funcion de filtro
 async function filtro() {
-    // Llamo la carga de productos con filtros incluidos
-    const checkedLabel = document.querySelector('.filter-section input[type="radio"]:checked');
-    cargarProductos(document.getElementsByClassName('search-bar')[0].value, checkedLabel.value)
+    let checkedLabel = document.querySelector('.filter-section input[name="categoria"]:checked'); 
+    if (!checkedLabel) { 
+        checkedLabel = { value: "todas" }; 
+    }
+    const orden = document.querySelector('input[name="orden-precio"]:checked')?.value;
+    let min = parseFloat(document.getElementById('precio-min').value);
+    let max = parseFloat(document.getElementById('precio-max').value);
+
+    if (isNaN(min)) min = 0;
+    if (isNaN(max)) max = Infinity;
+
+    cargarProductos(
+        document.getElementsByClassName('search-bar')[0].value, // filtro
+        checkedLabel.value,                                     // categoria
+        min,                                                    // min
+        max,                                                    // max
+        orden                                                   // orden
+    );
 }
 
 // Carga de productos
-async function cargarProductos(filtro, categoria) {
+async function cargarProductos(filtro, categoria, min, max, orden) {
     const response = await fetch('http://localhost:3000/api/productos')
     
     let result = await response.json()
@@ -38,6 +61,12 @@ async function cargarProductos(filtro, categoria) {
             producto.nombre.toLowerCase().includes(filtro.toLowerCase())
         )
     }
+
+    // Filtrar por rango de precio
+    result = result.filter(producto => producto.precio >= min && producto.precio <= max);
+
+    if (orden === 'mayor') result.sort((a, b) => b.precio - a.precio);
+    if (orden === 'menor') result.sort((a, b) => a.precio - b.precio);
 
     if(categoria && categoria != "todas") {
         result = result.filter(producto =>
