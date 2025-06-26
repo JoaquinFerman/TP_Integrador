@@ -52,7 +52,7 @@ async function filtro() {
 
 // Carga de productos
 async function cargarProductos(filtro, categoria, min, max, orden) {
-    const response = await fetch(`http://localhost:3000/api/productos?offset=0&categoria=${categoria}&nombre=${filtro}&min=${min}&max=${max}&orden=${orden}`)
+    const response = await fetch(`http://localhost:3000/api/productos?offset=0&category=${categoria}&name=${filtro}&min=${min}&max=${max}&order=${orden}`)
     
     let result = await response.json()
     result = result['products']
@@ -75,12 +75,12 @@ async function cargarProductos(filtro, categoria, min, max, orden) {
         producto.appendChild(img)
 
         const descripcion = document.createElement('p')
-        descripcion.innerHTML = result[i].descripcion
+        descripcion.innerHTML = result[i].description
         producto.appendChild(descripcion)
 
         const precio = document.createElement('p')
         precio.className = 'precio-producto'
-        precio.innerHTML = '$' + Number(result[i].precio).toFixed(2)
+        precio.innerHTML = '$' + Number(result[i].price).toFixed(2)
         producto.appendChild(precio)
 
         const boton = document.createElement('button')

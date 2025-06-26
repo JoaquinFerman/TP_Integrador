@@ -5,7 +5,7 @@ const getProducts = async function(req, res) {
     const { offset = 0, category = 'todas', name = '', min = 0, max = 0, order = 'mayor', limit = 10} = req.query;
     try {
         const { Op } = require('sequelize');
-        let product;
+        let products;
         const whereClauses = {};
         if (category !== 'todas') {
             whereClauses.category = category;

@@ -3,19 +3,19 @@ const router = express.Router()
 const usersController = require('../controllers/users.controller');
 const productsController = require('../controllers/products.controller');
 
-router.post('/loginPage', usersController.getUsuariosPage);
+router.post('/loginPage', usersController.getUserPage);
 
-router.post('/login', usersController.loginUsuario);
+router.post('/login', usersController.userLogin);
 
-router.get('/', usersController.getUsuarioHomePage);
+router.get('/', usersController.getUserHomePage);
 
-router.get('/usuarios', usersController.getUsuariosPage);
+router.get('/usuarios', usersController.getUserPage);
 
-router.post('/usuarios', usersController.postUsuario);
+router.post('/usuarios', usersController.postUser);
 
-router.put('/usuarios/:id', usersController.updateUsuario);
+router.put('/usuarios/:id', usersController.updateUser);
 
-router.delete('/usuarios/:id', usersController.deleteUsuario)
+router.delete('/usuarios/:id', usersController.deleteUser)
 
 router.get('/productos', productsController.getProductsPage);
 

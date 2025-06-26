@@ -1,61 +1,58 @@
-const { Usuario } = require('../models');
+const { User } = require('../models');
 const bcrypt = require('bcrypt');
 
-const getUsuarioHomePage = (req, res) => {
+const getUserHomePage = (req, res) => {
   return res.render('index');
 };
 
-const getUsuariosPage = async (req, res) => {
+const getUserPage = async (req, res) => {
   try {
-    const usuarios = await Usuario.findAll();
-    res.render('usuarios', { usuarios });
+    const users = await User.findAll();
+    res.render('users', { users });
   } catch (err) {
     console.error('Error al obtener usuarios:', err);
     res.status(500).json({ error: 'Error en el servidor' });
   }
 };
 
-const getUsuarios = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
-    const usuarios = await Usuario.findAll();
-    res.status(200).json({ usuarios });
+    const users = await User.findAll();
+    res.status(200).json({ users });
   } catch (err) {
     console.error('Error al obtener usuarios:', err);
     res.status(500).json({ error: 'Error en el servidor' });
   }
 };
 
-const postUsuario = async (req, res) => {
-  const { nombre, password } = req.body;
-  if (!nombre || !password) {
+const postUser = async (req, res) => {
+  const { name, password } = req.body;
+  if (!name || !password) {
     return res.status(400).json({ error: 'Faltan campos requeridos' });
   }
   try {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const nuevoUsuario = await Usuario.create({ nombre, password: hashedPassword });
-    res.status(201).json({ message: 'Usuario creado', id: nuevoUsuario.id });
+    const newUser = await User.create({ name, password: hashedPassword });
+    res.status(201).json({ message: 'Usuario creado', id: newUser.id });
   } catch (err) {
     console.error('Error al insertar usuario:', err);
     res.status(500).json({ error: 'Error en el servidor' });
   }
 };
 
-const updateUsuario = async (req, res) => {
+const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { nombre, password } = req.body;
+  const { name } = req.body;
 
-  if (!nombre || !password) {
+  if (!name) {
     return res.status(400).json({ error: 'Faltan campos requeridos' });
   }
 
   try {
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    const [updatedRows] = await Usuario.update(
-      { nombre, password: hashedPassword },
+    const [updatedRows] = await User.update(
+      { name },
       { where: { id } }
     );
 
@@ -70,7 +67,7 @@ const updateUsuario = async (req, res) => {
   }
 };
 
-const deleteUsuario = async (req, res) => {
+const deleteUser = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -87,24 +84,24 @@ const deleteUsuario = async (req, res) => {
   }
 };
 
-const loginUsuario = async (req, res) => {
-  const { nombre, password } = req.body;
-  if (!nombre || !password) {
+const userLogin = async (req, res) => {
+  const { name, password } = req.body;
+  if (!name || !password) {
     return res.status(400).json({ error: 'Faltan campos requeridos' });
   }
 
   try {
-    const usuarios = await Usuario.findAll({ where: { nombre } });
-    if (usuarios.length === 0) {
+    const users = await User.findAll({ where: { name } });
+    if (users.length === 0) {
       return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
     }
 
-    for (const usuario of usuarios) {
-      const isMatch = await bcrypt.compare(password, usuario.password);
+    for (const user of users) {
+      const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
         return res.status(200).json({
           message: 'Inicio de sesión exitoso',
-          usuario: { id: usuario.id, nombre: usuario.nombre }
+          user: { id: user.id, name: user.name }
         });
       }
     }
@@ -118,11 +115,11 @@ const loginUsuario = async (req, res) => {
 
 
 module.exports = {
-  getUsuarios,
-  getUsuarioHomePage,
-  getUsuariosPage,
-  postUsuario,
-  updateUsuario,
-  deleteUsuario,
-  loginUsuario,
+  getUsers,
+  getUserHomePage,
+  getUserPage,
+  postUser,
+  updateUser,
+  deleteUser,
+  userLogin,
 };
