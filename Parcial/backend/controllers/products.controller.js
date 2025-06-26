@@ -62,20 +62,22 @@ const postProduct = async function(req, res) {
 
 const updateProduct = async function(req, res) {
     const { id } = req.params;
-    const { name, price, description, active } = req.body;
+    const { name, price, category, description, active } = req.body;
     
     if (!name && !price && !description && !active) {
         return res.status(400).json({ error: 'Al menos un campo debe ser actualizado' });
     }
 
     let fields = {
+        id : id,
         name : name,
         price : price,
+        category : category,
         description : description,
         active : active
     };
     try {
-        fields = await checkProduct({id:id, ...fields})
+        fields = await checkProduct(fields)
     } catch(e) {
         return res.status(400).json({ error: e.message || String(e) })
     }

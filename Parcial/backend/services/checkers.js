@@ -1,5 +1,5 @@
 const { Product } = require('../models');
-const categorias = ['camiseta', 'zapatilla']
+const categories = ['camiseta', 'zapatilla']
 
 
 async function checkProduct(fields) {
@@ -19,17 +19,16 @@ async function checkProduct(fields) {
 		if (checkedFields[key] === null || checkedFields[key] === undefined) {
 			checkedFields[key] = dbValues[key];
 		} else {
-			if(key == 'precio' && (isNaN(Number(checkedFields[key])) || checkedFields[key] < 1)) {
+			if(key == 'price' && (isNaN(Number(checkedFields[key])) || checkedFields[key] < 1)) {
 				throw new Error('Precio debe ser un numero mayor a 0')
 			}
-			if(key == 'cantidad' && (isNaN(Number(checkedFields[key])) || checkedFields[key] < 1)){
+			if(key == 'count' && (isNaN(Number(checkedFields[key])) || checkedFields[key] < 1)){
 				throw new Error('Cantidad debe ser un numero mayor a 0')
 			}
-			if(key == 'activo' && ((isNaN(Number(checkedFields[key])) || !(checkedFields[key] in [0, 1])))){
-			
+			if(key == 'active' && ((isNaN(Number(checkedFields[key])) || !(checkedFields[key] in [0, 1])))){
 				throw new Error('Activo debe ser 0 o 1')
 			}
-			if(key == 'categoria' && !(checkedFields[key] in categorias)){
+			if(key == 'category' && !(checkedFields[key] in categories)){
 				throw new Error('Categoria no valida')
 			}
 		}
@@ -44,7 +43,7 @@ async function checkCart(name, cart) {
 		cart.forEach(async product => {
 			product = await checkProduct(product)
 		});
-	} catch {
+	} catch (e){
 		pass
 	}
 	// incompleto

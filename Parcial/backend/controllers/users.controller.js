@@ -25,7 +25,7 @@ const getUsuarios = async (req, res) => {
   }
 };
 
-const registrarUsuario = async (req, res) => {
+const postUsuario = async (req, res) => {
   const { nombre, password } = req.body;
   if (!nombre || !password) {
     return res.status(400).json({ error: 'Faltan campos requeridos' });
@@ -121,7 +121,7 @@ module.exports = {
   getUsuarios,
   getUsuarioHomePage,
   getUsuariosPage,
-  registrarUsuario,
+  postUsuario,
   updateUsuario,
   deleteUsuario,
   loginUsuario,

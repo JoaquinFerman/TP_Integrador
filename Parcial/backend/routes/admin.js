@@ -11,7 +11,7 @@ router.get('/', usersController.getUsuarioHomePage);
 
 router.get('/usuarios', usersController.getUsuariosPage);
 
-router.post('/usuarios', usersController.registrarUsuario);
+router.post('/usuarios', usersController.postUsuario);
 
 router.put('/usuarios/:id', usersController.updateUsuario);
 
