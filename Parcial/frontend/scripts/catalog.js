@@ -55,7 +55,7 @@ async function cargarProductos(filtro, categoria, min, max, orden) {
     const response = await fetch(`http://localhost:3000/api/productos?offset=0&categoria=${categoria}&nombre=${filtro}&min=${min}&max=${max}&orden=${orden}`)
     
     let result = await response.json()
-    result = result['productos']
+    result = result['products']
 
     const listaProductos = document.getElementsByClassName('product-grid')[0]
     listaProductos.innerHTML = ''
@@ -65,13 +65,13 @@ async function cargarProductos(filtro, categoria, min, max, orden) {
         producto.className = 'product-card'
 
         const titulo = document.createElement('h3')
-        titulo.innerHTML = result[i].nombre
+        titulo.innerHTML = result[i].name
         titulo.className = 'card-nombre'
         producto.appendChild(titulo)
 
         const img = document.createElement('img')
-        img.src = '../images/' + result[i].nombre + '.jpg'
-        img.alt = result[i].nombre
+        img.src = '../images/' + result[i].name + '.jpg'
+        img.alt = result[i].name
         producto.appendChild(img)
 
         const descripcion = document.createElement('p')
