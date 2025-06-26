@@ -1,23 +1,22 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const DetalleVenta = sequelize.define('DetalleVenta', {
-    id_venta: {
+  const SaleDetail = sequelize.define('SaleDetail', {
+    id_sale: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    id_producto: {
+    id_product: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    cantidad: {
+    count: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {
-    tableName: 'DetalleVenta',
     timestamps: false
   });
 
-  return DetalleVenta;
+  return SaleDetail;
 };

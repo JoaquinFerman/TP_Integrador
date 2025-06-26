@@ -1,4 +1,4 @@
-INSERT INTO Productos (nombre, precio, categoria, descripcion, activo) VALUES
+INSERT INTO Products (name, price, category, description, active) VALUES
 ('Camiseta River', 40000, 'camiseta', 'Camiseta de jugadores de voley de river', True),
 ('Camiseta Boca', 40000, 'camiseta', 'Camiseta de jugadores de voley de boca', True),
 ('Camiseta Brasil Darlan', 60000, 'camiseta', 'Camiseta de Darlan en la seleccion de brasil', True),

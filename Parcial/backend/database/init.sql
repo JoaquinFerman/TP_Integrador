@@ -1,40 +1,40 @@
-DROP TABLE IF EXISTS Productos;
+DROP TABLE IF EXISTS Products;
 
-CREATE TABLE IF NOT EXISTS Productos (
+CREATE TABLE IF NOT EXISTS Products (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  nombre TEXT,
-  precio REAL,
-  categoria TEXT,
-  descripcion TEXT,
-  activo BOOLEAN
+  name TEXT,
+  price REAL,
+  category TEXT,
+  description TEXT,
+  active BOOLEAN
   );
 
-DROP TABLE IF EXISTS Usuarios;
+DROP TABLE IF EXISTS Users;
 
-CREATE TABLE IF NOT EXISTS Usuarios (
+CREATE TABLE IF NOT EXISTS Users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  nombre TEXT,
+  name TEXT,
   password TEXT
 );
 
-DROP TABLE IF EXISTS Ventas;
+DROP TABLE IF EXISTS Sales;
 
-CREATE TABLE IF NOT EXISTS Ventas (
+CREATE TABLE IF NOT EXISTS Sales (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    fecha TEXT NOT NULL,
-    cliente_nombre TEXT NOT NULL,
+    date TEXT NOT NULL,
+    client_name TEXT NOT NULL,
     total INTEGER
 );
 
-DROP TABLE IF EXISTS DetalleVenta;
+DROP TABLE IF EXISTS SaleDetails;
 
-CREATE TABLE IF NOT EXISTS DetalleVenta (
+CREATE TABLE IF NOT EXISTS SaleDetails (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_venta INTEGER NOT NULL,
-    id_producto INTEGER NOT NULL,
-    cantidad INTEGER NOT NULL,
-    FOREIGN KEY (id_venta) REFERENCES Ventas(id),
-    FOREIGN KEY (id_producto) REFERENCES Productos(id)
+    id_sale INTEGER NOT NULL,
+    id_product INTEGER NOT NULL,
+    count INTEGER NOT NULL,
+    FOREIGN KEY (id_sale) REFERENCES Sales(id),
+    FOREIGN KEY (id_product) REFERENCES Products(id)
 );
 
 

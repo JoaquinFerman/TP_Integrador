@@ -1,0 +1,119 @@
+const { Product } = require('../models');
+const { checkProduct } = require('../services/checkers');
+
+const getProducts = async function(req, res) {
+    const { offset = 0, category = 'todas', name = '', min = 0, max = 0, order = 'mayor', limit = 10} = req.query;
+    try {
+        const { Op } = require('sequelize');
+        let product;
+        const whereClauses = {};
+        if (category !== 'todas') {
+            whereClauses.category = category;
+        }
+        if (name !== '') {
+            whereClauses.name = { [Op.like]: `%${name}%` };
+        }
+        if (min > 0 || max > 0) {
+            whereClauses.price = {};
+            if (min > 0) {
+            whereClauses.price[Op.gte] = min;
+            }
+            if (max > 0) {
+            whereClauses.price[Op.lte] = max;
+            }
+        }
+        products = await Product.findAll({
+            where: whereClauses,
+            limit,
+            offset: parseInt(offset, 10),
+            order: [['price', order == 'mayor' ? 'DESC' : 'ASC']]
+        });
+        res.status(200).json({ products });
+    } catch (err) {
+        console.error('Error al obtener productos:', err);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+};
+
+const getProductsPage = async function(req, res) {
+    try {
+        const products = await Product.findAll();
+        res.render('productos', { products });
+    } catch (err) {
+        console.error('Error al obtener productos:', err);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+};
+
+const postProduct = async function(req, res) {
+    const { name, price, description } = req.body;
+    if (!name || !price || !description) {
+        return res.status(400).json({ error: 'Faltan campos requeridos' });
+    }
+
+    try {
+        const newProduct = await Product.create({ name, price, description });
+        res.status(201).json({ message: 'Producto creado', id: newProduct.id });
+    } catch (err) {
+        console.error('Error al insertar producto:', err);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+};
+
+const updateProduct = async function(req, res) {
+    const { id } = req.params;
+    const { name, price, description, active } = req.body;
+    
+    if (!name && !price && !description && !active) {
+        return res.status(400).json({ error: 'Al menos un campo debe ser actualizado' });
+    }
+
+    let fields = {
+        name : name,
+        price : price,
+        description : description,
+        active : active
+    };
+    try {
+        fields = await checkProduct({id:id, ...fields})
+    } catch(e) {
+        return res.status(400).json({ error: e.message || String(e) })
+    }
+
+    try {
+        const [updated] = await Product.update(
+            { name: fields.name, price: fields.price, description: fields.description, active: fields.active },
+            { where: { id: id } }
+        );
+        if (updated === 0) {
+            return res.status(404).json({ error: 'Producto no encontrado' });
+        }
+        res.status(200).json({ message: 'Producto actualizado' });
+    } catch (err) {
+        console.error('Error al actualizar producto:', err);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+};
+
+const deleteProduct = async function(req, res) {
+    const { id } = req.params;
+
+    try {
+        const destroyed = await Product.destroy({ where: { id } });
+        if (destroyed === 0) {
+            return res.status(404).json({ error: 'Producto no encontrado' });
+        }
+        res.status(204).json({ message: 'Producto eliminado' });
+    } catch (err) {
+        console.error('Error al eliminar producto:', err);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+};
+
+module.exports = {
+    getProductsPage,
+    getProducts,
+    postProduct,
+    updateProduct,
+    deleteProduct
+};

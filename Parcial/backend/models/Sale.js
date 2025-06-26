@@ -1,19 +1,18 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const Venta = sequelize.define('Venta', {
-    fecha: {
+  const Sale = sequelize.define('Sale', {
+    date: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    cliente_nombre: {
+    client_name: {
       type: DataTypes.STRING,
       allowNull: false
     }
   }, {
-    tableName: 'Ventas',
     timestamps: false
   });
 
-  return Venta;
+  return Sale;
 };

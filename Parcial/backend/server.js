@@ -4,9 +4,9 @@ const path = require('path');
 const app = express()
 const methodOverride = require('method-override')
 
-const productosRouter = require('./routes/productos')
-const ventasRouter = require('./routes/ventas')
-const usuariosRouter = require('./routes/usuarios')
+const productsRouter = require('./routes/products')
+const salesRouter = require('./routes/ventas')
+const usersRouter = require('./routes/usuarios')
 const adminRouter = require('./routes/admin')
 
 
@@ -20,9 +20,9 @@ app.use('/frontend', express.static(path.join(__dirname, '..', 'frontend')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use('/api/productos', productosRouter)
-app.use('/api/ventas', ventasRouter)
-app.use('/api/usuarios', usuariosRouter)
+app.use('/api/productos', productsRouter)
+app.use('/api/ventas', salesRouter)
+app.use('/api/usuarios', usersRouter)
 app.use('/api/admin', adminRouter)
 
 app.listen(3000, () => {

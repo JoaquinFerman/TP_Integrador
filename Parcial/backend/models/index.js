@@ -9,15 +9,15 @@ const sequelize = new Sequelize({
     storage: dbPath
 });
 
-const Usuario = require('./Usuario')(sequelize);
-const Producto = require('./Producto')(sequelize);
-const Venta = require('./Venta')(sequelize);
-const DetalleVenta = require('./DetalleVenta')(sequelize);
+const User = require('./User')(sequelize);
+const Product = require('./Product')(sequelize);
+const Sale = require('./Sale')(sequelize);
+const SaleDetail = require('./SaleDetail')(sequelize);
 
 module.exports = {
   sequelize,
-  Usuario,
-  Producto,
-  Venta,
-  DetalleVenta
+  User,
+  Product,
+  Sale,
+  SaleDetail
 };
