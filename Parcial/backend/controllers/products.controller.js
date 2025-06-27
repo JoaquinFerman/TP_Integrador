@@ -46,13 +46,25 @@ const getProductsPage = async function(req, res) {
 };
 
 const postProduct = async function(req, res) {
-    const { name, price, description } = req.body;
-    if (!name || !price || !description) {
+    const { name, price, category, description } = req.body;
+    if (!name || !price || !category || !description) {
         return res.status(400).json({ error: 'Faltan campos requeridos' });
     }
 
+    fields = {
+        name,
+        price,
+        description
+    }
+
     try {
-        const newProduct = await Product.create({ name, price, description });
+        fields = await checkProduct(fields)
+    } catch(e) {
+        return res.status(400).json({ error: e.message || String(e) })
+    }
+
+    try {
+        const newProduct = await Product.create({ name, price, category, description, active : 1 });
         res.status(201).json({ message: 'Producto creado', id: newProduct.id });
     } catch (err) {
         console.error('Error al insertar producto:', err);
