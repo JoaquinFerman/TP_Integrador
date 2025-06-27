@@ -9,17 +9,25 @@
 <body class="bg-light">
   <div class="container mt-5">
     <h2 class="mb-4">Login de Admin</h2>
-    <form action="/api/usuarios" method="POST">
+    <form action="/api/admin/login?page=true" method="POST">
       <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" required>
+        <label for="name" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="name" name="name" required>
       </div>
       <div class="mb-3">
-        <label for="mail" class="form-label">Correo electrónico</label>
-        <input type="email" class="form-control" id="mail" name="mail" required>
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" name="password" required>
       </div>
-      <button type="submit" class="btn btn-primary">Registrar</button>
+      <button type="submit" class="btn btn-primary">Login</button>
     </form>
+
+    <form action="/api/admin/login" method="POST">
+      <div class="mb-3"></div>
+        <input type="hidden" name="name" value="Mati">
+        <input type="hidden" name="password" value="1234">
+      </div>
+      <button type="submit" class="btn btn-primary">Fast access</button>
+    </form> <!-- Podria ser un href pero esto funciona mejor si se agregan autorizaciones -->
   </div>
 </body>
 </html>

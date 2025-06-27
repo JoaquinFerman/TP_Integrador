@@ -99,13 +99,10 @@ const userLogin = async (req, res) => {
     for (const user of users) {
       const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
-        return res.status(200).json({
-          message: 'Inicio de sesión exitoso',
-          user: { id: user.id, name: user.name }
-        });
+        return res.status(200).redirect('./productos');
       }
     }
-
+    
     return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
   } catch (err) {
     console.error('Error al buscar usuario:', err);
