@@ -295,6 +295,12 @@ h2 {
   margin: 10px 0 12px 0;
 }
 
+.item-name {
+  margin-right: 18px;
+  font-weight: 500;
+  color: var(--color-accent-dark);
+}
+
 .qty-wrapper {
   display: flex;
   align-items: center;

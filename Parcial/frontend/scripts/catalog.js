@@ -217,7 +217,7 @@ function updateCart(producto, cantidad) {
 }
 
 function setupNavbarScroll() {
-    let isShrunk = false; // <-- define la variable aquí
+    let isShrunk = false;
     window.addEventListener('scroll', function() {
         const nav = document.querySelector('nav');
         if(window.scrollY > 60 && !isShrunk) {

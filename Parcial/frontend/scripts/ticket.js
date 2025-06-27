@@ -1,6 +1,6 @@
 window.onload = function() {
     // Simula obtener el usuario
-    const usuario = localStorage.getItem('usuario') || 'Invitado';
+    const user = localStorage.getItem('User') || 'Invitado';
 
     // Obtiene los datos del ticket guardados en localStorage
     const ticket = JSON.parse(localStorage.getItem('ticket')) || null;
@@ -11,7 +11,7 @@ window.onload = function() {
         return;
     }
 
-    let html = `<p><strong>Usuario:</strong> ${usuario}</p>`;
+    let html = `<p><strong>User:</strong> ${user}</p>`;
     html += `<ul style="padding-left:20px;">`;
     ticket.items.forEach(item => {
         html += `<li>${item.name} x${item.count} - $${(item.price * item.count).toFixed(2)}</li>`;

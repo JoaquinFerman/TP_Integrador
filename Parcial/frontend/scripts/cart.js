@@ -43,6 +43,15 @@ async function cargarCarrito(filtro) {
         const item = document.createElement('li');
         item.className = 'item-block';
 
+        // Nombre del producto
+        const titulo = document.createElement('p');
+        titulo.textContent = producto.nombre;
+        titulo.className = 'item-name';
+        titulo.style.minWidth = '160px'; // Puedes ajustar el ancho
+        titulo.style.textAlign = 'left';
+        item.appendChild(titulo);
+
+        // Boton -
         const btnMenos = document.createElement('button');
         btnMenos.textContent = '➖';
         btnMenos.classList.add('qty-button');
@@ -89,13 +98,7 @@ async function cargarCarrito(filtro) {
         };
         item.appendChild(btnMas);
 
-        // Nombre del producto
-        const titulo = document.createElement('p');
-        titulo.textContent = producto.nombre;
-        titulo.className = 'item-name';
-        item.appendChild(titulo);
-
-        total += producto.precio * producto.count;
+        total += producto.price * producto.count;
         listaCarrito.appendChild(item);
     }
 
@@ -117,7 +120,7 @@ document.getElementById('finalizar-compra').addEventListener('click', function()
     });
 
     // Simula obtener el usuario
-    const usuario = localStorage.getItem('usuario') || 'Invitado';
+    const usuario = localStorage.getItem('user');
 
     // Guarda el ticket en localStorage
     localStorage.setItem('ticket', JSON.stringify({
