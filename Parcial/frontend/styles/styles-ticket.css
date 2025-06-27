@@ -136,6 +136,25 @@
   text-align: right;
 }
 
+.ticket-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1.02rem;
+}
+
+.ticket-empresa {
+  font-weight: 700;
+  color: var(--color-accent-dark, #1565c0);
+  letter-spacing: 0.5px;
+}
+
+.ticket-fecha {
+  color: #888;
+  font-size: 0.98rem;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .ticket-section {

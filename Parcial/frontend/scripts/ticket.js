@@ -2,6 +2,8 @@ window.onload = function() {
     const user = localStorage.getItem('username');
     const ticket = JSON.parse(localStorage.getItem('ticket')) || null;
     const ticketDiv = document.getElementById('ticket-content');
+    const empresa = "MatchPoint Wear";
+    const fecha = new Date().toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' });
 
     if (!ticket || !ticket.items || ticket.items.length === 0) {
         ticketDiv.innerHTML = "<p>No hay ticket para mostrar.</p>";
@@ -9,8 +11,12 @@ window.onload = function() {
     }
 
     let html = `
+        <div class="ticket-header-row">
+            <span class="ticket-empresa">${empresa}</span>
+            <span class="ticket-fecha">${fecha}</span>
+        </div>
         <div class="ticket-user-row">
-        <span class="ticket-user-label">Usuario:</span>
+            <span class="ticket-user-label">Usuario:</span>
             <span class="ticket-user-name">${user}</span>
         </div>
     `;
