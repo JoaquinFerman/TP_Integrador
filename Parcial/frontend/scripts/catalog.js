@@ -70,7 +70,7 @@ async function cargarProductos(filtro, categoria, min, max, orden) {
         producto.appendChild(titulo)
 
         const img = document.createElement('img')
-        img.src = '../images/' + result[i].name + '.jpg'
+        img.src = 'http://localhost:3000/images/' + result[i].name + '.jpg'
         img.alt = result[i].name
         producto.appendChild(img)
 
