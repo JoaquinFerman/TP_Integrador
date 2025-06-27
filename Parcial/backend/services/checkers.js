@@ -16,10 +16,13 @@ async function checkProduct(fields) {
 	}
 	
 	const checkedFields = { ...fields };
-	for (const key in dbValues) {
+	const forValues = dbValues ? dbValues : checkedFields
+	
+	for (const key in forValues) {
 		if (fields.id && (checkedFields[key] === null || checkedFields[key] === undefined)) {
 			checkedFields[key] = dbValues[key];
 		} else {
+			console.log("else")
 			if(key == 'price' && (isNaN(Number(checkedFields[key])) || checkedFields[key] < 1)) {
 				throw new Error('Precio debe ser un numero mayor a 0')
 			}
