@@ -1,6 +1,6 @@
 window.onload = function() {
     // Simula obtener el usuario
-    const user = localStorage.getItem('User') || 'Invitado';
+    const user = localStorage.getItem('username');
 
     // Obtiene los datos del ticket guardados en localStorage
     const ticket = JSON.parse(localStorage.getItem('ticket')) || null;

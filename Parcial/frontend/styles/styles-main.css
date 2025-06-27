@@ -1,0 +1,110 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex-start;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.login-card {
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px rgba(30,144,255,0.13), 0 2px 0 #4fd170 inset;
+    padding: 48px 36px 36px 36px;
+    max-width: 400px;
+    width: 100%;
+    margin: 40px auto 0 auto;
+    text-align: center;
+    position: relative;
+    transition: box-shadow 0.2s;
+    border: 1.5px solid var(--color-accent-light, #4fd170);
+}
+
+.login-card::before {
+    content: "";
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 18px;
+    background: #f5f8fa;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(30,144,255,0.08);
+    z-index: 2;
+}
+
+.login-card h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--color-accent-dark, #1565c0);
+    margin-bottom: 32px;
+    border-bottom: 2px dashed var(--color-accent-light, #4fd170);
+    padding-bottom: 14px;
+    letter-spacing: 1px;
+    background: none;
+}
+
+.name-area {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    align-items: center;
+}
+
+.name-bar {
+    border: 2px solid var(--color-accent-light, #4fd170);
+    background: #f9fafb;
+    color: #222;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 1.15rem;
+    width: 100%;
+    max-width: 270px;
+    transition: border 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 6px rgba(30,144,255,0.06);
+}
+
+.name-bar:focus {
+    border-color: var(--color-accent, #1e90ff);
+    outline: none;
+    box-shadow: 0 2px 12px rgba(30,144,255,0.10);
+}
+
+.name-button {
+    background: var(--color-accent-light, #4fd170);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 13px 0;
+    font-size: 1.13rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    max-width: 270px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
+    box-shadow: 0 2px 8px rgba(79, 209, 112, 0.10);
+    letter-spacing: 0.5px;
+}
+
+.name-button:hover, .name-button:focus {
+    background: var(--color-accent-dark, #1565c0);
+    color: #fff;
+    transform: translateY(-2px) scale(1.03);
+}
+
+@media (max-width: 600px) {
+    .login-card {
+        padding: 18px 4vw 18px 4vw;
+        max-width: 98vw;
+    }
+    .login-card h2 {
+        font-size: 1.2rem;
+    }
+}
