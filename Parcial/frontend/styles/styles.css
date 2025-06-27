@@ -416,6 +416,65 @@ h2 {
   color: #000;
 }
 
+#finalizar-compra {
+  background: var(--color-accent-light);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(79, 209, 112, 0.08);
+  margin-top: 12px;
+}
+
+#finalizar-compra:hover {
+  background: var(--color-accent-dark);
+  color: #fff;
+}
+
+.finalizar-compra-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* Paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 32px 0 0 0;
+}
+
+.page-btn {
+  background: var(--color-accent-light);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(79, 209, 112, 0.08);
+}
+
+.page-btn.active,
+.page-btn:focus {
+  background: var(--color-accent-dark);
+  color: #fff;
+  outline: none;
+}
+
+.page-btn:hover:not(.active) {
+  background: var(--color-accent);
+  color: #fff;
+}
+
 /* Dark Mode */
 body.dark-mode {
   --color-bg: #181a1b;
@@ -463,6 +522,31 @@ body.dark-mode .product-card button {
 body.dark-mode .product-card button:hover {
   background: var(--color-accent-light);
   color: #fff;
+}
+
+body.dark-mode #finalizar-compra {
+  background: var(--color-accent);
+  color: #23272a;
+}
+
+body.dark-mode #finalizar-compra:hover {
+  background: var(--color-accent-light);
+  color: #fff;
+}
+
+body.dark-mode .page-btn {
+  background: var(--color-accent);
+  color: #23272a;
+}
+
+body.dark-mode .page-btn.active,
+body.dark-mode .page-btn:focus {
+  background: var(--color-accent-light);
+  color: #fff;
+}
+
+body.dark-mode .pagination {
+  background: none;
 }
 
 body.dark-mode .filter-section h3 {

@@ -1,7 +1,9 @@
-function init() {
+let currentPage = 1;    
+const productsPerPage = 12; // Cambia esto según la cantidad de productos por página
 
+function init() {
     // Carga inicial de productos y carrito
-    cargarProductos('', 'todas', 0, Infinity, undefined);
+    filtro();
     setupNavbarScroll();
     setupThemeToggle();
 
@@ -26,6 +28,26 @@ function init() {
 
     // Evento para rango de precio
     document.getElementById('aplicar-precio').addEventListener('click', filtro);
+
+    // Eventos de paginación
+    document.getElementById('page-1').addEventListener('click', function() {
+        if (currentPage !== 1) {
+            currentPage = 1;
+            filtro();
+            updatePagination();
+        }
+    });
+
+    document.getElementById('page-next').addEventListener('click', function() {
+        currentPage++;
+        filtro();
+        updatePagination();
+    });
+}
+
+function updatePagination() {
+    document.getElementById('page-1').classList.toggle('active', currentPage === 1);
+    // Puedes agregar más lógica si tienes más páginas
 }
 
 // Funcion de filtro
@@ -46,13 +68,15 @@ async function filtro() {
         checkedLabel.value,                                     // categoria
         min,                                                    // min
         max,                                                    // max
-        orden                                                   // orden
+        orden,                                                  // orden
+        currentPage                                             // página actual
     );
 }
 
 // Carga de productos
-async function cargarProductos(filtro, categoria, min, max, orden) {
-    const response = await fetch(`http://localhost:3000/api/productos?offset=0&category=${categoria}&name=${filtro}&min=${min}&max=${max}&order=${orden}`)
+async function cargarProductos(filtro, categoria, min, max, orden, page = 1) {
+    const offset = (page - 1) * productsPerPage;
+    const response = await fetch(`http://localhost:3000/api/productos?offset=${offset}&limit=${productsPerPage}&category=${categoria}&name=${filtro}&min=${min}&max=${max}&order=${orden}`)
     
     let result = await response.json()
     result = result['products']

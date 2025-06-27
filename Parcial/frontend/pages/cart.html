@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElectroGaming</title>
+    <title>MatchPoint Wear</title>
     <link rel="stylesheet" href="../styles/styles.css">
     <link rel="icon" href="http://localhost:3000/images/head_logo.png" type="image/png">
 </head>
@@ -13,7 +13,7 @@
     <nav class="navbar">
         <div class="marca">
             <img src="http://localhost:3000/images/logo.png" alt="Logo" class="logo">
-            <span class="nombre">ElectroGaming</span>
+            <span class="nombre">MatchPoint Wear</span>
         </div>
 
         <div class="nombres">
@@ -21,7 +21,9 @@
             <p>Matias Pena</p>
         </div>
 
-        <input type="text" placeholder="Search..." class="search-bar">
+        <form class="search-form">
+            <input type="text" placeholder="Buscar..." class="search-bar">
+        </form>
 
         <div class="cart">
             <span>items del carrito: <span id="cart-count">0</span> </span>
@@ -39,22 +41,21 @@
 
     <!-- Contenedor principal -->
     <section class="cart-section">
-
         <h2>Carrito</h2>
 
         <div id="cart-items">
             <p>No hay elementos en el carrito.</p>
         </div>
 
-        <div style="margin: 20px 0;">
-            <button id="finalizar-compra" style="font-size: 1rem; padding: 8px 16px;">Finalizar compra</button>
+        <div class="finalizar-compra-wrapper">
+            <button id="finalizar-compra">Finalizar compra</button>
         </div>
+
         <div id="ticket" style="display:none; border:1px solid #ccc; padding:16px; margin-top:16px; background:#fff;"></div>
 
         <div class="cart-total">
             <p>Total: <span id="total-price">$0.00</span></p>
         </div>
-
     </section>
     </main>
     <script src="../scripts/cart.js"></script>

@@ -112,22 +112,25 @@ document.getElementById('finalizar-compra').addEventListener('click', function()
     }
 
     let total = 0;
-    let ticketHTML = '<h3>Ticket de compra</h3><ul style="padding-left:20px;">';
     carrito.forEach(item => {
-        const subtotal = (item.price * item.count);
-        total += subtotal;
-        ticketHTML += `<li>${item.nombre || item.name} x${item.count} - $${subtotal.toFixed(2)}</li>`;
+        total += item.price * item.count;
     });
-    ticketHTML += `</ul><strong>Total: $${total.toFixed(2)}</strong>`;
 
-    const ticketDiv = document.getElementById('ticket');
-    ticketDiv.innerHTML = ticketHTML;
-    ticketDiv.style.display = 'block';
+    // Simula obtener el usuario
+    const usuario = localStorage.getItem('usuario') || 'Invitado';
 
-    // Limpia el carrito después de mostrar el ticket
+    // Guarda el ticket en localStorage
+    localStorage.setItem('ticket', JSON.stringify({
+        usuario: usuario,
+        items: carrito,
+        total: total
+    }));
+
+    // Limpia el carrito
     localStorage.setItem('cart', JSON.stringify([]));
-    // Opcional: recarga el carrito en pantalla
-    cargarCarrito();
+
+    // Redirige a la página de ticket
+    window.location.href = "ticket.html";
 });
 
 function actualizarContador(cambio) {
