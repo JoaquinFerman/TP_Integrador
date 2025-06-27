@@ -3,20 +3,21 @@ const categories = ['camiseta', 'zapatilla']
 
 
 async function checkProduct(fields) {
-	if (isNaN(Number(fields.id)) || fields.id < 1) {
-		throw new Error('ID debe ser un numero mayor 0');
+	let dbValues;
+	if (fields.id) {
+		const dbProducto = await Product.findByPk(fields.id);
+		if (!dbProducto) {
+			throw new Error('Producto no encontrado en la base de datos');
+		}
+		if(isNaN(Number(fields.id)) || fields.id < 1){
+			throw new Error('ID debe ser un numero mayor 0');
+		}
+		dbValues = dbProducto.get();
 	}
-
-	const dbProducto = await Product.findByPk(fields.id);
-	if (!dbProducto) {
-		throw new Error('Producto no encontrado en la base de datos');
-	}
-
-	const dbValues = dbProducto.get();
 	
 	const checkedFields = { ...fields };
 	for (const key in dbValues) {
-		if (checkedFields[key] === null || checkedFields[key] === undefined) {
+		if (fields.id && (checkedFields[key] === null || checkedFields[key] === undefined)) {
 			checkedFields[key] = dbValues[key];
 		} else {
 			if(key == 'price' && (isNaN(Number(checkedFields[key])) || checkedFields[key] < 1)) {
@@ -34,6 +35,7 @@ async function checkProduct(fields) {
 		}
 	}
 	
+	
 	console.log(checkedFields)
 	return checkedFields;
 }
@@ -44,9 +46,8 @@ async function checkCart(name, cart) {
 			product = await checkProduct(product)
 		});
 	} catch (e){
-		pass
+		throw new Error('Error durante la validacion de un producto: ' + e.message || String(e))
 	}
-	// incompleto
 }
 
 module.exports = {
