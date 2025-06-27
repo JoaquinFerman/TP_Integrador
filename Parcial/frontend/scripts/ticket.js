@@ -1,8 +1,5 @@
 window.onload = function() {
-    // Simula obtener el usuario
     const user = localStorage.getItem('username');
-
-    // Obtiene los datos del ticket guardados en localStorage
     const ticket = JSON.parse(localStorage.getItem('ticket')) || null;
     const ticketDiv = document.getElementById('ticket-content');
 
@@ -11,17 +8,21 @@ window.onload = function() {
         return;
     }
 
-    let html = `<p><strong>User:</strong> ${user}</p>`;
-    html += `<ul style="padding-left:20px;">`;
+    let html = `
+        <div class="ticket-user-row">
+        <span class="ticket-user-label">Usuario:</span>
+            <span class="ticket-user-name">${user}</span>
+        </div>
+    `;
+    html += `<ul class="ticket-items-list">`;
     ticket.items.forEach(item => {
         html += `<li>${item.name} x${item.count} - $${(item.price * item.count).toFixed(2)}</li>`;
     });
     html += `</ul>`;
-    html += `<strong>Total: $${ticket.total.toFixed(2)}</strong>`;
+    html += `<strong class="ticket-total">Total: $${ticket.total.toFixed(2)}</strong>`;
 
     ticketDiv.innerHTML = html;
 
-    // Limpia el ticket del localStorage
     localStorage.removeItem('ticket');
     localStorage.removeItem('cart');
 };
