@@ -29,10 +29,11 @@ async function checkProduct(fields) {
 			if(key == 'count' && (isNaN(Number(checkedFields[key])) || checkedFields[key] < 1)){
 				throw new Error('Cantidad debe ser un numero mayor a 0')
 			}
-			if(key == 'active' && ((isNaN(Number(checkedFields[key])) || !(checkedFields[key] in [0, 1])))){
+			if(key == 'active' && (isNaN(Number(checkedFields[key])) || !([0, 1].includes(Number(checkedFields[key]))))){
 				throw new Error('Activo debe ser 0 o 1')
 			}
-			if(key == 'category' && !(checkedFields[key] in categories)){
+			if(key == 'category' && !categories.includes(checkedFields[key])){
+				console.log(checkedFields[key])
 				throw new Error('Categoria no valida')
 			}
 		}

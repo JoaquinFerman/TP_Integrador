@@ -27,10 +27,11 @@
 
   <main class="container mt-4">
     <h2>Agregar nuevo producto</h2>
-    <form action="/api/admin/productos" method="POST">
-      <input type="text" name="nombre" placeholder="Nombre del producto" required>
-      <input type="number" name="precio" step="0.01" placeholder="Precio" required>
-      <input type="text" name="descripcion" placeholder="Descripción" required>
+    <form action="/api/admin/productos" method="POST" enctype="multipart/form-data">
+      <input type="text" name="name" placeholder="Nombre del producto" required>
+      <input type="number" name="price" step="0.01" placeholder="Precio" required>
+      <input type="text" name="description" placeholder="Descripción" required>
+      <input type="file" name="photo" accept="image/*" required>
       <button type="submit">Agregar</button>
     </form>
 
@@ -47,7 +48,7 @@
             <p><%= product.description %></p>
           </info>
             <form action="/api/admin/productos/<%= product.id %>?_method=PUT" method="POST" style="display:inline;">
-            <input type="hidden" name="active" value="<%= !product.active %>">
+            <input type="hidden" name="active" value="<%= product.active ? 0 : 1 %>">
             <button type="submit"><%= product.active ? 'Desactivar' : 'Activar' %></button>
             </form>
             <button type="submit">Eliminar</button>

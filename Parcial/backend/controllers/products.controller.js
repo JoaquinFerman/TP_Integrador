@@ -6,7 +6,7 @@ const getProducts = async function(req, res) {
     try {
         const { Op } = require('sequelize');
         let products;
-        const whereClauses = {};
+        const whereClauses = { active : true };
         if (category !== 'todas') {
             whereClauses.category = category;
         }
@@ -46,7 +46,7 @@ const getProductsPage = async function(req, res) {
 };
 
 const postProduct = async function(req, res) {
-    const { name, price, category, description } = req.body;
+    const { name, price, category = 'zapatilla', description } = req.body;
     if (!name || !price || !category || !description) {
         return res.status(400).json({ error: 'Faltan campos requeridos' });
     }
@@ -54,8 +54,9 @@ const postProduct = async function(req, res) {
     fields = {
         name,
         price,
+        category,
         description
-    }
+    }    
 
     try {
         fields = await checkProduct(fields)
@@ -79,6 +80,9 @@ const updateProduct = async function(req, res) {
     if (!name && !price && !description && !active) {
         return res.status(400).json({ error: 'Al menos un campo debe ser actualizado' });
     }
+
+    console.log(active);
+    
 
     let fields = {
         id : id,
