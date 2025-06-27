@@ -18,16 +18,16 @@ async function checkProduct(fields) {
 	const checkedFields = { ...fields };
 	const forValues = dbValues ? dbValues : checkedFields
 	
+	if(checkedFields.count && (isNaN(Number(checkedFields.count)) || checkedFields.count < 1)){
+		throw new Error('Cantidad debe ser un numero mayor a 0')
+	}
+
 	for (const key in forValues) {
 		if (fields.id && (checkedFields[key] === null || checkedFields[key] === undefined)) {
 			checkedFields[key] = dbValues[key];
 		} else {
-			console.log("else")
 			if(key == 'price' && (isNaN(Number(checkedFields[key])) || checkedFields[key] < 1)) {
 				throw new Error('Precio debe ser un numero mayor a 0')
-			}
-			if(key == 'count' && (isNaN(Number(checkedFields[key])) || checkedFields[key] < 1)){
-				throw new Error('Cantidad debe ser un numero mayor a 0')
 			}
 			if(key == 'active' && (isNaN(Number(checkedFields[key])) || !([0, 1].includes(Number(checkedFields[key]))))){
 				throw new Error('Activo debe ser 0 o 1')
@@ -46,11 +46,16 @@ async function checkProduct(fields) {
 
 async function checkCart(name, cart) {
 	try {
-		cart.forEach(async product => {
-			product = await checkProduct(product)
-		});
-	} catch (e){
-		throw new Error('Error durante la validacion de un producto: ' + e.message || String(e))
+		const validateds = [];
+
+		for (let product of cart) {
+			const validated = await checkProduct(product);
+			validateds.push(validated);
+		}
+
+		return validateds;
+	} catch (e) {
+		throw new Error('Error durante la validación de un producto: ' + (e.message || String(e)));
 	}
 }
 
