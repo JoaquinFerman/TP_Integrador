@@ -9,7 +9,10 @@
 <body class="bg-light">
   <div class="container mt-5">
     <h2 class="mb-4">Login de Admin</h2>
-    <form action="/api/admin/login?page=true" method="POST">
+    <% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+    <form action="/api/admin/login" method="POST">
       <div class="mb-3">
         <label for="name" class="form-label">Nombre</label>
         <input type="text" class="form-control" id="name" name="name" required>

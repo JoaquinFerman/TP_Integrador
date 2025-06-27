@@ -93,7 +93,11 @@ const userLogin = async (req, res) => {
   try {
     const users = await User.findAll({ where: { name } });
     if (users.length === 0) {
-      return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
+      if (req.accepts('html')){
+        return res.status(401).render('index', { error: 'Usuario o contraseña incorrectos' })
+      } else {
+        return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
+      }
     }
 
     for (const user of users) {
@@ -102,8 +106,12 @@ const userLogin = async (req, res) => {
         return res.status(200).redirect('./productos');
       }
     }
-    
-    return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
+
+    if (req.accepts('html')){
+      return res.status(401).render('index', { error: 'Usuario o contraseña incorrectos' })
+    } else {
+      return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
+    }
   } catch (err) {
     console.error('Error al buscar usuario:', err);
     res.status(500).json({ error: 'Error en el servidor' });
