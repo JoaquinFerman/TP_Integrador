@@ -104,6 +104,32 @@ async function cargarCarrito(filtro) {
     listaCarrito.classList.remove('row');
 }
 
+document.getElementById('finalizar-compra').addEventListener('click', function() {
+    const carrito = JSON.parse(localStorage.getItem('cart') || '[]');
+    if (carrito.length === 0) {
+        alert('El carrito está vacío.');
+        return;
+    }
+
+    let total = 0;
+    let ticketHTML = '<h3>Ticket de compra</h3><ul style="padding-left:20px;">';
+    carrito.forEach(item => {
+        const subtotal = (item.price * item.count);
+        total += subtotal;
+        ticketHTML += `<li>${item.nombre || item.name} x${item.count} - $${subtotal.toFixed(2)}</li>`;
+    });
+    ticketHTML += `</ul><strong>Total: $${total.toFixed(2)}</strong>`;
+
+    const ticketDiv = document.getElementById('ticket');
+    ticketDiv.innerHTML = ticketHTML;
+    ticketDiv.style.display = 'block';
+
+    // Limpia el carrito después de mostrar el ticket
+    localStorage.setItem('cart', JSON.stringify([]));
+    // Opcional: recarga el carrito en pantalla
+    cargarCarrito();
+});
+
 function actualizarContador(cambio) {
     let contador = parseInt(localStorage.getItem('cart-count')) || 0;
     contador = Math.max(0, contador + cambio);
