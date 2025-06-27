@@ -219,14 +219,16 @@ function updateCart(producto, cantidad) {
 function setupNavbarScroll() {
     window.addEventListener('scroll', function() {
         const nav = document.querySelector('nav');
-        if(window.scrollY > 60) {
+        if(window.scrollY > 60 && !isShrunk) {
             nav.style.padding = '8px 40px 24px 40px';
             nav.style.minHeight = '70px';
             nav.style.backgroundSize = 'cover 120%'; 
-        } else {
+            isShrunk = true; // Marca que el navbar está reducido
+        } else if (window.scrollY <= 60 && isShrunk) {
             nav.style.padding = '28px 40px 60px 40px';
             nav.style.minHeight = '180px';
             nav.style.backgroundSize = 'cover';
+            isShrunk = false; // Resetea el estado
         }
     });
 }
