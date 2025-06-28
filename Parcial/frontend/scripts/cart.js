@@ -45,7 +45,7 @@ async function cargarCarrito(filtro) {
 
         // Nombre del producto
         const titulo = document.createElement('p');
-        titulo.textContent = producto.nombre;
+        titulo.textContent = producto.name;
         titulo.className = 'item-name';
         titulo.style.minWidth = '160px'; // Puedes ajustar el ancho
         titulo.style.textAlign = 'left';
@@ -97,6 +97,17 @@ async function cargarCarrito(filtro) {
             cargarCarrito();
         };
         item.appendChild(btnMas);
+
+        const btnBorrar = document.createElement('button');
+        btnBorrar.textContent = '🗑️'; // ❌ alternativo
+        btnBorrar.classList.add('qty-button');
+        btnBorrar.onclick = () => {
+            actualizarContador(-producto.count);
+            carrito.splice(i, 1);
+            localStorage.setItem('cart', JSON.stringify(carrito));
+            cargarCarrito();
+        };
+        item.appendChild(btnBorrar);
 
         total += producto.price * producto.count;
         listaCarrito.appendChild(item);
