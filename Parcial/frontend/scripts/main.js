@@ -10,4 +10,6 @@ function continuar(){
     window.location.href = 'pages/catalog.html';
 }
 
+document.getElementById('continuar-button').addEventListener('click', continuar);
+
 setupThemeToggle();
