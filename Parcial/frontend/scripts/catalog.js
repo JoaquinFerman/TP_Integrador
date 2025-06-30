@@ -110,66 +110,17 @@ async function cargarProductos(filtro, categoria, min, max, orden, page = 1) {
         const boton = document.createElement('button')
         boton.innerHTML = 'Agregar a carrito'
         boton.classList.add('add-to-cart')
-        boton.onclick = function () {
-            // Oculta el botón
-            boton.style.display = 'none'
-
-            // Crea el contenedor de cantidad
-            const qtyWrapper = document.createElement('div')
-            qtyWrapper.className = 'qty-wrapper'
-
-            // Botón restar
-            const btnRestar = document.createElement('button')
-            btnRestar.textContent = '-'
-            btnRestar.className = 'qty-button qty-button-minus'
-            // Botón sumar
-            const btnSumar = document.createElement('button')
-            btnSumar.textContent = '+'
-            btnSumar.className = 'qty-button qty-button-plus'
-            // Input cantidad
-            const inputCantidad = document.createElement('input')
-            inputCantidad.type = 'number'
-            inputCantidad.value = 1
-            inputCantidad.min = 1
-            inputCantidad.className = 'qty-input'
-            inputCantidad.readOnly = true
-
-            // Lógica para sumar/restar y actualizar carrito
-            btnRestar.onclick = () => {
-                let val = parseInt(inputCantidad.value)
-                if (val > 1) {
-                    inputCantidad.value = val - 1
-                    updateCart(result[i], parseInt(inputCantidad.value))
-                } else if (val === 1) {
-                    producto.removeChild(qtyWrapper); // Elimina el contenedor de cantidad
-                    boton.style.display = ''; // Muestra nuevamente el botón
-                    boton.disabled = true; // Deshabilita el botón
-                    updateCart(result[i], 0); // Actualiza el carrito a 0
-
-                    boton.style.backgroundColor = 'var(--color-accent-dark)';
-
-                    setTimeout(() => {
-                        boton.disabled = false;
-                        boton.style.backgroundColor = ''; 
-                    }, 500); // Espera 0.5 segundos antes de habilitar el boton nuevamente
-                }
-            }
-            btnSumar.onclick = () => {
-                let val = parseInt(inputCantidad.value)
-                inputCantidad.value = val + 1
-                updateCart(result[i], parseInt(inputCantidad.value))
-            }
-
-            qtyWrapper.appendChild(btnRestar)
-            qtyWrapper.appendChild(inputCantidad)
-            qtyWrapper.appendChild(btnSumar)
-            producto.appendChild(qtyWrapper)
-
-            // Agrega al carrito con cantidad 1
-            updateCart(result[i], 1)
+        boton.onclick = function() {
+            extendButton(boton, producto, result, i);
         }
         producto.appendChild(boton)
         listaProductos.appendChild(producto)
+
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const cartItem = cart.find(item => item.id === result[i].id);
+        if (cartItem) {
+            extendButton(boton, producto, result, i, cartItem.count);
+        }
     }
 }
 
@@ -232,6 +183,67 @@ function setupNavbarScroll() {
             isShrunk = false; // Resetea el estado
         }
     });
+}
+
+function extendButton(boton, producto, result, i, cantidad = 1) {
+    // Oculta el botón
+    boton.style.display = 'none'
+
+    // Crea el contenedor de cantidad
+    const qtyWrapper = document.createElement('div')
+    qtyWrapper.className = 'qty-wrapper'
+
+    // Botón restar
+    const btnRestar = document.createElement('button')
+    btnRestar.textContent = '-'
+    btnRestar.className = 'qty-button qty-button-minus'
+    // Botón sumar
+    const btnSumar = document.createElement('button')
+    btnSumar.textContent = '+'
+    btnSumar.className = 'qty-button qty-button-plus'
+    // Input cantidad
+    const inputCantidad = document.createElement('input')
+    inputCantidad.type = 'number'
+    inputCantidad.value = cantidad
+    inputCantidad.min = 1
+    inputCantidad.className = 'qty-input'
+    inputCantidad.readOnly = true
+
+    // Lógica para sumar/restar y actualizar carrito
+    btnRestar.onclick = () => {
+        let val = parseInt(inputCantidad.value)
+        if (val > 1) {
+            inputCantidad.value = val - 1
+            updateCart(result[i], parseInt(inputCantidad.value))
+        } else if (val === 1) {
+            producto.removeChild(qtyWrapper); // Elimina el contenedor de cantidad
+            boton.style.display = ''; // Muestra nuevamente el botón
+            boton.disabled = true; // Deshabilita el botón
+            updateCart(result[i], 0); // Actualiza el carrito a 0
+
+            boton.style.backgroundColor = 'var(--color-accent-dark)';
+
+            setTimeout(() => {
+                boton.disabled = false;
+                boton.style.backgroundColor = ''; 
+            }, 500); // Espera 0.5 segundos antes de habilitar el boton nuevamente
+        }
+    }
+    btnSumar.onclick = () => {
+        let val = parseInt(inputCantidad.value)
+        inputCantidad.value = val + 1
+        updateCart(result[i], parseInt(inputCantidad.value))
+    }
+
+    qtyWrapper.appendChild(btnRestar)
+    qtyWrapper.appendChild(inputCantidad)
+    qtyWrapper.appendChild(btnSumar)
+    producto.appendChild(qtyWrapper)
+
+    // Agrega al carrito con cantidad 1
+    if(cantidad == 1){
+        updateCart(result[i], 1)
+    }
 }
 
 init();
