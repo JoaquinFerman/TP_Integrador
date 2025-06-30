@@ -171,7 +171,7 @@ window.addEventListener('DOMContentLoaded', function() {
             name: usuario
             })
         });
-        window.location.href = "ticket.html";
+        window.location.href = "./ticket.html";
     };
 
     // Cancelar la compra

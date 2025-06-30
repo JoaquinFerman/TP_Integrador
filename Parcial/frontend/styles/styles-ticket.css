@@ -57,7 +57,7 @@
   text-align: right;
 }
 
-.page-btn, .volver-catalogo-btn {
+.page-btn, .descargar-pdf {
   background: var(--color-accent-light, #4fd170);
   color: #fff;
   border: none;
@@ -75,7 +75,7 @@
   text-decoration: none;
 }
 
-.page-btn:hover, .volver-catalogo-btn:hover {
+.page-btn:hover, .descargar-pdf:hover {
   background: var(--color-accent-dark, #1565c0);
   color: #fff;
 }
@@ -186,13 +186,13 @@ body.dark-mode .ticket-total {
 }
 
 body.dark-mode .page-btn,
-body.dark-mode .volver-catalogo-btn {
+body.dark-mode .descargar-pdf {
   background: #1e90ff;
   color: #fff;
 }
 
 body.dark-mode .page-btn:hover,
-body.dark-mode .volver-catalogo-btn:hover {
+body.dark-mode .descargar-pdf:hover {
   background: #4fd170;
   color: #181f2a;
 }

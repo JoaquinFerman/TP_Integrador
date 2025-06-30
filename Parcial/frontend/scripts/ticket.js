@@ -1,6 +1,9 @@
 import {setupNavbarScroll, setupThemeToggle} from "./functions.js";
 
 window.onload = function() {
+    setupThemeToggle();
+    setupNavbarScroll();
+
     const user = localStorage.getItem('username');
     const ticket = JSON.parse(localStorage.getItem('ticket')) || null;
     const ticketDiv = document.getElementById('ticket-content');
@@ -30,10 +33,13 @@ window.onload = function() {
     html += `<strong class="ticket-total">Total: $${ticket.total.toFixed(2)}</strong>`;
 
     ticketDiv.innerHTML = html;
-
-    localStorage.removeItem('ticket');
-    localStorage.removeItem('cart');
-    localStorage.removeItem('username');
-    setupThemeToggle();
-    setupNavbarScroll();
+    
+    const volverBtn = document.querySelector('.page-btn');
+    if (volverBtn) {
+        volverBtn.addEventListener('click', function() {
+            localStorage.removeItem('ticket');
+            localStorage.removeItem('cart');
+            localStorage.removeItem('username');
+        });
+    }
 };
