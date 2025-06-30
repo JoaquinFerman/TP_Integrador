@@ -1,6 +1,5 @@
 import { setupNavbarScroll, setupThemeToggle, updateCart } from "./functions.js";
 
-let currentPage = 1;    
 const productsPerPage = 12; // Cambia esto según la cantidad de productos por página
 
 function init() {
@@ -23,6 +22,24 @@ function init() {
         })
     });
 
+    // Eventos de paginación
+    const numbers = document.getElementsByClassName('numbers');
+    Array.from(numbers).forEach(number => {
+        number.addEventListener('click', function() {
+            const page = parseInt(this.dataset.page, 10) || 1;
+            localStorage.setItem('page', page);
+            updatePagination();
+        });
+    });
+
+    document.getElementById('page-next').addEventListener('click', function() {
+        updatePagination(1);
+    });
+
+    document.getElementById('page-prev').addEventListener('click', function() {
+        updatePagination(-1);
+    });
+
     // Evento para ordenar por precio
     document.querySelectorAll('input[name="orden-precio"]').forEach(radio => {
         radio.addEventListener('change', filtro);
@@ -31,29 +48,23 @@ function init() {
     // Evento para rango de precio
     document.getElementById('aplicar-precio').addEventListener('click', filtro);
 
-    // Eventos de paginación
-    document.getElementById('page-1').addEventListener('click', function() {
-        if (currentPage !== 1) {
-            currentPage = 1;
-            filtro();
-            updatePagination();
-        }
-    });
-
-    document.getElementById('page-next').addEventListener('click', function() {
-        currentPage++;
-        filtro();
-        updatePagination();
-    });
+    localStorage.setItem('page', 1)
 }
 
-function updatePagination() {
-    document.getElementById('page-1').classList.toggle('active', currentPage === 1);
+function updatePagination(change = false) {
+    let page = Number(localStorage.getItem('page'))
+    if(change){
+        page += change
+    } else {
+        page = 1
+    }
+    localStorage.setItem('page', page)
+    filtro(true)
     // Puedes agregar más lógica si tienes más páginas
 }
 
 // Funcion de filtro
-async function filtro() {
+async function filtro(changePage = false) {
     let checkedLabel = document.querySelector('.filter-section input[name="categoria"]:checked'); 
     if (!checkedLabel) { 
         checkedLabel = { value: "todas" }; 
@@ -71,17 +82,37 @@ async function filtro() {
         min,                                                    // min
         max,                                                    // max
         orden,                                                  // orden
-        currentPage                                             // página actual
+        localStorage.getItem('page'),                           // página actual
+        changePage
     );
 }
 
 // Carga de productos
-async function cargarProductos(filtro, categoria, min, max, orden, page = 1) {
+async function cargarProductos(filtro, categoria, min, max, orden, page = 1, changePage = false) {
     const offset = (page - 1) * productsPerPage;
     const response = await fetch(`http://localhost:3000/api/productos?offset=${offset}&limit=${productsPerPage}&category=${categoria}&name=${filtro}&min=${min}&max=${max}&order=${orden}`)
-    
+
     let result = await response.json()
+    const count = result['count']
     result = result['products']
+
+    if(changePage === false){
+        localStorage.setItem('page', 1)
+    }
+
+    console.log(page);
+    
+    if(page == 1){
+        document.getElementById('page-prev').style.display = 'none'
+    } else {
+        document.getElementById('page-prev').style.display = 'block'
+    }
+
+    if(page*productsPerPage >= count){
+        document.getElementById('page-next').style.display = 'none'
+    } else {
+        document.getElementById('page-next').style.display = 'block'
+    }
 
     const listaProductos = document.getElementsByClassName('product-grid')[0]
     listaProductos.innerHTML = ''

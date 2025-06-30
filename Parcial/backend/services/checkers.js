@@ -1,5 +1,5 @@
 const { Product } = require('../models');
-const categories = ['camiseta', 'zapatilla']
+const categories = ['indumentaria', 'zapatilla']
 
 
 async function checkProduct(fields) {
