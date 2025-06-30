@@ -39,7 +39,9 @@ window.onload = function() {
         volverBtn.addEventListener('click', function() {
             localStorage.removeItem('ticket');
             localStorage.removeItem('cart');
+            localStorage.removeItem('cart-count');
             localStorage.removeItem('username');
+            localStorage.removeItem('theme');
         });
     }
 };
