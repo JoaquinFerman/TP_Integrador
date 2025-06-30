@@ -1,5 +1,5 @@
 const { Sale, SaleDetail } = require('../models');
-const { checkProduct, checkCart } = require('../services/checkers');
+const { checkCart } = require('../services/checkers');
 
 const postVenta = async (req, res) => {
   let { products, name } = req.body;
@@ -49,6 +49,25 @@ const postVenta = async (req, res) => {
   }
 };
 
+const getVentas = async (req, res) => {
+
+  const sales = await Sale.findAll()
+
+  let returnSales = []
+  
+  for(const sale of sales){
+    const saleMessage = {sale_id : sale.id, products : []}
+    const saleDetails = await SaleDetail.findAll({where : {id_sale : sale.id}})
+
+    for(const saleDetail of saleDetails){
+      saleMessage.products.push({product_id : saleDetail.id_product, count : saleDetail.count})
+    }
+    returnSales.push(saleMessage)
+  }
+  return res.status(200).json({sales : returnSales})
+}
+
 module.exports = {
-  postVenta
+  postVenta,
+  getVentas
 };
