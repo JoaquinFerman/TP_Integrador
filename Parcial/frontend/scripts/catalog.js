@@ -73,12 +73,17 @@ async function filtro(changePage = false) {
         max,                                                    // max
         orden,                                                  // orden
         localStorage.getItem('page'),                           // página actual
-        changePage
+        changePage                                              // se esta cambiando de pag?
     );
 }
 
 // Carga de productos
-async function cargarProductos(filtro, categoria, min, max, orden, page = 1, changePage = false) {
+async function cargarProductos(filtro, categoria, min, max, orden, page = 1, changePage = false) {    
+    if(changePage == false){
+        localStorage.setItem('page', 1)
+        updatePagination()
+        return
+    }
     const offset = (page - 1) * productsPerPage;
     const response = await fetch(`http://localhost:3000/api/productos?offset=${offset}&limit=${productsPerPage}&category=${categoria}&name=${filtro}&min=${min}&max=${max}&order=${orden}`)
 
@@ -86,14 +91,9 @@ async function cargarProductos(filtro, categoria, min, max, orden, page = 1, cha
     const count = result['count']
     result = result['products']
 
-    if(changePage == false){
-        localStorage.setItem('page', 1)
-    }
 
     numbers(Math.ceil(count / productsPerPage))
 
-    console.log(page);
-    
     if(page == 1){
         document.getElementById('page-prev').style.display = 'none'
     } else {
