@@ -1,3 +1,5 @@
+import { setupNavbarScroll, setupThemeToggle} from './functions.js';
+
 function init() {
 
     // Carga inicial de carrito
@@ -119,35 +121,6 @@ async function cargarCarrito(filtro) {
     listaCarrito.classList.remove('row');
 }
 
-// document.getElementById('finalizar-compra').addEventListener('click', function() {
-//     const carrito = JSON.parse(localStorage.getItem('cart') || '[]');
-//     if (carrito.length === 0) {
-//         alert('El carrito está vacío.');
-//         return;
-//     }
-
-//     let total = 0;
-//     carrito.forEach(item => {
-//         total += item.price * item.count;
-//     });
-
-//     // Simula obtener el usuario
-//     const usuario = localStorage.getItem('user');
-
-//     // Guarda el ticket en localStorage
-//     localStorage.setItem('ticket', JSON.stringify({
-//         usuario: usuario,
-//         items: carrito,
-//         total: total
-//     }));
-
-//     // Limpia el carrito
-//     localStorage.setItem('cart', JSON.stringify([]));
-
-//     // Redirige a la página de ticket
-//     window.location.href = "ticket.html";
-// });
-
 function actualizarContador(cambio) {
     let contador = parseInt(localStorage.getItem('cart-count')) || 0;
     contador = Math.max(0, contador + cambio);
@@ -155,12 +128,6 @@ function actualizarContador(cambio) {
 }
 
 document.getElementsByClassName('search-bar')[0].addEventListener('keyup', filtro);
-
-// // Mostrar el modal al hacer click en "Finalizar compra"
-// document.getElementById('finalizar-compra').onclick = function(e) {
-//     e.preventDefault();
-//     document.getElementById('modal-confirm').style.display = 'flex';
-// };
 
 window.addEventListener('DOMContentLoaded', function() {
     // Mostrar el modal al hacer click en "Finalizar compra"
@@ -202,40 +169,6 @@ window.addEventListener('DOMContentLoaded', function() {
         document.getElementById('modal-confirm').style.display = 'none';
     };
 });
-
-function setupThemeToggle() {
-    const toggleBtn = document.getElementById('toggleBtn');
-    const darkClass = 'dark-mode';
-
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add(darkClass);
-        toggleBtn.textContent = '☀️';
-    } else {
-        toggleBtn.textContent = '🌙';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle(darkClass);
-        const isDark = document.body.classList.contains(darkClass);
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        toggleBtn.textContent = isDark ? '☀️' : '🌙';
-    });
-}
-
-function setupNavbarScroll() {
-    window.addEventListener('scroll', function() {
-        const nav = document.querySelector('nav');
-        if(window.scrollY > 60) {
-            nav.style.padding = '8px 40px 24px 40px';
-            nav.style.minHeight = '70px';
-            nav.style.backgroundSize = 'cover 120%'; 
-        } else {
-            nav.style.padding = '28px 40px 60px 40px';
-            nav.style.minHeight = '180px';
-            nav.style.backgroundSize = 'cover';
-        }
-    });
-}
 
 // Inicializo
 init()
