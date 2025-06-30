@@ -33,20 +33,18 @@ export function updateCart(producto, cantidad) {
 }
 
 export function setupNavbarScroll() {
-    let isShrunk = false;
     window.addEventListener('scroll', function() {
         const nav = document.querySelector('nav');
         if (!nav) return;
-        if(window.scrollY > 60 && !isShrunk) {
+        if(window.scrollY > 60) {
             nav.style.padding = '8px 40px 24px 40px';
-            nav.style.minHeight = '70px';
+            nav.style.minHeight = '40px';
             nav.style.backgroundSize = 'cover 110%'; 
-            isShrunk = true;
-        } else if (window.scrollY <= 60 && isShrunk) {
-            nav.style.padding = '28px 40px 60px 40px';
+        }
+        if (window.scrollY <= 60) {
+            nav.style.padding = '20px 34px 45px 25px';
             nav.style.minHeight = '180px';
             nav.style.backgroundSize = 'cover 50%';
-            isShrunk = false;
         }
     });
 }
