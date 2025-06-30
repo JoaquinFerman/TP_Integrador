@@ -31,6 +31,7 @@ window.onload = function() {
 
     localStorage.removeItem('ticket');
     localStorage.removeItem('cart');
+    localStorage.removeItem('username');
     setupThemeToggle();
 };
 

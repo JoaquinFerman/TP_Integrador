@@ -99,7 +99,7 @@ async function cargarCarrito(filtro) {
         item.appendChild(btnMas);
 
         const btnBorrar = document.createElement('button');
-        btnBorrar.textContent = '🗑️'; // ❌ alternativo
+        btnBorrar.textContent = '🗑️';
         btnBorrar.classList.add('qty-button');
         btnBorrar.onclick = () => {
             actualizarContador(-producto.count);
