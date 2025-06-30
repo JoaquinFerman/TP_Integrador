@@ -1,4 +1,4 @@
-import { setupNavbarScroll, setupThemeToggle} from './functions.js';
+import { setupNavbarScroll, setupThemeToggle} from "./functions.js";
 
 function init() {
 
@@ -169,6 +169,8 @@ window.addEventListener('DOMContentLoaded', function() {
         document.getElementById('modal-confirm').style.display = 'none';
     };
 });
+
+
 
 // Inicializo
 init()

@@ -1,3 +1,5 @@
+import { setupNavbarScroll, setupThemeToggle, updateCart } from "./functions.js";
+
 let currentPage = 1;    
 const productsPerPage = 12; // Cambia esto según la cantidad de productos por página
 
@@ -133,57 +135,6 @@ document.querySelectorAll('.filter-section input[name="categoria"]').forEach(rad
         filtro();
     });
 })
-
-function setupThemeToggle() {
-    const toggleBtn = document.getElementById('toggleBtn');
-    const darkClass = 'dark-mode';
-
-    // Al cargar, aplica el tema guardado y emoji correcto
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add(darkClass);
-        toggleBtn.textContent = '☀️';
-    } else {
-        toggleBtn.textContent = '🌙';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle(darkClass);
-        const isDark = document.body.classList.contains(darkClass);
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        toggleBtn.textContent = isDark ? '☀️' : '🌙';
-    });
-}
-
-
-// Actualiza el carrito en el localStorage
-function updateCart(producto, cantidad) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || []
-    const idx = cart.findIndex(p => p.id === producto.id)
-    if (idx !== -1) {
-        cart[idx].count = cantidad
-    } else {
-        cart.push({ ...producto, count: cantidad })
-    }
-    localStorage.setItem('cart', JSON.stringify(cart))
-}
-
-function setupNavbarScroll() {
-    let isShrunk = false;
-    window.addEventListener('scroll', function() {
-        const nav = document.querySelector('nav');
-        if(window.scrollY > 60 && !isShrunk) {
-            nav.style.padding = '8px 40px 24px 40px';
-            nav.style.minHeight = '70px';
-            nav.style.backgroundSize = 'cover 110%'; 
-            isShrunk = true; // Marca que el navbar está reducido
-        } else if (window.scrollY <= 60 && isShrunk) {
-            nav.style.padding = '28px 40px 60px 40px';
-            nav.style.minHeight = '180px';
-            nav.style.backgroundSize = 'cover 50%';
-            isShrunk = false; // Resetea el estado
-        }
-    });
-}
 
 function extendButton(boton, producto, result, i, cantidad = 1) {
     // Oculta el botón
