@@ -161,6 +161,16 @@ window.addEventListener('DOMContentLoaded', function() {
         }));
 
         localStorage.setItem('cart', JSON.stringify([]));
+        fetch('http://localhost:3000/api/ventas', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+            products: carrito,
+            name: usuario
+            })
+        });
         window.location.href = "ticket.html";
     };
 
