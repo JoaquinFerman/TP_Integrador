@@ -119,34 +119,34 @@ async function cargarCarrito(filtro) {
     listaCarrito.classList.remove('row');
 }
 
-document.getElementById('finalizar-compra').addEventListener('click', function() {
-    const carrito = JSON.parse(localStorage.getItem('cart') || '[]');
-    if (carrito.length === 0) {
-        alert('El carrito está vacío.');
-        return;
-    }
+// document.getElementById('finalizar-compra').addEventListener('click', function() {
+//     const carrito = JSON.parse(localStorage.getItem('cart') || '[]');
+//     if (carrito.length === 0) {
+//         alert('El carrito está vacío.');
+//         return;
+//     }
 
-    let total = 0;
-    carrito.forEach(item => {
-        total += item.price * item.count;
-    });
+//     let total = 0;
+//     carrito.forEach(item => {
+//         total += item.price * item.count;
+//     });
 
-    // Simula obtener el usuario
-    const usuario = localStorage.getItem('user');
+//     // Simula obtener el usuario
+//     const usuario = localStorage.getItem('user');
 
-    // Guarda el ticket en localStorage
-    localStorage.setItem('ticket', JSON.stringify({
-        usuario: usuario,
-        items: carrito,
-        total: total
-    }));
+//     // Guarda el ticket en localStorage
+//     localStorage.setItem('ticket', JSON.stringify({
+//         usuario: usuario,
+//         items: carrito,
+//         total: total
+//     }));
 
-    // Limpia el carrito
-    localStorage.setItem('cart', JSON.stringify([]));
+//     // Limpia el carrito
+//     localStorage.setItem('cart', JSON.stringify([]));
 
-    // Redirige a la página de ticket
-    window.location.href = "ticket.html";
-});
+//     // Redirige a la página de ticket
+//     window.location.href = "ticket.html";
+// });
 
 function actualizarContador(cambio) {
     let contador = parseInt(localStorage.getItem('cart-count')) || 0;
@@ -155,6 +155,53 @@ function actualizarContador(cambio) {
 }
 
 document.getElementsByClassName('search-bar')[0].addEventListener('keyup', filtro);
+
+// // Mostrar el modal al hacer click en "Finalizar compra"
+// document.getElementById('finalizar-compra').onclick = function(e) {
+//     e.preventDefault();
+//     document.getElementById('modal-confirm').style.display = 'flex';
+// };
+
+window.addEventListener('DOMContentLoaded', function() {
+    // Mostrar el modal al hacer click en "Finalizar compra"
+    document.getElementById('finalizar-compra').onclick = function(e) {
+        e.preventDefault();
+        const carrito = JSON.parse(localStorage.getItem('cart') || '[]');
+        if (carrito.length === 0) {
+            alert('El carrito está vacío.');
+            return;
+        }
+        document.getElementById('modal-confirm').style.display = 'flex';
+    };
+
+    // Confirmar la compra
+    document.getElementById('btn-confirmar').onclick = function() {
+        document.getElementById('modal-confirm').style.display = 'none';
+
+        // Lógica de finalizar compra:
+        const carrito = JSON.parse(localStorage.getItem('cart') || '[]');
+        let total = 0;
+        carrito.forEach(item => {
+            total += item.price * item.count;
+        });
+
+        const usuario = localStorage.getItem('username') || localStorage.getItem('user');
+
+        localStorage.setItem('ticket', JSON.stringify({
+            usuario: usuario,
+            items: carrito,
+            total: total
+        }));
+
+        localStorage.setItem('cart', JSON.stringify([]));
+        window.location.href = "ticket.html";
+    };
+
+    // Cancelar la compra
+    document.getElementById('btn-cancelar').onclick = function() {
+        document.getElementById('modal-confirm').style.display = 'none';
+    };
+});
 
 function setupThemeToggle() {
     const toggleBtn = document.getElementById('toggleBtn');
