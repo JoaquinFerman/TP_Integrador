@@ -632,6 +632,37 @@ body.dark-mode #toggleBtn:hover {
   color: #23272a;
 }
 
+body.dark-mode .login-section,
+body.dark-mode .login-card,
+body.dark-mode .login-form {
+  background: #232b3b !important;
+  color: #e0e6ed !important;
+  box-shadow: 0 8px 32px rgba(30,144,255,0.18), 0 1.5px 0 #4fd170 inset;
+}
+
+body.dark-mode .login-form input,
+body.dark-mode .login-form input:focus {
+  background: #181f2a;
+  color: #e0e6ed;
+  border: 1.5px solid #4fd170;
+}
+
+body.dark-mode .login-form label {
+  color: #4fd170;
+}
+
+body.dark-mode .login-form button,
+body.dark-mode .login-form .page-btn {
+  background: #1e90ff;
+  color: #fff;
+}
+
+body.dark-mode .login-form button:hover,
+body.dark-mode .login-form .page-btn:hover {
+  background: #4fd170;
+  color: #181f2a;
+}
+
 body.dark-mode .modal-confirm {
   background: rgba(0,0,0,0.7);
 }
