@@ -86,7 +86,7 @@ async function cargarProductos(filtro, categoria, min, max, orden, page = 1, cha
     const count = result['count']
     result = result['products']
 
-    if(changePage === false){
+    if(changePage == false){
         localStorage.setItem('page', 1)
     }
 
@@ -119,7 +119,7 @@ async function cargarProductos(filtro, categoria, min, max, orden, page = 1, cha
         producto.appendChild(titulo)
 
         const img = document.createElement('img')
-        img.src = 'http://localhost:3000/images/' + result[i].name + '.jpg'
+        img.src = 'http://localhost:3000/images/' + result[i].name + '.webp'
         img.alt = result[i].name
         producto.appendChild(img)
 
