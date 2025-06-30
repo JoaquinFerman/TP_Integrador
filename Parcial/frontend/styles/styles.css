@@ -615,14 +615,6 @@ body.dark-mode #toggleBtn:hover {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 18px;
   }
-  .cart-total {
-    right: 2%;
-    left: 2%;
-    bottom: 10px;
-    font-size: 1rem;
-    padding: 10px;
-    text-align: center;
-  }
 }
 
 @media (max-width: 600px) {

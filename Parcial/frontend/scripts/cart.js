@@ -98,6 +98,7 @@ async function cargarCarrito(filtro) {
         };
         item.appendChild(btnMas);
 
+        // Botón 🗑️
         const btnBorrar = document.createElement('button');
         btnBorrar.textContent = '🗑️'; // ❌ alternativo
         btnBorrar.classList.add('qty-button');
