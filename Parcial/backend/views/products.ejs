@@ -26,7 +26,10 @@
     <div class="add-product-form-wrapper">
       <form class="add-product-form" action="/api/admin/productos" method="POST" enctype="multipart/form-data">
         <input type="text" name="name" placeholder="Nombre del producto" required>
-        <input type="text" name="category" placeholder="Categoría" required>
+        <select name="category" placeholder="Categoria" required>
+          <option value="zapatilla">Zapatilla</option>
+          <option value="indumentaria">Indumentaria</option>
+        </select>
         <input type="number" name="price" step="0.01" placeholder="Precio" required>
         <input type="text" name="description" placeholder="Descripción" required>
         <input type="file" name="photo" accept="image/*" required>
@@ -38,9 +41,9 @@
 
     <h2>Lista de productos</h2>
     <div class="filtros-categorias" style="text-align:center; margin-bottom: 24px;">
-      <button class="filtro-btn" data-categoria="todos">Todos</button>
-      <button class="filtro-btn" data-categoria="zapatilla">Zapatillas</button>
-      <button class="filtro-btn" data-categoria="indumentaria">Indumentaria</button>
+      <a href="/api/admin/productos/todas" class="filtro-btn" data-categoria="todos">Todos</a>
+      <a href="/api/admin/productos/zapatilla" class="filtro-btn" data-categoria="zapatilla">Zapatillas</a>
+      <a href="/api/admin/productos/indumentaria" class="filtro-btn" data-categoria="indumentaria">Indumentaria</a>
     </div>
     <div class="product-list">
       <% products.rows.forEach(product => { %>
@@ -73,19 +76,5 @@
       <% }) %>
     </div>
   </main>
-  <script>
-    document.querySelectorAll('.filtro-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const categoria = this.getAttribute('data-categoria');
-        document.querySelectorAll('.product-card').forEach(card => {
-          if (categoria === 'todos' || card.classList.contains('categoria-' + categoria)) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-  </script>
 </body>
 </html>

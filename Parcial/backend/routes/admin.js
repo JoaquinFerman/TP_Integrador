@@ -18,7 +18,7 @@ router.put('/usuarios/:id', usersController.updateUser);
 
 router.delete('/usuarios/:id', usersController.deleteUser)
 
-router.get('/productos', productsController.getProductsPage);
+router.get('/productos/:category', productsController.getProductsPage);
 
 router.post('/productos/', upload.single('photo'), productsController.postProduct)
 

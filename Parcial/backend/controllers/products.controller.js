@@ -31,8 +31,15 @@ const getProducts = async function(req, res) {
 };
 
 const getProductsPage = async function(req, res) {
+    const { category } = req.params
     try {
-        const products = await productsGet();
+        let clause
+        if(category != 'todas'){
+            clause = { category : category }
+        } else {
+            clause = {}
+        }
+        const products = await productsGet(clause);
         res.render('products', { products });
     } catch (err) {
         console.error('Error al obtener productos:', err);

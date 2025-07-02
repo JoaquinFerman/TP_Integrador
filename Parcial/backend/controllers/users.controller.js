@@ -103,7 +103,7 @@ const userLogin = async (req, res) => {
     for (const user of users) {
       const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
-        return res.status(200).redirect('./productos');
+        return res.status(200).redirect('./productos/todas');
       }
     }
 
