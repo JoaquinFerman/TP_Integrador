@@ -38,9 +38,6 @@ async function checkProduct(fields) {
 			}
 		}
 	}
-	
-	
-	console.log(checkedFields)
 	return checkedFields;
 }
 

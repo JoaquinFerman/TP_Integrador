@@ -35,9 +35,9 @@
 
     <h2>Lista de productos</h2>
     <div class="product-list">
-      <% products.forEach(product => { %>
+      <% products.rows.forEach(product => { %>
         <div class="product-card<%= product.active ? '' : ' shadowed' %>"></div>
-          <img src="http://localhost:3000/images/<%= product.name %>.jpg" alt="Imagen del producto">
+          <img src="http://localhost:3000/images/<%= product.name %>.webp" alt="Imagen del producto">
           <info>
             <h3><%= product.name %></h3>
             <p>Precio: $<%= Number(product.price).toFixed(2) %></p>
