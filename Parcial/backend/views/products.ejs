@@ -37,9 +37,14 @@
     <hr>
 
     <h2>Lista de productos</h2>
+    <div class="filtros-categorias" style="text-align:center; margin-bottom: 24px;">
+      <button class="filtro-btn" data-categoria="todos">Todos</button>
+      <button class="filtro-btn" data-categoria="zapatilla">Zapatillas</button>
+      <button class="filtro-btn" data-categoria="indumentaria">Indumentaria</button>
+    </div>
     <div class="product-list">
       <% products.rows.forEach(product => { %>
-        <div class="product-card<%= product.active ? '' : ' shadowed' %>">
+        <div class="product-card<%= product.active ? '' : ' shadowed' %> categoria-<%= product.category %>">
           <img src="http://localhost:3000/images/<%= product.name %>.webp" alt="Imagen del producto">
           <div class="info">
             <h3><%= product.name %></h3>
@@ -65,5 +70,19 @@
       <% }) %>
     </div>
   </main>
+  <script>
+    document.querySelectorAll('.filtro-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const categoria = this.getAttribute('data-categoria');
+        document.querySelectorAll('.product-card').forEach(card => {
+          if (categoria === 'todos' || card.classList.contains('categoria-' + categoria)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
