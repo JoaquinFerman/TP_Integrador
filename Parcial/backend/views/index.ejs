@@ -24,16 +24,15 @@
           <input type="password" class="form-control" id="password" name="password" required>
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
-        <button type="submit" class="btn btn-primary">Fast access</button>
       </form>
-  </div>
-
+    </div>
+    
     <form action="/api/admin/login" method="POST">
       <div class="mb-3"></div>
         <input type="hidden" name="name" value="Mati">
         <input type="hidden" name="password" value="1234">
       </div>
-      
+      <button type="submit" class="btn btn-primary">Fast access</button>
     </form> <!-- Podria ser un href pero esto funciona mejor si se agregan autorizaciones -->
   </div>
 </body>

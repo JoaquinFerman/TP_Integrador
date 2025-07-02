@@ -61,7 +61,10 @@
           </form>
           <form action="/api/admin/productos/<%= product.id %>?_method=PUT" method="POST">
             <input type="text" name="name" value="<%= product.name %>" required>
-            <input type="text" name="category" value="<%= product.category %>" required>
+            <select name="category" required>
+              <option value="zapatilla" <%= product.category === 'zapatilla' ? 'selected' : '' %>>zapatilla</option>
+              <option value="indumentaria" <%= product.category === 'indumentaria' ? 'selected' : '' %>>indumentaria</option>
+            </select>
             <input type="number" step="0.01" name="price" value="<%= product.price %>" required>
             <input type="text" name="description" value="<%= product.description %>" required>
             <button type="submit">Actualizar</button>
