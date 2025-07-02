@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 const salesController = require('../controllers/sales.controller');
 
-router.post('/', salesController.postVenta)
+router.post('/', salesController.postSale)
 
-router.get('/', salesController.getVentas)
+router.get('/', salesController.getSales)
 
 module.exports = router

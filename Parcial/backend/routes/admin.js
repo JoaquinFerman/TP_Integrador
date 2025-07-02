@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const usersController = require('../controllers/users.controller');
 const productsController = require('../controllers/products.controller');
+const salesController = require('../controllers/sales.controller')
 const upload = require('../services/upload');
 
 router.post('/loginPage', usersController.getUserPage);
@@ -25,5 +26,7 @@ router.post('/productos/', upload.single('photo'), productsController.postProduc
 router.put('/productos/:id', productsController.updateProduct);
 
 router.delete('/productos/:id', productsController.deleteProduct)
+
+router.get('/ventas', salesController.getSalesPage)
 
 module.exports = router

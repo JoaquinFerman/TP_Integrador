@@ -1,7 +1,8 @@
 const { Sale, SaleDetail } = require('../models');
 const { checkCart } = require('../services/checkers');
+const { salesGet } = require('../services/sales.service');
 
-const postVenta = async (req, res) => {
+const postSale = async (req, res) => {
   let { products, name } = req.body;
 
   if (!products || !Array.isArray(products) || products.length === 0 || !name) {
@@ -49,25 +50,32 @@ const postVenta = async (req, res) => {
   }
 };
 
-const getVentas = async (req, res) => {
-
-  const sales = await Sale.findAll()
-
-  let returnSales = []
-  
-  for(const sale of sales){
-    const saleMessage = {sale_id : sale.id, products : []}
-    const saleDetails = await SaleDetail.findAll({where : {id_sale : sale.id}})
-
-    for(const saleDetail of saleDetails){
-      saleMessage.products.push({product_id : saleDetail.id_product, count : saleDetail.count})
-    }
-    returnSales.push(saleMessage)
+const getSales = async (req, res) => {
+  const { want } = req.query;
+  let wantList = [];
+  if (Array.isArray(want)) {
+    wantList = want;
+  } else if (typeof want === 'string') {
+    wantList = want.split(',');
   }
-  return res.status(200).json({sales : returnSales})
+
+  const returnSales = await salesGet(wantList)
+
+  return res.status(200).json({ sales: returnSales });
+};
+
+const getSalesPage = async (req, res) => {
+    try {
+        const sales = await salesGet(['name']);
+        res.render('sales', { sales });
+    } catch (err) {
+        console.error('Error al obtener ventas:', err);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
 }
 
 module.exports = {
-  postVenta,
-  getVentas
+  postSale,
+  getSales,
+  getSalesPage
 };

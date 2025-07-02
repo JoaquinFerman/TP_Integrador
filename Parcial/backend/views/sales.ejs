@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales List</title>
+</head>
+<body>
+    <h1>Sales</h1>
+    <ul id="sales-list">
+        <% if (sales && sales.length > 0) { %>
+            <% sales.forEach(function(sale) { %>
+                <li>
+                    <strong>Buyer:</strong> <%= sale.name %><br>
+                    <strong>Products:</strong>
+                    <ul>
+                        <% (sale.products || []).forEach(function(product) { %>
+                            <li><%= product.name %></li>
+                        <% }); %>
+                    </ul>
+                </li>
+            <% }); %>
+        <% } else { %>
+            <li>No sales found.</li>
+        <% } %>
+    </ul>
+</body>
+</html>
