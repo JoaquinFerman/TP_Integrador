@@ -74,7 +74,7 @@ const updateProduct = async function(req, res) {
     const { id } = req.params;
     const { name, price, category, description, active } = req.body;
     
-    if (!name && !price && !description && !active) {
+    if (!name && !price && !category &&!description && !active) {
         return res.status(400).json({ error: 'Al menos un campo debe ser actualizado' });
     }
 

@@ -34,7 +34,7 @@ const productUpdate = async function (fields) {
 
     try {
         const [updated] = await Product.update(
-            { name: fields.name, price: fields.price, description: fields.description, active: fields.active },
+            { name: fields.name, price: fields.price, category: fields.category, description: fields.description, active: fields.active },
             { where: { id: fields.id } }
         );
         if (updated === 0) {
