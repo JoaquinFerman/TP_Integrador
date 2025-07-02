@@ -84,7 +84,7 @@ async function cargarCarrito(filtro) {
             producto.count = nuevaCantidad;
             carrito[i] = producto;
             localStorage.setItem('cart', JSON.stringify(carrito));
-            actualizarContador(diferencia);
+            // actualizarContador(diferencia);
             cargarCarrito();
         };
         item.appendChild(inputCantidad);
@@ -97,7 +97,7 @@ async function cargarCarrito(filtro) {
             producto.count++;
             carrito[i] = producto;
             localStorage.setItem('cart', JSON.stringify(carrito));
-            actualizarContador(1);
+            // actualizarContador(1);
             cargarCarrito();
         };
         item.appendChild(btnMas);
@@ -107,7 +107,7 @@ async function cargarCarrito(filtro) {
         btnBorrar.textContent = '🗑️';
         btnBorrar.classList.add('qty-button');
         btnBorrar.onclick = () => {
-            actualizarContador(-producto.count);
+            // actualizarContador(-producto.count);
             carrito.splice(i, 1);
             localStorage.setItem('cart', JSON.stringify(carrito));
             cargarCarrito();
@@ -123,11 +123,11 @@ async function cargarCarrito(filtro) {
     listaCarrito.classList.remove('row');
 }
 
-function actualizarContador(cambio) {
-    let contador = parseInt(localStorage.getItem('cart-count')) || 0;
-    contador = Math.max(0, contador + cambio);
-    localStorage.setItem('cart-count', contador);
-}
+// function actualizarContador(cambio) {
+//     let contador = parseInt(localStorage.getItem('cart-count')) || 0;
+//     contador = Math.max(0, contador + cambio);
+//     localStorage.setItem('cart-count', contador);
+// }
 
 document.getElementsByClassName('search-bar')[0].addEventListener('keyup', filtro);
 
