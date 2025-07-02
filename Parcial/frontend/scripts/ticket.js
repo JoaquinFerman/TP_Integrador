@@ -1,13 +1,7 @@
 import {checkUsername, setupNavbarScroll, setupThemeToggle} from "./functions.js";
 
-function init() {
-    // Check de username por ultima vez
-    checkUsername('ticket')
-}
-
-init()
-
 window.onload = function() {
+    checkUsername('ticket')
     setupThemeToggle();
     setupNavbarScroll();
 
@@ -46,10 +40,8 @@ window.onload = function() {
         volverBtn.addEventListener('click', function() {
             localStorage.removeItem('ticket');
             localStorage.removeItem('cart');
-            localStorage.removeItem('cart-count');
             localStorage.removeItem('username');
             localStorage.removeItem('theme');
         });
     }
 };
-
