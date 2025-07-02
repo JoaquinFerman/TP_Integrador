@@ -1,6 +1,8 @@
-import { setupNavbarScroll, setupThemeToggle} from "./functions.js";
+import { checkUsername, setupNavbarScroll, setupThemeToggle} from "./functions.js";
 
 function init() {
+    // Check de username de vuelta
+    checkUsername('carrito')
 
     // Carga inicial de carrito
     cargarCarrito();

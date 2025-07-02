@@ -1,4 +1,11 @@
-import {setupNavbarScroll, setupThemeToggle} from "./functions.js";
+import {checkUsername, setupNavbarScroll, setupThemeToggle} from "./functions.js";
+
+function init() {
+    // Check de username por ultima vez
+    checkUsername('ticket')
+}
+
+init()
 
 window.onload = function() {
     setupThemeToggle();
@@ -43,3 +50,4 @@ window.onload = function() {
         });
     }
 };
+

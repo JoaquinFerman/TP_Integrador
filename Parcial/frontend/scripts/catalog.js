@@ -1,8 +1,10 @@
-import { setupNavbarScroll, setupThemeToggle, updateCart } from "./functions.js";
+import { setupNavbarScroll, setupThemeToggle, updateCart, checkUsername } from "./functions.js";
 
 const productsPerPage = 12; // Cambia esto según la cantidad de productos por página
 
 function init() {
+    checkUsername('catalogo')
+
     // Carga inicial de productos y carrito
     filtro();
     setupNavbarScroll();

@@ -48,3 +48,10 @@ export function setupNavbarScroll() {
         }
     });
 }
+
+export function checkUsername(pag) {
+    if(!localStorage.getItem('username')) {
+        window.location.href = "../index.html";
+        alert('Ingrese un nombre de usuario antes de acceder al ' + pag)
+    }
+}
