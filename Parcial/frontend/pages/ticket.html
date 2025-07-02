@@ -28,12 +28,10 @@
         <section class="ticket-section">
             <h2>Ticket de compra</h2>
             <div id="ticket-content"></div>
-            <a href="/Parcial/frontend/index.html" class="page-btn">volver al inicio</a>
-            <button id="btn-pdf" class="descargar-pdf" style="margin-top:12px;">Descargar ticket en PDF</button>
+            <a href="/Parcial/frontend/index.html" class="page-btn">Volver al inicio</a>
+            <button class="descargar-pdf" id="btn-pdf" style="margin-top:12px;" onclick="window.print()">Descargar ticket en PDF</button>
         </section>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script type="module" src="../scripts/ticket.js"></script>
 </body>
 </html>

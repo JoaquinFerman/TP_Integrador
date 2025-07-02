@@ -29,13 +29,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28px 40px 60px 40px;
+  padding: 8px 40px 24px 40px;
   box-shadow: var(--shadow);
   border-bottom: 2px solid #e0e0e0;
-  min-height: 140px;
+  min-height: 40px;
   position: sticky;
   top: 0;
   z-index: 100;
+  background-size: 110%;
 }
 
 .marca {

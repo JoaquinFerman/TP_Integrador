@@ -47,25 +47,3 @@ function init() {
 };
 
 init();
-
-document.getElementById('btn-pdf').addEventListener('click', function() {
-    const ticketContent = document.getElementById('ticket-content');
-    if (!ticketContent) return;
-
-    html2canvas(ticketContent).then(canvas => {
-        const imgData = canvas.toDataURL('image/png');      
-        // Calcula el tamaño del PDF en mm
-        const pdfWidth = canvas.width * 0.264583;  // px to mm
-        const pdfHeight = canvas.height * 0.264583;
-
-        const jsPDF = window.jspdf.jsPDF;
-        const doc = new jsPDF({
-            orientation: pdfWidth > pdfHeight ? 'l' : 'p',
-            unit: 'mm',
-            format: [pdfWidth, pdfHeight]
-        });
-
-        doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        doc.save('ticket.pdf');
-    });
-});

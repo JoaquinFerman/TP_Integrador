@@ -18,6 +18,7 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Navbar */
@@ -26,12 +27,13 @@ body {
     linear-gradient(to bottom, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0.0) 100%),
     url('/images/banner.jpg') center/cover no-repeat;
   display: flex;
+  background-size: 110%;
   justify-content: space-between;
   align-items: center;
-  padding: 28px 40px 60px 40px;
+  padding: 8px 40px 24px 40px;
   box-shadow: var(--shadow);
   border-bottom: 2px solid #e0e0e0;
-  min-height: 140px;
+  min-height: 40px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -75,12 +77,13 @@ body {
 
 /* Contenedor principal */
 .container {
-  max-width: 1000px;
-  margin: 36px auto 0 auto;
-  background: var(--color-card);
-  border-radius: 16px;
-  box-shadow: var(--color-shadow);
-  padding: 32px 28px;
+  max-width: 100%;
+  width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  box-sizing: border-box;
 }
 
 h2 {
@@ -141,12 +144,45 @@ button[type="submit"]:hover {
   transform: translateY(-2px) scale(1.03);
 }
 
+.add-product-form-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.add-product-form {
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+  padding: 24px 28px;
+  margin: 0 auto;
+}
+
 /* Lista de productos */
 .product-list {
+  width: 100%;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
   margin-top: 18px;
+  margin-right: 0;
+  margin-left: 0;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  box-sizing: border-box;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .product-card {
+  width: 100%;
+  max-width: 340px;
+  min-width: 0;
+  margin: 0 auto;
   background: #f4f8fb;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(60, 60, 120, 0.07);
@@ -217,12 +253,15 @@ button[type="submit"]:hover {
 }
 
 .product-card img {
-  width: 200px;     
+  width: 200px;
   height: 150px;
-  object-fit: cover; 
+  object-fit: contain;    
+  background: #fff;      
   border-radius: 10px;
   display: block;
   margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 hr {
