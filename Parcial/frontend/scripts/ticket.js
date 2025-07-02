@@ -1,6 +1,7 @@
 import {checkUsername, setupNavbarScroll, setupThemeToggle} from "./functions.js";
 
-window.onload = function() {
+// window.onload = function() {}
+function init() {
     checkUsername('ticket')
     setupThemeToggle();
     setupNavbarScroll();
@@ -45,3 +46,5 @@ window.onload = function() {
         });
     }
 };
+
+init();
