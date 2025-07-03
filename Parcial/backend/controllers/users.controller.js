@@ -1,5 +1,6 @@
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
+const { usersGet, userPost, userUpdate, userDelete } = require('../services/users.service');
 
 const getUserHomePage = (req, res) => {
   return res.render('index');
@@ -17,7 +18,7 @@ const getUserPage = async (req, res) => {
 
 const getUsers = async (req, res) => {
   try {
-    const users = await User.findAll();
+    const users = await usersGet()
     res.status(200).json({ users });
   } catch (err) {
     console.error('Error al obtener usuarios:', err);
@@ -31,11 +32,7 @@ const postUser = async (req, res) => {
     return res.status(400).json({ error: 'Faltan campos requeridos' });
   }
   try {
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    const newUser = await User.create({ name, password: hashedPassword });
-    res.status(201).json({ message: 'Usuario creado', id: newUser.id });
+    res.status(200).json({ message : 'Nuevo usuario creado exitosamente',id : (await userPost(name, password)).id})
   } catch (err) {
     console.error('Error al insertar usuario:', err);
     res.status(500).json({ error: 'Error en el servidor' });
@@ -51,18 +48,9 @@ const updateUser = async (req, res) => {
   }
 
   try {
-    const [updatedRows] = await User.update(
-      { name },
-      { where: { id } }
-    );
-
-    if (updatedRows === 0) {
-      return res.status(404).json({ error: 'Usuario no encontrado' });
-    }
-
-    res.status(204).json({ message: 'Usuario actualizado' });
+    userUpdate(id, name)
+    res.status(200).json({ message : 'Usuario actualizado exitosamente' })
   } catch (err) {
-    console.error('Error al actualizar usuario:', err);
     res.status(500).json({ error: 'Error en el servidor' });
   }
 };
@@ -71,16 +59,12 @@ const deleteUser = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const deletedRows = await Usuario.destroy({ where: { id } });
+    await userDelete(id)
+    return res.status(200).json({ message : 'Usuario eliminado existosamente' })
 
-    if (deletedRows === 0) {
-      return res.status(404).json({ error: 'Usuario no encontrado' });
-    }
-
-    res.status(204).json({ message: 'Usuario eliminado' });
   } catch (err) {
     console.error('Error al eliminar usuario:', err);
-    res.status(500).json({ error: 'Error en el servidor' });
+    res.status(500).json({ error: err.message });
   }
 };
 
