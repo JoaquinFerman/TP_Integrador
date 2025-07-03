@@ -1,6 +1,5 @@
 import {checkUsername, setupThemeToggle} from "./functions.js";
 
-// window.onload = function() {}
 function init() {
     checkUsername('ticket')
     setupThemeToggle();
@@ -16,7 +15,7 @@ function init() {
         return;
     }
 
-    let html = `
+    let html =`
         <div class="ticket-header-row">
             <span class="ticket-empresa">${empresa}</span>
             <span class="ticket-fecha">${fecha}</span>

@@ -7,7 +7,7 @@ function continuar(){
         return
     }
     localStorage.setItem('username', username);
-    window.location.href = 'pages/catalog.html';
+    window.location.href = './pages/catalog.html';
 }
 
 document.getElementById('continuar-button').addEventListener('click', continuar);

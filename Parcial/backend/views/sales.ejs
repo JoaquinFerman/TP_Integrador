@@ -1,26 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Sales List</title>
+  <meta charset="UTF-8">
+  <title>Lista de Ventas</title>
+  <link rel="stylesheet" href="/frontend/styles/styles-sales.css">
 </head>
 <body>
-    <h1>Sales</h1>
-    <ul id="sales-list">
-        <% if (sales && sales.length > 0) { %>
-            <% sales.forEach(function(sale) { %>
-                <li>
-                    <strong>Buyer:</strong> <%= sale.name %><br>
-                    <strong>Products:</strong>
-                    <ul>
-                        <% (sale.products || []).forEach(function(product) { %>
-                            <li><%= product.name %></li>
-                        <% }); %>
-                    </ul>
-                </li>
-            <% }); %>
-        <% } else { %>
-            <li>No sales found.</li>
-        <% } %>
-    </ul>
+  <div class="container">
+    <h1>🛒 Lista de Ventas</h1>
+
+    <% if (sales && sales.length > 0) { %>
+      <table class="sales-table">
+        <thead>
+          <tr>
+            <th>Comprador</th>
+            <th>Productos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% sales.forEach(function(sale) { %>
+            <tr>
+              <td><%= sale.name %></td>
+              <td>
+                <ul>
+                  <% (sale.products || []).forEach(function(product) { %>
+                    <li><%= product.name %> x<%= product.count%></li>
+                  <% }); %>
+                </ul>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <div class="no-sales">No se encontraron ventas.</div>
+    <% } %>
+  </div>
 </body>
 </html>
