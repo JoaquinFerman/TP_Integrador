@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', function() {
     };
 
     // Confirmar la compra
-    document.getElementById('btn-confirmar').onclick = function() {
+    document.getElementById('btn-confirmar').onclick = async function() {
         document.getElementById('modal-confirm').style.display = 'none';
 
         // Lógica de finalizar compra:
@@ -156,24 +156,32 @@ window.addEventListener('DOMContentLoaded', function() {
 
         const usuario = localStorage.getItem('username') || localStorage.getItem('user');
 
-        localStorage.setItem('ticket', JSON.stringify({
-            usuario: usuario,
-            items: carrito,
-            total: total
-        }));
-
+        
         localStorage.setItem('cart', JSON.stringify([]));
-        fetch('http://localhost:3000/api/ventas', {
+        const response = await fetch('http://localhost:3000/api/ventas', {
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-            products: carrito,
-            name: usuario
+                products: carrito,
+                name: usuario
             })
         });
-        window.location.href = "./ticket.html";
+
+        const result = await response.json()
+
+        if(response.ok) {
+            localStorage.setItem('ticket', JSON.stringify({
+                id: result.id,
+                usuario: usuario,
+                items: carrito,
+                total: total
+            }));
+            window.location.href = "./ticket.html";
+        } else {
+            alert('Error durante la compra')
+        }
     };
 
     // Cancelar la compra
