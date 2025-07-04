@@ -1,10 +1,11 @@
 body {
-  background: linear-gradient(135deg, #e3f0ff 0%, #f5f8fa 100%);
+  background: linear-gradient(135deg, #232a34 0%, #2d3640 100%);
   min-height: 100vh;
   font-family: 'Segoe UI', Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #e6e6e6;
 }
 
 .main-center-wrapper {
@@ -18,9 +19,9 @@ body {
 
 .container {
   max-width: 500px;
-  background: #fff;
+  background: #2d3640;
   border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(30,144,255,0.13), 0 2px 0 #4fd170 inset;
+  box-shadow: 0 8px 32px rgba(62,198,166,0.13), 0 2px 0 #3ec6a6 inset;
   padding: 36px 28px 28px 28px;
   margin: 0 auto 0 auto;
 }
@@ -30,7 +31,7 @@ body {
   width: 370px;
   max-width: 90vw;
   margin: 18px auto 0 auto;
-  background: #1e90ff;
+  background: #3aafa9;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -42,8 +43,8 @@ body {
 }
 
 .fast-access-btn:hover, .fast-access-btn:focus {
-  background: #4fd170;
-  color: #181f2a;
+  background: #3ec6a6;
+  color: #232a34;
 }
 
 @media (max-width: 480px) {
