@@ -26,6 +26,7 @@
       <table class="sales-table">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Comprador</th>
             <th>Fechas</th>
             <th>Productos</th>
@@ -34,6 +35,7 @@
         <tbody>
           <% sales.forEach(function(sale) { %>
             <tr>
+              <td><%= sale.sale_id %></td>
               <td><%= sale.name %></td>
               <td>
                 <% if (sale.date) { %>
