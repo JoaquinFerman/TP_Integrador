@@ -30,8 +30,8 @@ async function filtro() {
 
 // Carga de carrito
 
+let pendingDeleteIndex = null;
 async function cargarCarrito(filtro) {
-    let pendingDeleteIndex = null;
     const listaCarrito = document.getElementById('cart-items');
     listaCarrito.innerHTML = '';
     let total = 0;
@@ -81,7 +81,6 @@ async function cargarCarrito(filtro) {
         inputCantidad.onchange = () => {
             let nuevaCantidad = parseInt(inputCantidad.value);
             if (isNaN(nuevaCantidad) || nuevaCantidad < 1) nuevaCantidad = 1;
-            const diferencia = nuevaCantidad - producto.count;
             producto.count = nuevaCantidad;
             carrito[i] = producto;
             localStorage.setItem('cart', JSON.stringify(carrito));
@@ -187,7 +186,27 @@ window.addEventListener('DOMContentLoaded', function() {
     };
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const modalDelete = document.getElementById('modal-delete');
+    const btnDeleteConfirm = document.getElementById('btn-delete-confirm');
+    const btnDeleteCancel = document.getElementById('btn-delete-cancel');
 
+    btnDeleteConfirm.onclick = () => {
+        if (pendingDeleteIndex !== null) {
+            let carrito = JSON.parse(localStorage.getItem('cart') || '[]');
+            carrito.splice(pendingDeleteIndex, 1);
+            localStorage.setItem('cart', JSON.stringify(carrito));
+            cargarCarrito();
+            pendingDeleteIndex = null;
+        }
+        modalDelete.style.display = 'none';
+    };
+
+    btnDeleteCancel.onclick = () => {
+        pendingDeleteIndex = null;
+        modalDelete.style.display = 'none';
+    };
+});
 
 // Inicializo
 init()
