@@ -7,7 +7,7 @@ const salesGet = async function(want) {
     let returnSales = [];
     
     for (const sale of sales) {
-        const saleMessage = { sale_id: sale.id, name: sale.client_name, products: [] };
+        const saleMessage = { sale_id: sale.id, name: sale.client_name, products: [] , date: sale.date};
         const saleDetails = await SaleDetail.findAll({ where: { id_sale: sale.id } });
         
         for (const saleDetail of saleDetails) {
