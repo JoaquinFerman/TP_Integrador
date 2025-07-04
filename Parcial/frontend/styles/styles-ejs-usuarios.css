@@ -1,14 +1,14 @@
 /* Variables */
 :root {
-  --color-bg: #f5f8fa;
-  --color-card: #dbdadada;
-  --color-accent: #1e90ff;
-  --color-accent-dark: #1565c0;
-  --color-accent-light: #4fd170;
-  --color-text: #222;
+  --color-bg: #232a34;
+  --color-card: #2d3640;
+  --color-accent: #3aafa9;
+  --color-accent-dark: #2b7a78;
+  --color-accent-light: #3ec6a6;
+  --color-text: #e6e6e6;
   --color-danger: #e53935;
   --color-danger-hover: #ef5350;
-  --shadow: 0 4px 24px rgba(30, 144, 255, 0.08);
+  --shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
 }
 
 /* General */
@@ -24,14 +24,14 @@ body {
 /* Navbar */
 .navbar {
   background:
-    linear-gradient(to bottom, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0.0) 100%),
+    linear-gradient(to bottom, rgba(35,42,52,0.95) 60%, rgba(35,42,52,0.7) 100%),
     url('/images/banner.jpg') center/cover no-repeat;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px 40px 24px 40px;
   box-shadow: var(--shadow);
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid #3a4a5a;
   min-height: 40px;
   position: sticky;
   top: 0;
@@ -57,7 +57,7 @@ body {
 
 .nombres {
   text-align: right;
-  color: #888;
+  color: #b0b8c1;
   font-size: 1rem;
 }
 
@@ -66,7 +66,7 @@ body {
   max-width: 700px;
   margin: 40px auto 0 auto;
   padding: 24px;
-  background: #fff;
+  background: var(--color-card);
   border-radius: 18px;
   box-shadow: var(--shadow);
 }
@@ -89,10 +89,12 @@ form {
 
 form input[type="text"], form input[type="password"] {
   padding: 8px 14px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #3a4a5a;
   border-radius: 8px;
   font-size: 1rem;
   flex: 1 1 180px;
+  background: #232a34;
+  color: var(--color-text);
 }
 
 form button {
@@ -113,7 +115,7 @@ form button:hover {
 
 hr {
   border: none;
-  border-top: 2px solid #e0e0e0;
+  border-top: 2px solid #3a4a5a;
   margin: 32px 0 24px 0;
 }
 
@@ -137,7 +139,7 @@ hr {
 
 .product-card h3 {
   margin: 0 0 10px 0;
-  color: var(--color-accent-dark);
+  color: var(--color-accent);
   font-size: 1.1rem;
   font-weight: 600;
 }
@@ -165,9 +167,11 @@ hr {
 
 .product-card input[type="text"] {
   padding: 6px 10px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #3a4a5a;
   border-radius: 6px;
   font-size: 1rem;
+  background: #232a34;
+  color: var(--color-text);
 }
 
 /* Responsive */

@@ -1,14 +1,14 @@
 /* Paleta de colores */
 :root {
-  --color-bg: #f7fafd;
-  --color-navbar: #fff;
-  --color-primary: #2ecc71;
-  --color-primary-dark: #27ae60;
-  --color-accent: #4f8cff;
-  --color-text: #222;
-  --color-border: #e0e0e0;
-  --color-card: #fff;
-  --color-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+  --color-bg: #232a34;
+  --color-navbar: #232a34;
+  --color-primary: #3ec6a6;
+  --color-primary-dark: #2b7a78;
+  --color-accent: #3aafa9;
+  --color-text: #e6e6e6;
+  --color-border: #3a4a5a;
+  --color-card: #2d3640;
+  --color-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
 }
 
 body {
@@ -24,7 +24,7 @@ body {
 /* Navbar */
 .navbar {
   background:
-    linear-gradient(to bottom, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0.0) 100%),
+    linear-gradient(to bottom, rgba(35,42,52,0.95) 60%, rgba(35,42,52,0.7) 100%),
     url('/images/banner.jpg') center/cover no-repeat;
   display: flex;
   background-size: 110%;
@@ -32,7 +32,7 @@ body {
   align-items: center;
   padding: 8px 40px 24px 40px;
   box-shadow: var(--shadow);
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid var(--color-border);
   min-height: 40px;
   position: sticky;
   top: 0;
@@ -58,7 +58,7 @@ body {
 
 .nombres {
   text-align: right;
-  color: #888;
+  color: #b0b8c1;
   font-size: 1rem;
 }
 
@@ -87,19 +87,19 @@ body {
 }
 
 h2 {
-  color: var(--color-primary-dark);
+  color: var(--color-primary);
   margin-bottom: 18px;
   font-weight: 700;
   text-align: center;
 }
 
 a {
-  color: black;
+  color: var(--color-accent);
   text-decoration: none;
 }
 
 a:hover {
-  color: #333;
+  color: var(--color-primary);
   text-decoration: underline;
 }
 
@@ -117,7 +117,8 @@ input[type="number"] {
   border-radius: 8px;
   padding: 10px 14px;
   font-size: 1rem;
-  background: #fafbfc;
+  background: #232a34;
+  color: var(--color-text);
   transition: border 0.2s;
 }
 
@@ -136,7 +137,7 @@ button[type="submit"] {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
-  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(62, 198, 166, 0.08);
 }
 
 button[type="submit"]:hover {
@@ -154,11 +155,34 @@ button[type="submit"]:hover {
 .add-product-form {
   width: 100%;
   max-width: 600px;
-  background: #fff;
+  background: var(--color-card);
   border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.13);
   padding: 24px 28px;
   margin: 0 auto;
+}
+
+select {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 1rem;
+  background: #232a34;
+  color: var(--color-text);
+  transition: border 0.2s;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(44, 62, 80, 0.04);
+}
+
+select:focus {
+  border-color: var(--color-primary);
+}
+
+select option {
+  background: #232a34;
+  color: var(--color-text);
 }
 
 /* Lista de productos */
@@ -178,29 +202,6 @@ button[type="submit"]:hover {
   border-radius: 0;
 }
 
-select {
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 8px 14px;
-  font-size: 1rem;
-  background: #fafbfc;
-  color: var(--color-text);
-  transition: border 0.2s;
-  outline: none;
-  appearance: none;
-  cursor: pointer;
-  box-shadow: 0 1px 4px rgba(44, 62, 80, 0.04);
-}
-
-select:focus {
-  border-color: var(--color-primary);
-}
-
-select option {
-  background: #fff;
-  color: var(--color-text);
-}
-
 .filtros-categorias {
   display: flex;
   justify-content: flex-end;
@@ -209,7 +210,7 @@ select option {
 }
 
 .filtro-btn {
-  background: var(--color-primary);
+  background: var(--color-accent);
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -227,9 +228,9 @@ select option {
   max-width: 340px;
   min-width: 0;
   margin: 0 auto;
-  background: #f4f8fb;
+  background: var(--color-card);
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.07);
+  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.10);
   padding: 18px 16px;
   margin-bottom: 16px;
   display: flex;
@@ -246,7 +247,7 @@ select option {
 .product-card .nombre {
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--color-primary-dark);
+  color: var(--color-primary);
 }
 
 .product-card .precio {
@@ -256,7 +257,7 @@ select option {
 }
 
 .product-card .descripcion {
-  color: #555;
+  color: #b0b8c1;
   font-size: 0.98rem;
   margin-top: 2px;
 }
@@ -276,7 +277,7 @@ select option {
 
 .product-card form + form {
   margin-top: 8px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--color-border);
   padding-top: 8px;
 }
 
@@ -300,7 +301,7 @@ select option {
   width: 200px;
   height: 150px;
   object-fit: contain;    
-  background: #fff;      
+  background: #232a34;      
   border-radius: 10px;
   display: block;
   margin-bottom: 10px;
