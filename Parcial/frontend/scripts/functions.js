@@ -24,7 +24,9 @@ export function setupThemeToggle() {
 export function updateCart(producto, cantidad) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const idx = cart.findIndex(p => p.id === producto.id);
-    if (idx !== -1) {
+    if (cantidad == 0 && idx !== -1){
+        cart.splice(idx, 1);
+    } else if (idx !== -1) {
         cart[idx].count = cantidad;
     } else {
         cart.push({ ...producto, count: cantidad });

@@ -145,11 +145,8 @@ async function cargarProductos(filtro, categoria, min, max, orden, page = 1, cha
 
         const cart = JSON.parse(localStorage.getItem('cart') || '[]');
         const cartItem = cart.find(item => item.id === result[i].id);
-        if (cartItem && cartItem != 0) {
+        if (cartItem) {
             extendButton(boton, producto, result, i, cartItem.count);
-        } else if (cartItem == 0) {
-            const newCart = cart.filter(item => item.id !== result[i].id);
-            localStorage.setItem('cart', JSON.stringify(newCart));
         }
     }
 }
@@ -225,6 +222,7 @@ function extendButton(boton, producto, result, i, cantidad = 1) {
         if (val > 1) {
             inputCantidad.value = val - 1
             updateCart(result[i], parseInt(inputCantidad.value))
+            ///
         } else if (val === 1) {
             producto.removeChild(qtyWrapper); // Elimina el contenedor de cantidad
             boton.style.display = ''; // Muestra nuevamente el botón
