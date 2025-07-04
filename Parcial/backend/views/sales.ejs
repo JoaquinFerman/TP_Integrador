@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Lista de Ventas</title>
-  <link rel="stylesheet" href="/frontend/styles/styles-ejs-ventas.css">
+  <link rel="stylesheet" href="http://localhost:3000/frontend/styles/styles-ejs-ventas.css">
 </head>
 <body>
   <nav class="navbar">
@@ -27,6 +27,7 @@
         <thead>
           <tr>
             <th>Comprador</th>
+            <th>Fechas</th>
             <th>Productos</th>
           </tr>
         </thead>
@@ -35,9 +36,16 @@
             <tr>
               <td><%= sale.name %></td>
               <td>
+                <% if (sale.date) { %>
+                  <%= new Date(sale.date).toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+                <% } else { %>
+                  <span class="no-date">Fecha no disponible</span>
+                <% } %>
+              </td>
+              <td>
                 <ul>
                   <% (sale.products || []).forEach(function(product) { %>
-                    <li><%= product.name %> x<%= product.count%></li>
+                    <li><%= product.name %> x<%= product.count%> </li>
                   <% }); %>
                 </ul>
               </td>
