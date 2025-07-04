@@ -11,7 +11,8 @@ function init() {
     const fecha = new Date().toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' });
 
     if (!ticket || !ticket.items || ticket.items.length === 0) {
-        ticketDiv.innerHTML = "<p>No hay ticket para mostrar.</p>";
+        alert('No hay ticket')
+        window.location.href('./catalogo.html')
         return;
     }
 
@@ -19,6 +20,7 @@ function init() {
         <div class="ticket-header-row">
             <span class="ticket-empresa">${empresa}</span>
             <span class="ticket-fecha">${fecha}</span>
+            <span class="ticket-id">Id de Venta: ${ticket.id}</span>
         </div>
         <div class="ticket-user-row">
             <span class="ticket-user-label">Usuario:</span>
