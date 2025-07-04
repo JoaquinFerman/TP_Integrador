@@ -12,7 +12,7 @@ function init() {
 
     if (!ticket || !ticket.items || ticket.items.length === 0) {
         alert('No hay ticket')
-        window.location.href('./catalogo.html')
+        window.location.href = './catalog.html'
         return;
     }
 

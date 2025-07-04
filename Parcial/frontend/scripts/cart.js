@@ -66,7 +66,6 @@ async function cargarCarrito(filtro) {
                 carrito.splice(i, 1);
             }
             localStorage.setItem('cart', JSON.stringify(carrito));
-            actualizarContador(-1);
             cargarCarrito();
         };
         item.appendChild(btnMenos);
@@ -84,7 +83,6 @@ async function cargarCarrito(filtro) {
             producto.count = nuevaCantidad;
             carrito[i] = producto;
             localStorage.setItem('cart', JSON.stringify(carrito));
-            // actualizarContador(diferencia);
             cargarCarrito();
         };
         item.appendChild(inputCantidad);
@@ -97,7 +95,6 @@ async function cargarCarrito(filtro) {
             producto.count++;
             carrito[i] = producto;
             localStorage.setItem('cart', JSON.stringify(carrito));
-            // actualizarContador(1);
             cargarCarrito();
         };
         item.appendChild(btnMas);
@@ -107,7 +104,6 @@ async function cargarCarrito(filtro) {
         btnBorrar.textContent = '🗑️';
         btnBorrar.classList.add('qty-button');
         btnBorrar.onclick = () => {
-            // actualizarContador(-producto.count);
             carrito.splice(i, 1);
             localStorage.setItem('cart', JSON.stringify(carrito));
             cargarCarrito();
