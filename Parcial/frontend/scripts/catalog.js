@@ -145,8 +145,11 @@ async function cargarProductos(filtro, categoria, min, max, orden, page = 1, cha
 
         const cart = JSON.parse(localStorage.getItem('cart') || '[]');
         const cartItem = cart.find(item => item.id === result[i].id);
-        if (cartItem) {
+        if (cartItem && cartItem != 0) {
             extendButton(boton, producto, result, i, cartItem.count);
+        } else if (cartItem == 0) {
+            const newCart = cart.filter(item => item.id !== result[i].id);
+            localStorage.setItem('cart', JSON.stringify(newCart));
         }
     }
 }
