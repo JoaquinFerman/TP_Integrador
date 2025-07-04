@@ -29,7 +29,9 @@ async function filtro() {
 }
 
 // Carga de carrito
+
 async function cargarCarrito(filtro) {
+    let pendingDeleteIndex = null;
     const listaCarrito = document.getElementById('cart-items');
     listaCarrito.innerHTML = '';
     let total = 0;
@@ -104,9 +106,8 @@ async function cargarCarrito(filtro) {
         btnBorrar.textContent = '🗑️';
         btnBorrar.classList.add('qty-button');
         btnBorrar.onclick = () => {
-            carrito.splice(i, 1);
-            localStorage.setItem('cart', JSON.stringify(carrito));
-            cargarCarrito();
+            pendingDeleteIndex = i;
+            document.getElementById('modal-delete').style.display = 'flex';
         };
         item.appendChild(btnBorrar);
 

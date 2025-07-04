@@ -42,7 +42,14 @@
     <!-- Contenedor principal -->
     <section class="cart-section">
         <h2>Carrito</h2>
-
+        <div id="modal-delete" class="modal" style="display:none;">
+            <div class="modal-content">
+                <p>¿Estás seguro de que deseas eliminar este producto del carrito?</p>
+                <button id="btn-delete-confirm">Sí, eliminar</button>
+                <button id="btn-delete-cancel">Cancelar</button>
+            </div>
+        </div>
+        
         <div id="cart-items">
             <p>No hay elementos en el carrito.</p>
         </div>
