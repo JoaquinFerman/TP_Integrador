@@ -1,67 +1,3 @@
-/* Paleta de colores */
-:root {
-  --color-bg: #232a34;
-  --color-navbar: #232a34;
-  --color-primary: #3ec6a6;
-  --color-primary-dark: #2b7a78;
-  --color-accent: #3aafa9;
-  --color-text: #e6e6e6;
-  --color-border: #3a4a5a;
-  --color-card: #2d3640;
-  --color-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
-}
-
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* Navbar */
-.navbar {
-  background:
-    linear-gradient(to bottom, rgba(35,42,52,0.95) 60%, rgba(35,42,52,0.7) 100%),
-    url('/images/banner.jpg') center/cover no-repeat;
-  display: flex;
-  background-size: 110%;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 40px 24px 40px;
-  box-shadow: var(--shadow);
-  border-bottom: 2px solid var(--color-border);
-  min-height: 40px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.marca {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.logo {
-  height: 48px;
-}
-
-.nombre {
-  font-size: 1.7rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  letter-spacing: 1px;
-}
-
-.nombres {
-  text-align: right;
-  color: #b0b8c1;
-  font-size: 1rem;
-}
-
 .icon-btn {
   background: none;
   border: none;
@@ -84,23 +20,6 @@ body {
   padding-left: 3vw;
   padding-right: 3vw;
   box-sizing: border-box;
-}
-
-h2 {
-  color: var(--color-primary);
-  margin-bottom: 18px;
-  font-weight: 700;
-  text-align: center;
-}
-
-a {
-  color: var(--color-accent);
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--color-primary);
-  text-decoration: underline;
 }
 
 /* Formulario */
