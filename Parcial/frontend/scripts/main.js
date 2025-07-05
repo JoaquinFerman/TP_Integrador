@@ -1,6 +1,6 @@
 import {setupThemeToggle} from "./functions.js";
 
-function continuar(){
+function continueF(){
     const username = document.getElementById('nameInput').value
     if(!username){
         alert("Enter a valid name")
@@ -10,6 +10,6 @@ function continuar(){
     window.location.href = './pages/catalog.html';
 }
 
-document.getElementById('continuar-button').addEventListener('click', continuar);
+document.getElementById('continue-button').addEventListener('click', continueF);
 
 setupThemeToggle();

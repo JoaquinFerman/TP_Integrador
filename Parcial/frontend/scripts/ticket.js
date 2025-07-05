@@ -7,8 +7,8 @@ function init() {
     const user = localStorage.getItem('username');
     const ticket = JSON.parse(localStorage.getItem('ticket')) || null;
     const ticketDiv = document.getElementById('ticket-content');
-    const empresa = "MatchPoint Wear";
-    const fecha = new Date().toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' });
+    const brand = "MatchPoint Wear";
+    const date = new Date().toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' });
 
     if (!ticket || !ticket.items || ticket.items.length === 0) {
         alert('No hay ticket')
@@ -18,8 +18,8 @@ function init() {
 
     let html =`
         <div class="ticket-header-row">
-            <span class="ticket-empresa">${empresa}</span>
-            <span class="ticket-fecha">${fecha}</span>
+            <span class="ticket-brand">${brand}</span>
+            <span class="ticket-date">${date}</span>
             <span class="ticket-id">Id de Venta: ${ticket.id}</span>
         </div>
         <div class="ticket-user-row">
@@ -42,7 +42,6 @@ function init() {
             localStorage.removeItem('ticket');
             localStorage.removeItem('cart');
             localStorage.removeItem('username');
-            localStorage.removeItem('theme');
         });
     }
 };

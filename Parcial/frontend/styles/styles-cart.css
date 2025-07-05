@@ -56,7 +56,7 @@
   background-color: var(--color-danger-hover);
 }
 
-#finalizar-compra {
+#finish-sale {
   background: var(--color-accent-light);
   color: #fff;
   border: none;
@@ -70,12 +70,12 @@
   margin-top: 12px;
 }
 
-#finalizar-compra:hover {
+#finish-sale:hover {
   background: var(--color-accent-dark);
   color: #fff;
 }
 
-.finalizar-compra-wrapper {
+.finish-sale-wrapper {
   display: flex;
   justify-content: center;
   margin: 20px 0;
@@ -98,7 +98,7 @@
   box-shadow: 0 8px 32px rgba(30,144,255,0.13);
 }
 
-#btn-cancelar, .volver-catalogo-btn {
+.page-btn {
   background: #e0e0e0;
   color: #222;
   border: none;
@@ -111,19 +111,19 @@
   transition: background 0.2s, color 0.2s;
 }
 
-#btn-cancelar:hover, .volver-catalogo-btn:hover {
+.page-btn:hover {
   background: #bdbdbd;
   color: #181f2a;
 }
 
 /* Dark */
 
-body.dark-mode #finalizar-compra {
+body.dark-mode #finish-sale {
   background: var(--color-accent);
   color: #23272a;
 }
 
-body.dark-mode #finalizar-compra:hover {
+body.dark-mode #finish-sale:hover {
   background: var(--color-accent-light);
   color: #fff;
 }
@@ -152,35 +152,12 @@ body.dark-mode .modal-content h3 {
   color: #4fd170;
 }
 
-body.dark-mode .modal-content .page-btn {
-  background: #1e90ff;
-  color: #fff;
-}
-
-body.dark-mode .modal-content .volver-catalogo-btn {
-  background: #4fd170;
-  color: #181f2a;
-}
-
 body.dark-mode .modal-content .page-btn:hover {
-  background: #4fd170;
-  color: #181f2a;
-}
-
-body.dark-mode .modal-content .volver-catalogo-btn:hover {
   background: #1e90ff;
   color: #fff;
 }
 
-body.dark-mode #btn-cancelar,
-body.dark-mode .modal-content .volver-catalogo-btn {
-  background: #232b3b;
-  color: #e0e6ed;
-  border: 1px solid #4fd170;
-}
-
-body.dark-mode #btn-cancelar:hover,
-body.dark-mode .modal-content .volver-catalogo-btn:hover {
+body.dark-mode .modal-content .page-btn {
   background: #4fd170;
   color: #181f2a;
 }

@@ -5,7 +5,7 @@ function init() {
     checkUsername('carrito')
 
     // Carga inicial de carrito
-    cargarCarrito();
+    loadCart();
     setupNavbarScroll();
     setupThemeToggle();
 
@@ -23,100 +23,100 @@ function init() {
     });
 }
 
-async function filtro() {
+async function filter() {
     // Llamo la carga de productos con filtros incluidos
-    cargarCarrito(document.getElementsByClassName('search-bar')[0].value)
+    loadCart(document.getElementsByClassName('search-bar')[0].value)
 }
 
 // Carga de carrito
 
 let pendingDeleteIndex = null;
-async function cargarCarrito(filtro) {
-    const listaCarrito = document.getElementById('cart-items');
-    listaCarrito.innerHTML = '';
+async function loadCart(filter) {
+    const cartList = document.getElementById('cart-items');
+    cartList.innerHTML = '';
     let total = 0;
-    let carrito = JSON.parse(localStorage.getItem('cart') || '[]');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
-    if (filtro) {
-        carrito = carrito.filter(producto =>
-            producto.nombre.toLowerCase().includes(filtro.toLowerCase())
+    if (filter) {
+        cart = cart.filter(product =>
+            product.name.toLowerCase().includes(filter.toLowerCase())
         )
     }
 
-    for (let i = 0; i < carrito.length; i++) {
-        const producto = carrito[i];
+    for (let i = 0; i < cart.length; i++) {
+        const product = cart[i];
 
         const item = document.createElement('li');
         item.className = 'item-block';
 
         // Nombre del producto
-        const titulo = document.createElement('p');
-        titulo.textContent = producto.name;
-        titulo.className = 'item-name';
-        titulo.style.minWidth = '160px'; // Puedes ajustar el ancho
-        titulo.style.textAlign = 'left';
-        item.appendChild(titulo);
+        const title = document.createElement('p');
+        title.textContent = product.name;
+        title.className = 'item-name';
+        title.style.minWidth = '160px'; // Puedes ajustar el ancho
+        title.style.textAlign = 'left';
+        item.appendChild(title);
 
         // Boton -
-        const btnMenos = document.createElement('button');
-        btnMenos.textContent = '➖';
-        btnMenos.classList.add('qty-button');
-        btnMenos.onclick = () => {
-            if (producto.count > 1) {
-                producto.count--;
+        const btnMinus = document.createElement('button');
+        btnMinus.textContent = '➖';
+        btnMinus.classList.add('qty-button');
+        btnMinus.onclick = () => {
+            if (product.count > 1) {
+                product.count--;
             } else {
-                carrito.splice(i, 1);
+                cart.splice(i, 1);
             }
-            localStorage.setItem('cart', JSON.stringify(carrito));
-            cargarCarrito();
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
         };
-        item.appendChild(btnMenos);
+        item.appendChild(btnMinus);
 
         // Caja de cantidad editable
-        const inputCantidad = document.createElement('input');
-        inputCantidad.type = 'number';
-        inputCantidad.min = 1;
-        inputCantidad.value = producto.count;
-        inputCantidad.classList.add('qty-input');
-        inputCantidad.onchange = () => {
-            let nuevaCantidad = parseInt(inputCantidad.value);
-            if (isNaN(nuevaCantidad) || nuevaCantidad < 1) nuevaCantidad = 1;
-            producto.count = nuevaCantidad;
-            carrito[i] = producto;
-            localStorage.setItem('cart', JSON.stringify(carrito));
-            cargarCarrito();
+        const inputCount = document.createElement('input');
+        inputCount.type = 'number';
+        inputCount.min = 1;
+        inputCount.value = product.count;
+        inputCount.classList.add('qty-input');
+        inputCount.onchange = () => {
+            let newCount = parseInt(inputCount.value);
+            if (isNaN(newCount) || newCount < 1) newCount = 1;
+            product.count = newCount;
+            cart[i] = product;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
         };
-        item.appendChild(inputCantidad);
+        item.appendChild(inputCount);
 
         // Botón ➕
-        const btnMas = document.createElement('button');
-        btnMas.textContent = '➕';
-        btnMas.classList.add('qty-button');
-        btnMas.onclick = () => {
-            producto.count++;
-            carrito[i] = producto;
-            localStorage.setItem('cart', JSON.stringify(carrito));
-            cargarCarrito();
+        const btnPlus = document.createElement('button');
+        btnPlus.textContent = '➕';
+        btnPlus.classList.add('qty-button');
+        btnPlus.onclick = () => {
+            product.count++;
+            cart[i] = product;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
         };
-        item.appendChild(btnMas);
+        item.appendChild(btnPlus);
 
         // Botón 🗑️
-        const btnBorrar = document.createElement('button');
-        btnBorrar.textContent = '🗑️';
-        btnBorrar.classList.add('qty-button');
-        btnBorrar.onclick = () => {
+        const btnDelete = document.createElement('button');
+        btnDelete.textContent = '🗑️';
+        btnDelete.classList.add('qty-button');
+        btnDelete.onclick = () => {
             pendingDeleteIndex = i;
             document.getElementById('modal-delete').style.display = 'flex';
         };
-        item.appendChild(btnBorrar);
+        item.appendChild(btnDelete);
 
-        total += producto.price * producto.count;
-        listaCarrito.appendChild(item);
+        total += product.price * product.count;
+        cartList.appendChild(item);
     }
 
-    const totalCarrito = document.getElementsByClassName('cart-total')[0];
-    totalCarrito.innerHTML = 'Total: $' + total.toFixed(2);
-    listaCarrito.classList.remove('row');
+    const totalCart = document.getElementsByClassName('cart-total')[0];
+    totalCart.innerHTML = 'Total: $' + total.toFixed(2);
+    cartList.classList.remove('row');
 }
 
 // function actualizarContador(cambio) {
@@ -125,14 +125,14 @@ async function cargarCarrito(filtro) {
 //     localStorage.setItem('cart-count', contador);
 // }
 
-document.getElementsByClassName('search-bar')[0].addEventListener('keyup', filtro);
+document.getElementsByClassName('search-bar')[0].addEventListener('keyup', filter);
 
 window.addEventListener('DOMContentLoaded', function() {
     // Mostrar el modal al hacer click en "Finalizar compra"
-    document.getElementById('finalizar-compra').onclick = function(e) {
+    document.getElementById('finish-sale').onclick = function(e) {
         e.preventDefault();
-        const carrito = JSON.parse(localStorage.getItem('cart') || '[]');
-        if (carrito.length === 0) {
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        if (cart.length === 0) {
             alert('El carrito está vacío.');
             return;
         }
@@ -140,17 +140,17 @@ window.addEventListener('DOMContentLoaded', function() {
     };
 
     // Confirmar la compra
-    document.getElementById('btn-confirmar').onclick = async function() {
+    document.getElementById('btn-confirm').onclick = async function() {
         document.getElementById('modal-confirm').style.display = 'none';
 
         // Lógica de finalizar compra:
-        const carrito = JSON.parse(localStorage.getItem('cart') || '[]');
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
         let total = 0;
-        carrito.forEach(item => {
+        cart.forEach(item => {
             total += item.price * item.count;
         });
 
-        const usuario = localStorage.getItem('username') || localStorage.getItem('user');
+        const username = localStorage.getItem('username') || localStorage.getItem('user');
 
         
         localStorage.setItem('cart', JSON.stringify([]));
@@ -160,8 +160,8 @@ window.addEventListener('DOMContentLoaded', function() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                products: carrito,
-                name: usuario
+                products: cart,
+                name: username
             })
         });
 
@@ -170,8 +170,8 @@ window.addEventListener('DOMContentLoaded', function() {
         if(response.ok) {
             localStorage.setItem('ticket', JSON.stringify({
                 id: result.id,
-                usuario: usuario,
-                items: carrito,
+                username: username,
+                items: cart,
                 total: total
             }));
             window.location.href = "./ticket.html";
@@ -181,7 +181,7 @@ window.addEventListener('DOMContentLoaded', function() {
     };
 
     // Cancelar la compra
-    document.getElementById('btn-cancelar').onclick = function() {
+    document.getElementById('btn-cancel').onclick = function() {
         document.getElementById('modal-confirm').style.display = 'none';
     };
 });
@@ -193,10 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnDeleteConfirm.onclick = () => {
         if (pendingDeleteIndex !== null) {
-            let carrito = JSON.parse(localStorage.getItem('cart') || '[]');
-            carrito.splice(pendingDeleteIndex, 1);
-            localStorage.setItem('cart', JSON.stringify(carrito));
-            cargarCarrito();
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.splice(pendingDeleteIndex, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
             pendingDeleteIndex = null;
         }
         modalDelete.style.display = 'none';

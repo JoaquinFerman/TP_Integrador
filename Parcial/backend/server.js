@@ -5,8 +5,8 @@ const app = express()
 const methodOverride = require('method-override')
 
 const productsRouter = require('./routes/products')
-const salesRouter = require('./routes/ventas')
-const usersRouter = require('./routes/usuarios')
+const salesRouter = require('./routes/sales')
+const usersRouter = require('./routes/users')
 const adminRouter = require('./routes/admin')
 
 
