@@ -57,7 +57,7 @@
   text-align: right;
 }
 
-.page-btn, .descargar-pdf {
+.page-btn, .download-pdf {
   background: var(--color-accent-light, #4fd170);
   color: #fff;
   border: none;
