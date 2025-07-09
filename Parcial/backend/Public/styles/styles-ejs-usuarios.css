@@ -112,17 +112,89 @@ hr {
 }
 
 /* Responsive */
-@media (max-width: 800px) {
+
+@media (max-width: 600px) {
   .container {
-    max-width: 98vw;
-    padding: 10px;
+    max-width: 95vw;
+    padding: 16px 12px;
+    margin: 20px auto 0 auto;
   }
-  .navbar {
+
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+
+  form {
     flex-direction: column;
-    gap: 10px;
-    padding: 14px 8px;
+    gap: 12px;
+    align-items: stretch;
   }
-  .logo {
-    height: 38px;
+
+  form input[type="text"],
+  form input[type="password"] {
+    flex: 1 1 100%;
+  }
+
+  form button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+  }
+
+  .product-card {
+    padding: 14px 14px 10px 14px;
+  }
+
+  .product-card h3 {
+    font-size: 1rem;
+  }
+
+  .product-card form {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .product-card button[type="submit"] {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 0.95rem;
+  }
+
+  .product-card input[type="text"] {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 12px 10px;
+    margin: 16px auto 0 auto;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  form button {
+    font-size: 0.9rem;
+    padding: 8px 0;
+  }
+
+  .product-card {
+    padding: 12px 12px 8px 12px;
+  }
+
+  .product-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .product-card button[type="submit"] {
+    font-size: 0.9rem;
+    padding: 6px 0;
+  }
+
+  .product-card input[type="text"] {
+    font-size: 0.9rem;
   }
 }

@@ -1,4 +1,4 @@
-import { checkUsername, setupNavbarScroll, setupThemeToggle} from "./functions.js";
+import { checkUsername, setupNavbarScroll, setupThemeToggle, } from "./functions.js";
 
 function init() {
     // Check de username de vuelta
@@ -119,12 +119,6 @@ async function loadCart(filter) {
     cartList.classList.remove('row');
 }
 
-// function actualizarContador(cambio) {
-//     let contador = parseInt(localStorage.getItem('cart-count')) || 0;
-//     contador = Math.max(0, contador + cambio);
-//     localStorage.setItem('cart-count', contador);
-// }
-
 document.getElementsByClassName('search-bar')[0].addEventListener('keyup', filter);
 
 window.addEventListener('DOMContentLoaded', function() {
@@ -152,7 +146,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
         const username = localStorage.getItem('username') || localStorage.getItem('user');
 
-        
         localStorage.setItem('cart', JSON.stringify([]));
         const response = await fetch('http://localhost:3000/api/ventas', {
             method: 'POST',
@@ -206,6 +199,35 @@ document.addEventListener('DOMContentLoaded', () => {
         pendingDeleteIndex = null;
         modalDelete.style.display = 'none';
     };
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const homeBtn = document.querySelector('.navbar-bttn > a[href="/Parcial/frontend/index.html"]');
+    const modalHome = document.getElementById('modal-home');
+    const btnHomeConfirm = document.getElementById('btn-home-confirm');
+    const btnHomeCancel = document.getElementById('btn-home-cancel');
+
+    if (homeBtn && modalHome) {
+        homeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            modalHome.style.display = 'flex';
+        });
+    }
+
+    if (btnHomeConfirm) {
+        btnHomeConfirm.onclick = function() {
+            localStorage.removeItem('cart');
+            localStorage.removeItem('username');
+            localStorage.removeItem('theme');
+            window.location.href = "/Parcial/frontend/index.html";
+        };
+    }
+
+    if (btnHomeCancel) {
+        btnHomeCancel.onclick = function() {
+            modalHome.style.display = 'none';
+        };
+    }
 });
 
 // Inicializo

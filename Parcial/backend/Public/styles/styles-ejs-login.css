@@ -61,21 +61,60 @@ button:hover, .fast-access-btn:hover, .fast-access-btn:focus {
   margin: 18px auto 0 auto;
 }
 
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    gap: 8px;
-    padding: 10px 8px 18px 8px;
-    min-height: 70px;
-  }
-  .logo {
-    height: 36px;
-  }
-  .nombre {
-    font-size: 1.1rem;
-  }
+/* Responsive */
+
+@media (max-width: 480px) {
   .container {
-    max-width: 98vw;
-    padding: 18px 2vw;
+    max-width: 90vw;
+    padding: 28px 20px 20px 20px;
+    gap: 14px;
+  }
+
+  .container h2 {
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+  }
+
+  button,
+  .fast-access-btn {
+    font-size: 0.9rem;
+    padding: 8px 0;
+    margin-top: 6px;
+  }
+
+  .fast-access-btn {
+    margin: 14px auto 0 auto;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding: 24px 16px 16px 16px;
+    gap: 12px;
+  }
+
+  .container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    font-size: 0.85rem;
+    padding: 6px 8px;
+    margin-bottom: 8px;
+  }
+
+  button,
+  .fast-access-btn {
+    font-size: 0.85rem;
+    padding: 6px 0;
   }
 }

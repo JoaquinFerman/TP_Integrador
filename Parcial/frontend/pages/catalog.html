@@ -29,7 +29,8 @@
                 <a href="cart.html" style="font-size: 1.5rem; text-decoration: none;">🛒</a>
             </div>
             <div>
-                <button id="toggleBtn" title="Cambiar tema" style="font-size: 1.5rem;">🌙</button></div>
+                <button id="toggleBtn" title="Cambiar tema" style="font-size: 1.5rem;">🌙</button>
+            </div>
         </div>
     </nav>
 
@@ -94,5 +95,13 @@
 
     </main>
     <script type="module" src="../scripts/catalog.js"></script>
+    <!-- Modal de confirmación para volver al inicio -->
+    <div id="modal-home" class="modal-confirm" style="display:none;">
+        <div class="modal-content">
+            <h3>¿Seguro que quieres volver al inicio?</h3>
+            <button id="btn-home-confirm" class="page-btn">Sí</button>
+            <button id="btn-home-cancel" class="page-btn">Cancelar</button>
+        </div>
+    </div>
 </body>
 </html>

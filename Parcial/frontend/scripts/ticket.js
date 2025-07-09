@@ -42,6 +42,7 @@ function init() {
             localStorage.removeItem('ticket');
             localStorage.removeItem('cart');
             localStorage.removeItem('username');
+            localStorage.removeItem('theme');
         });
     }
 };
