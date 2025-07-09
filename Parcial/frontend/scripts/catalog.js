@@ -121,7 +121,7 @@ async function loadProducts(filter, category, min, max, order, page = 1, changeP
         product.appendChild(title)
 
         const img = document.createElement('img')
-        img.src = 'http://localhost:3000/images/' + result[i].name + '.webp'
+        img.src = 'http://localhost:3000/Public/images/' + result[i].name + '.webp'
         img.alt = result[i].name
         product.appendChild(img)
 
