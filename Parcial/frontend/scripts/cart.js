@@ -216,7 +216,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (btnHomeConfirm) {
         btnHomeConfirm.onclick = function() {
-            localStorage.removeItem('ticket');
             localStorage.removeItem('cart');
             localStorage.removeItem('username');
             localStorage.removeItem('theme');

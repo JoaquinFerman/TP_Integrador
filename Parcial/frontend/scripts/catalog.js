@@ -254,4 +254,33 @@ function extendButton(button, product, result, i, cantidad = 1) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const homeBtn = document.querySelector('.navbar-bttn > a[href="/Parcial/frontend/index.html"]');
+    const modalHome = document.getElementById('modal-home');
+    const btnHomeConfirm = document.getElementById('btn-home-confirm');
+    const btnHomeCancel = document.getElementById('btn-home-cancel');
+
+    if (homeBtn && modalHome) {
+        homeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            modalHome.style.display = 'flex';
+        });
+    }
+
+    if (btnHomeConfirm) {
+        btnHomeConfirm.onclick = function() {
+            localStorage.removeItem('cart');
+            localStorage.removeItem('username');
+            localStorage.removeItem('theme');
+            window.location.href = "/Parcial/frontend/index.html";
+        };
+    }
+
+    if (btnHomeCancel) {
+        btnHomeCancel.onclick = function() {
+            modalHome.style.display = 'none';
+        };
+    }
+});
+
 init();
