@@ -90,6 +90,7 @@
   justify-content: center;
   z-index: 1000;
 }
+
 .modal-content {
   background: #fff;
   padding: 32px 24px;
@@ -99,21 +100,28 @@
 }
 
 .page-btn {
-  background: #e0e0e0;
-  color: #222;
+  background: var(--color-accent-light);
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 8px 18px;
   font-size: 1rem;
-  font-weight: 500;
-  margin-left: 8px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(79, 209, 112, 0.08);
 }
 
-.page-btn:hover {
-  background: #bdbdbd;
-  color: #181f2a;
+.page-btn.active,
+.page-btn:focus {
+  background: var(--color-accent-dark);
+  color: #fff;
+  outline: none;
+}
+
+.page-btn:hover:not(.active) {
+  background: var(--color-accent);
+  color: #fff;
 }
 
 /* Dark */
