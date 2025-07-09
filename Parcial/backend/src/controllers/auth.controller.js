@@ -9,7 +9,7 @@ const userLogin = async (req, res) => {
   }
 
   try {
-    const users = (await User.findAndCountAll({ where: { name } })).rows;
+    const users = (await usersGet({name})).rows;
     if (users.length === 0) {
       if (req.accepts('html')){
         return res.status(401).render('index', { error: 'Usuario o contraseña incorrectos' })

@@ -20,7 +20,7 @@
   right: 0;
   background:
     linear-gradient(to bottom, rgba(35,42,52,0.97) 60%, rgba(35,42,52,0.93) 100%),
-    url('/images/banner.jpg') center/cover no-repeat;
+    url('/Public/images/banner.jpg') center/cover no-repeat;
   display: flex;
   justify-content: space-between;
   align-items: center;

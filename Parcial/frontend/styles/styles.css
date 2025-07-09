@@ -27,7 +27,7 @@ body {
 nav {
   background: 
     linear-gradient(to bottom, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0.0) 100%),
-    url('http://localhost:3000/images/banner.jpg') center/cover no-repeat;
+    url('http://localhost:3000/Public/images/banner.jpg') center/cover no-repeat;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -182,7 +182,7 @@ body.dark-mode {
 body.dark-mode nav{
   background:
   linear-gradient(to bottom, rgba(24,26,27,0.85) 60%, rgba(24,26,27,0.0) 100%),
-  url('http://localhost:3000/images/banner.jpg') center/cover no-repeat;
+  url('http://localhost:3000/Public/images/banner.jpg') center/cover no-repeat;
 }
 
 body.dark-mode .search-bar {
