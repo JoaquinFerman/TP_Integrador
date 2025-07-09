@@ -99,12 +99,58 @@ main {
     transform: translateY(-2px) scale(1.03);
 }
 
-@media (max-width: 600px) {
-    .login-card {
-        padding: 18px 4vw 18px 4vw;
-        max-width: 98vw;
-    }
-    .login-card h2 {
-        font-size: 1.2rem;
-    }
+/* Responsive */
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 32px 24px 24px 24px;
+    max-width: 90vw;
+    margin: 24px auto 0 auto;
+  }
+
+  .login-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+  }
+
+  .name-area {
+    gap: 16px;
+  }
+
+  .name-bar {
+    max-width: 100%;
+    font-size: 1rem;
+    padding: 10px 16px;
+  }
+
+  .name-button {
+    max-width: 100%;
+    font-size: 1rem;
+    padding: 10px 0;
+  }
 }
+
+@media (max-width: 320px) {
+  .login-card {
+    padding: 24px 16px 16px 16px;
+  }
+
+  .login-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+  }
+
+  .name-bar {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+  }
+
+  .name-button {
+    font-size: 0.95rem;
+    padding: 8px 0;
+  }
+}
+
+

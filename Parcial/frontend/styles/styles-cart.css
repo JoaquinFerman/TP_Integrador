@@ -161,3 +161,81 @@ body.dark-mode .modal-content .page-btn {
   background: #4fd170;
   color: #181f2a;
 }
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .cart-total {
+    right: 2%;
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .item-block {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 8px 12px;
+    width: 90vw;
+  }
+
+  .item-name {
+    font-size: 0.9rem;
+  }
+
+  .delete-button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+
+  #finish-sale {
+    padding: 10px 20px;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .finish-sale-wrapper {
+    margin: 15px 0;
+  }
+
+  .modal-content {
+    width: 90vw;
+    padding: 20px 16px;
+  }
+
+  #cart-items {
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .cart-total {
+    bottom: 10px;
+    right: 5%;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .item-block {
+    width: 95vw;
+    padding: 6px 10px;
+  }
+
+  .item-name {
+    font-size: 0.85rem;
+  }
+
+  .delete-button {
+    padding: 4px 8px;
+    font-size: 0.85rem;
+  }
+
+  #finish-sale {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    padding: 16px 12px;
+  }
+}
