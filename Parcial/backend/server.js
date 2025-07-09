@@ -20,7 +20,7 @@ app.use('/frontend', express.static(path.join(__dirname, '..', 'frontend')));
 app.use('/Public', express.static(path.join(__dirname, 'Public')))
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'src/views'));
 
 app.use('/api/productos', productsRouter)
 app.use('/api/ventas', salesRouter)
