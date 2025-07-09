@@ -18,7 +18,7 @@ const postSale = async (req, res) => {
   console.log(products);
   
   try {
-    products = await checkCart(name, products)
+    products = await checkCart(products)
   } catch (e) {
     return res.status(400).json({ error: e.message || String(e) })
   }

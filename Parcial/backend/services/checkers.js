@@ -41,7 +41,7 @@ async function checkProduct(fields) {
 	return checkedFields;
 }
 
-async function checkCart(name, cart) {
+async function checkCart(cart) {
 	try {
 		const validateds = [];
 
