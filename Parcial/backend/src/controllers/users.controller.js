@@ -1,19 +1,5 @@
-const { User } = require('../models');
 const { usersGet, userPost, userUpdate, userDelete } = require('../services/users.service');
-
-const getUserHomePage = (req, res) => {
-  return res.render('index');
-};
-
-const getUserPage = async (req, res) => {
-  try {
-    const users = await User.findAll();
-    res.render('users', { users });
-  } catch (err) {
-    console.error('Error al obtener usuarios:', err);
-    res.status(500).json({ error: 'Error en el servidor' });
-  }
-};
+const { User } = require('../models');
 
 const getUsers = async (req, res) => {
   try {
@@ -70,8 +56,6 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   getUsers,
-  getUserHomePage,
-  getUserPage,
   postUser,
   updateUser,
   deleteUser

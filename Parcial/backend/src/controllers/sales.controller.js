@@ -64,18 +64,7 @@ const getSales = async (req, res) => {
   return res.status(200).json({ sales: returnSales });
 };
 
-const getSalesPage = async (req, res) => {
-    try {
-        const sales = await salesGet(['name']);
-        res.render('sales', { sales });
-    } catch (err) {
-        console.error('Error al obtener ventas:', err);
-        res.status(500).json({ error: 'Error en el servidor' });
-    }
-}
-
 module.exports = {
   postSale,
-  getSales,
-  getSalesPage
+  getSales
 };

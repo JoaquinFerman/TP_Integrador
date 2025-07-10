@@ -7,20 +7,7 @@
   <link rel="stylesheet" href="http://localhost:3000/Public/styles/styles-ejs.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="brand">
-      <img src="http://localhost:3000/Public/images/logo.png" alt="Logo" class="logo">
-      <span class="name">MatchPoint Wear</span>
-    </div>
-    <p>Panel de administrador</p>
-    <div class="names">
-      <p>Joaquin Ferman</p>
-      <p>Matias Pena</p>
-    </div>
-    <a href="/api/admin/productos/todas">Productos</a>
-    <a href="/api/admin/usuarios">Usuarios</a>
-    <a href="http://localhost:5500/Parcial/frontend/index.html">Inicio user</a>
-  </nav>
+  <%- include("partials/navbar") %>
 
   <main class="container mt-4">
     <h1>🛒 Lista de Ventas</h1>

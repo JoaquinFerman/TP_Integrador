@@ -23,7 +23,7 @@ async function checkProduct(fields) {
 	}
 
 	for (const key in forValues) {
-		if (fields.id && (checkedFields[key] === null || checkedFields[key] === undefined)) {
+		if (fields.id && (checkedFields[key] === null || checkedFields[key] === undefined || checkedFields[key] === "")) {
 			checkedFields[key] = dbValues[key];
 		} else {
 			if(key == 'price' && (isNaN(Number(checkedFields[key])) || checkedFields[key] < 1)) {

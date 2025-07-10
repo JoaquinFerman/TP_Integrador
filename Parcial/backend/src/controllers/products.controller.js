@@ -29,23 +29,6 @@ const getProducts = async function(req, res) {
     }
 };
 
-const getProductsPage = async function(req, res) {
-    const { category } = req.params
-    try {
-        let clause
-        if(category != 'todas'){
-            clause = { category : category }
-        } else {
-            clause = {}
-        }
-        const products = await productsGet(clause);
-        res.render('products', { products });
-    } catch (err) {
-        console.error('Error al obtener productos:', err);
-        res.status(500).json({ error: 'Error en el servidor' });
-    }
-};
-
 const postProduct = async function(req, res) {
     const { name, price, category = 'zapatilla', description } = req.body;
     if (!name || !price || !category || !description) {
@@ -61,7 +44,7 @@ const postProduct = async function(req, res) {
 
     let newId
     try {
-        newId = await productPost(fields, res)
+        newId = await productPost(fields)
     } catch (e) {
         return res.status(400).json({ error: e.message || String(e) })
     }
@@ -75,10 +58,7 @@ const updateProduct = async function(req, res) {
     
     if (!name && !price && !category && !description && !active) {
         return res.status(400).json({ error: 'Al menos un campo debe ser actualizado' });
-    }
-
-    console.log(active);
-    
+    }    
 
     let fields = {
         id : id,
@@ -105,11 +85,10 @@ const deleteProduct = async function(req, res) {
     } catch (e) {
         res.status(400).json({ error: e.message || String(e) })
     }
-    res.status(204).json({ message: 'Producto eliminado' });
+    res.status(200).json({ message: 'Producto eliminado' });
 };
 
 module.exports = {
-    getProductsPage,
     getProducts,
     postProduct,
     updateProduct,

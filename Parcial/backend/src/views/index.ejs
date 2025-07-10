@@ -25,9 +25,7 @@
   <div class="main-center-wrapper">
     <div class="container mt-5">
       <h2 class="mb-4">Login de Admin</h2>
-      <% if (typeof error !== 'undefined' && error) { %>
-      <div class="alert alert-danger"><%= error %></div>
-      <% } %>
+      <%- include("partials/error") %>
       <form action="/api/login" method="POST">
         <div class="mb-3">
           <label for="name" class="form-label">Nombre</label>
