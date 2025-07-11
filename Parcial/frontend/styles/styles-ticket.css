@@ -57,7 +57,7 @@
   text-align: right;
 }
 
-.page-btn, .download-pdf {
+.page-btn {
   background: var(--color-accent-light, #4fd170);
   color: #fff;
   border: none;
@@ -75,7 +75,7 @@
   text-decoration: none;
 }
 
-.page-btn:hover, .descargar-pdf:hover {
+.page-btn:hover {
   background: var(--color-accent-dark, #1565c0);
   color: #fff;
 }
@@ -155,48 +155,6 @@
   font-size: 0.98rem;
 }
 
-/* Dark mode */
-body.dark-mode .ticket-section,
-.ticket-section.dark-mode {
-  background: #181f2a;
-  color: #e0e6ed;
-  box-shadow: 0 8px 32px rgba(30,144,255,0.18), 0 1.5px 0 #2e8c5a inset;
-}
-
-body.dark-mode .ticket-section h2,
-.ticket-section.dark-mode h2 {
-  color: #4fd170;
-  border-bottom: 2px dashed #1e90ff;
-}
-
-body.dark-mode #ticket-content p,
-body.dark-mode #ticket-content strong,
-body.dark-mode .ticket-user-label,
-body.dark-mode .ticket-user-name,
-body.dark-mode .ticket-empresa {
-  color: #4fd170;
-}
-
-body.dark-mode .ticket-fecha {
-  color: #b0b8c1;
-}
-
-body.dark-mode .ticket-total {
-  color: #1e90ff;
-}
-
-body.dark-mode .page-btn,
-body.dark-mode .descargar-pdf {
-  background: #1e90ff;
-  color: #fff;
-}
-
-body.dark-mode .page-btn:hover,
-body.dark-mode .descargar-pdf:hover {
-  background: #4fd170;
-  color: #181f2a;
-}
-
 /* Responsive */
 
 @media (max-width: 600px) {
@@ -226,7 +184,7 @@ body.dark-mode .descargar-pdf:hover {
     text-align: left;
     font-size: 1.1rem;
   }
-  .page-btn, .download-pdf {
+  .page-btn {
     width: 100%;
     padding: 12px 0;
     font-size: 1rem;
