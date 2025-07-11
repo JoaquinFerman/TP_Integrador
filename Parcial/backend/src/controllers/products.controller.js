@@ -35,18 +35,23 @@ const postProduct = async function(req, res) {
         return res.status(400).json({ error: 'Faltan campos requeridos' });
     }
 
-    fields = {
+    const validExtensions = ['image/jpg', 'image/jpeg', 'image/png', 'image/webp'];
+    if (!req.file || !validExtensions.includes(req.file.mimetype)) {
+        return res.status(400).json({ error: 'Imagen para producto faltante o extencion no valida, usar jpg, jpeg, png, webp' });
+    }
+
+    const fields = {
         name,
         price,
         category,
         description
-    }
+    };
 
-    let newId
+    let newId;
     try {
-        newId = await productPost(fields)
+        newId = await productPost(fields);
     } catch (e) {
-        return res.status(400).json({ error: e.message || String(e) })
+        return res.status(400).json({ error: e.message || String(e) });
     }
 
     res.status(201).json({ message: 'Producto creado', id: newId });
