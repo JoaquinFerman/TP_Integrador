@@ -9,28 +9,12 @@
     <link rel="icon" href="http://localhost:3000/Public/images/head_logo.png" type="image/png">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="brand">
-            <img src="http://localhost:3000/Public/images/logo.png" alt="Logo" class="logo">
-            <span class="name">MatchPoint Wear</span>
-        </div>
-
-        <div class="names">
-            <p>Joaquin Ferman</p>
-            <p>Matias Pena</p>
-        </div>
-
-        <div class="buttons-wrapper">
-            <button id="toggleBtn" title="Cambiar tema" style="font-size: 1.5rem;">🌙</button>
-        </div>
-    </nav>
     <main>
         <section class="ticket-section">
             <h2>Ticket de compra</h2>
             <div id="ticket-content"></div>
             <a href="/Parcial/frontend/index.html" class="page-btn">Volver al inicio</a>
-            <button class="download-pdf" id="btn-pdf" style="margin-top:12px;" onclick="window.print()">Descargar ticket en PDF</button>
+            <a class="page-btn" id="btn-pdf" onclick="window.print()">Descargar ticket en PDF</a>
         </section>
     </main>
     <script type="module" src="../scripts/ticket.js"></script>
