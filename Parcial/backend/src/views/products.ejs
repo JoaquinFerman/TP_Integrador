@@ -69,6 +69,15 @@
       <% }) %>
     </div>
   </main>
+  <div class="pagination" style="text-align:center; margin: 24px 0;">
+  <% if (page > 1) { %>
+    <a href="?page=<%= page - 1 %>&limit=7" class="pagination-btn">Anterior</a>
+  <% } %>
+  <span>Página <%= page %> de <%= totalPages %></span>
+  <% if (page < totalPages) { %>
+    <a href="?page=<%= page + 1 %>&limit=7" class="pagination-btn">Siguiente</a>
+  <% } %>
+</div>
   <script src="http://localhost:3000/Public/scripts/former.js"></script>
 </body>
 </html>
