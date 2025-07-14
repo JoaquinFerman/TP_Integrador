@@ -95,3 +95,67 @@ a:hover {
   color: var(--color-primary);
   text-decoration: underline;
 }
+
+
+@media (max-width: 1024px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 20px;
+  }
+
+  .logo {
+    height: 50px;
+  }
+
+  .name {
+    font-size: 1.5rem;
+  }
+
+  .names {
+    text-align: left;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 16px;
+  }
+
+  .name {
+    font-size: 1.4rem;
+  }
+
+  .logo {
+    height: 44px;
+  }
+
+  .main-center-wrapper {
+    padding: 0 5vw;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .name {
+    font-size: 1.2rem;
+  }
+
+  .logo {
+    height: 38px;
+  }
+
+  .names {
+    font-size: 0.85rem;
+  }
+
+  .navbar {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}

@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lista de Ventas</title>
   <link rel="stylesheet" href="http://localhost:3000/Public/styles/styles-ejs-ventas.css">
   <link rel="stylesheet" href="http://localhost:3000/Public/styles/styles-ejs.css">
@@ -19,27 +20,29 @@
             <th>Comprador</th>
             <th>Fechas</th>
             <th>Productos</th>
+            <th>Total</th>
           </tr>
         </thead>
         <tbody>
           <% sales.forEach(function(sale) { %>
             <tr>
-              <td><%= sale.sale_id %></td>
-              <td><%= sale.name %></td>
-              <td>
+              <td data-label="ID"><%= sale.sale_id %></td>
+              <td data-label="Comprador"><%= sale.name %></td>
+              <td data-label="Fecha">
                 <% if (sale.date) { %>
                   <%= new Date(sale.date).toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' }) %>
                 <% } else { %>
                   <span class="no-date">Fecha no disponible</span>
                 <% } %>
               </td>
-              <td>
+              <td data-label="Productos">
                 <ul>
                   <% (sale.products || []).forEach(function(product) { %>
                     <li><%= product.name %> x<%= product.count%> </li>
                   <% }); %>
                 </ul>
               </td>
+              <td data-label="Total"><%= sale.price ? sale.price.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' }) : 'No disponible' %></td>
             </tr>
           <% }); %>
         </tbody>

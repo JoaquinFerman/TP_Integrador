@@ -37,6 +37,19 @@
   width: fit-content;
 }
 
+.item-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.item-controls button,
+.item-controls input {
+  height: 36px;
+  font-size: 1rem;
+}
+
 .item-name {
   font-size: 1rem;
 }
@@ -184,11 +197,16 @@ body.dark-mode .modal-content .page-btn {
   }
 
   .item-block {
-    flex-direction: column;
     align-items: flex-start;
     gap: 6px;
     padding: 8px 12px;
     width: 90vw;
+  }
+
+  .item-controls {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .item-name {

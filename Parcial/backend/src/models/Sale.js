@@ -9,6 +9,10 @@ module.exports = (sequelize) => {
     client_name: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    total: {
+      type: DataTypes.FLOAT,
+      allowNull: false
     }
   }, {
     timestamps: false
