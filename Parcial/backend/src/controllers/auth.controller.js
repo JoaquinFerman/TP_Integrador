@@ -24,6 +24,13 @@ const userLogin = async (req, res) => {
       }
     }
 
+    // const user = users[0];
+    // const isMatch = await bcrypt.compare(password, user.password);  ||| modificar base de datos para que no haya mas de un usuario con el mismo nombre
+
+    // if (isMatch) {
+    //   return res.status(200).redirect('./admin/productos/todas');
+    // }
+
     if (req.accepts('html')){
       return res.status(401).render('index', { error: 'Usuario o contraseña incorrectos' })
     } else {
